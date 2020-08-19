@@ -1,0 +1,14 @@
+
+.main_panel{
+    display: flex;
+    flex-direction: column;
+
+    width: 1200px;
+    height: var(--global-height);
+    background-color: #d20eee;
+    margin: 13px auto 0;
+}
+
+.title {
+  background: rgb(232, 121, 242);
+}

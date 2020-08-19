@@ -1,0 +1,27 @@
+.title {
+  background: rgb(242, 121, 230);
+}
+
+.tab_panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75px;
+    height: var(--global-height);
+    background-color: #352645;
+}
+
+.be_middle{
+    margin: 0 auto;
+}
+
+.head_pic{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.username{
+    color: #fff;
+    font-size: 12pt;
+}
