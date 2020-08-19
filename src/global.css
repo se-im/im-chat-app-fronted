@@ -1,3 +1,5 @@
 :root{
-    --global-height: 800px
+    --global-height: 800px;
+    --gloabl-width: 1200px;
+    --tabpanel-width: 75px;
 }

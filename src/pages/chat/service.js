@@ -19,7 +19,7 @@ export const getUserByToken = (token) => {
             },
         )
         .catch(error => {
-            message.error(error);
+            //message.error(error);
         });
 
 };
