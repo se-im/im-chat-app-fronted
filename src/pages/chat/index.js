@@ -3,6 +3,7 @@ import styles from './index.css';
 import TabPanel from './TabPanel/index';
 import CvsPanel from './CvsPanel/index';
 import { connect } from 'umi';
+import './CvsPanel/icons/iconfont.css';
 import axios from 'axios';
 import api from '../../../util/api';
 
