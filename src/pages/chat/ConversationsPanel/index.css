@@ -1,0 +1,11 @@
+.title {
+  background: rgb(242, 121, 230);
+}
+
+.cvs_panel{
+    display: flex;
+    width: var(--cvspanel-width);
+    height: var(--global-height);
+    background-color: pink;
+}
+

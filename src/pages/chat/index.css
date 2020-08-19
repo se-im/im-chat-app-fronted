@@ -1,7 +1,7 @@
 
 .main_panel{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
     width: var(--gloabl-width);
     height: var(--global-height);

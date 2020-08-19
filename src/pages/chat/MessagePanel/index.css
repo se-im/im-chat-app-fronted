@@ -1,0 +1,9 @@
+.title {
+  background: rgb(121, 242, 121);
+}
+.msg_panel {
+    display: flex;
+    width: var(--messagepanel-width);
+    height: var(--global-height);
+    background-color: palegoldenrod;
+}
