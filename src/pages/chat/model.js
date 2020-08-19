@@ -21,7 +21,7 @@ const ChatModel = {
 
             if(data === undefined)
             {
-                history.push('/list');
+                history.push('/login');
             }
             yield effects.put({
                 type: 'global/setUser',
