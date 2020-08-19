@@ -1,0 +1,10 @@
+.title {
+    background: rgb(232, 121, 242);
+}
+
+.profile_panel {
+    display: flex;
+    width: var(--profilepanel-width);
+    height: var(--global-height);
+    background-color: aquamarine;
+}

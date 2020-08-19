@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from './index.css';
 import TabPanel from './TabPanel/index';
-import CvsPanel from './CvsPanel/index';
+import CvsPanel from './CvsPanel';
+import MessagePanel from './MessagePanel';
+import ProfilePanel from './ProfilePanel';
 import { connect } from 'umi';
-import './CvsPanel/icons/iconfont.css';
-import axios from 'axios';
-import api from '../../../util/api';
 
-const index = token => {
+const index = ({ token }) => {
     return (
         <div className={styles.main_panel}>
             <TabPanel />
             <CvsPanel />
+            <MessagePanel />
+            <ProfilePanel />
         </div>
     );
 };
