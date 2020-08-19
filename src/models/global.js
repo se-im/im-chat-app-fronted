@@ -1,5 +1,5 @@
-import { routerRedux } from 'dva/router';
-
+import { routerRedux } from 'dva';
+import produce from "immer";
 export default {
     namespace: 'global',
     state: {
@@ -7,7 +7,14 @@ export default {
         user: {},
     },
     reducers: {
-        setText(state) {
+        setUser(state, action) {
+            console.log(action.payload);
+            return produce(state, draft => {
+                draft.user = action.payload;
+            });
+
+        },
+        setText(state, action) {
             return {
                 ...state,
                 text: 'setted dva',

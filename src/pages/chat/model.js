@@ -1,31 +1,41 @@
-import { getRemoteList } from './service';
+import { getUserByToken } from './service';
+import { Link } from 'umi';
 
-const UserModel = {
-    namespace: 'users',
-    state:[],
+const ChatModel = {
+    namespace: 'chatPanel',
+    state:{
+
+    },
     reducers: {
         //action->{type, payload}
-        getList(state, action) {
+        setUserR(state, action) {
             return action.payLoad;
         }
     },
     effects: {
         //effects -> {put, call}
-        *getRemote(action, effects){
-            const data = yield effects.call(getRemoteList);
+        *setUser(action, effects){
+
+            const token = yield effects.select(state => state.global.token);
+            const data = yield effects.call(getUserByToken, token);
+
+            if(data === undefined)
+            {
+                history.push('/list');
+            }
             yield effects.put({
-                type: 'getList',
-                payLoad: data
+                type: 'global/setUser',
+                payload: data
             })
         }
     },
     subscriptions: {
         setup({ dispatch, history }, done){
             history.listen((location, action) =>{
-                if(location.pathname === '/users')
+                if(location.pathname === '/')
                 {
                     dispatch({
-                        type: 'getRemote'
+                        type: 'setUser'
                     });
                 }
             })
@@ -35,4 +45,4 @@ const UserModel = {
 
 
 
-export default UserModel;
+export default ChatModel;
