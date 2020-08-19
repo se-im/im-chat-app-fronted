@@ -1,0 +1,23 @@
+
+.cvs_Panel {
+  display: flex;
+  flex-direction: column;
+  height:var(--global-height);
+  width: var(--cvspanel-width);
+  background: rgb(64, 46, 88);
+  border:1px solid;
+}
+.cvs_header{
+  height: 79px;
+  border-bottom: 1px solid;
+}
+.search{
+  float: left;
+  margin-left: 30px;
+  margin-top: 18px;
+  width: 220px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #35244d;
+}
+

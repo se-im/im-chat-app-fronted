@@ -5,10 +5,8 @@ import ConversationsPanel from './ConversationsPanel';
 import MessagePanel from './MessagePanel';
 import ProfilePanel from './ProfilePanel';
 import { connect } from 'umi';
-import axios from 'axios';
-import api from '../../../util/api';
 
-const index = token => {
+const index = ({ token }) => {
     return (
         <div className={styles.main_panel}>
             <TabPanel />
