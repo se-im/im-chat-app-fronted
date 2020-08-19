@@ -1,14 +1,12 @@
 
 .main_panel{
     display: flex;
-    flex-direction: column;
-
-    width: 1200px;
+    flex-direction: row;
+    width: var(--gloabl-width);
     height: var(--global-height);
     background-color: #d20eee;
     margin: 13px auto 0;
 }
-
 .title {
   background: rgb(232, 121, 242);
 }

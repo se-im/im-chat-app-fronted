@@ -17,6 +17,6 @@ export const getUserByToken = token => {
             }
         })
         .catch(error => {
-            console.log(error);
+            //message.error(error);
         });
 };
