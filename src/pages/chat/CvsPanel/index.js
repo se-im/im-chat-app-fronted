@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './index.css';
-import { Input } from 'antd';
-import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { Input, List, Avatar } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
 
-const index = () => {
+const index = ({ Conversations }) => {
     return (
         <div className={styles.cvs_Panel}>
             <div className={styles.cvs_header}>
@@ -17,9 +18,30 @@ const index = () => {
                     <a className={styles.add_icon}>+</a>
                 </div>
             </div>
-            <div className={styles.cvs_body}></div>
+            <List
+                className={styles.cvs_body}
+                itemLayout="horizontal"
+                dataSource={Conversations.data}
+                renderItem={item => (
+                    <List.Item>
+                        <List.Item.Meta
+                            avatar={
+                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                            }
+                            title={
+                                <a href="https://ant.design">{item.title}</a>
+                            }
+                            description="Ant Design"
+                        />
+                    </List.Item>
+                )}
+            />
         </div>
     );
 };
-
-export default index;
+const mapStateToProps = ({ Conversations }) => {
+    return {
+        Conversations,
+    };
+};
+export default connect(mapStateToProps)(index);

@@ -21,5 +21,19 @@ export default {
             address: 'Sidney No. 1 Lake Park',
             tags: ['cool', 'teacher'],
         },
-    ]
-}
+    ],
+    '/api/conversations': [
+        {
+            title: 'Ant Design Title 1',
+        },
+        {
+            title: 'Ant Design Title 2',
+        },
+        {
+            title: 'Ant Design Title 3',
+        },
+        {
+            title: 'Ant Design Title 4',
+        },
+    ],
+};
