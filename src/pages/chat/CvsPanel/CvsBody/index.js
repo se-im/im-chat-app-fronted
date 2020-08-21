@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './index.css';
 import { connect } from 'react-redux';
 import { List, Avatar } from 'antd';
-
 const cvsbody = ({ Conversations }) => {
     return (
         <List
@@ -13,14 +12,27 @@ const cvsbody = ({ Conversations }) => {
             renderItem={item => (
                 <List.Item>
                     <List.Item.Meta
-                        avatar={<Avatar src={item.avatarUrl} />}
+                        avatar={
+                            <Avatar
+                                className={styles.avatar}
+                                src={item.avatarUrl}
+                            />
+                        }
                         title={<a href="">{item.cvsName}</a>}
-                        description={item.lastMessage}
+                        description={
+                            <p className={styles.description}>
+                                {item.lastMessage}
+                            </p>
+                        }
                     />
                     <div>
-                        <i>{item.lastMessageTime}</i>
+                        <i className={styles.lastMsgTime}>
+                            {item.lastMessageTime}
+                        </i>
                         <br />
-                        <i>{item.unreadMessageNum}</i>
+                        <p className={styles.unreadMsgNum}>
+                            {item.unreadMessageNum}
+                        </p>
                     </div>
                 </List.Item>
             )}

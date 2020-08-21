@@ -28,6 +28,7 @@
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-vertical-infinite-scrolling": "^1.0.4",
     "umi": "^3.2.16",
     "yorkie": "^2.0.0"
   }
