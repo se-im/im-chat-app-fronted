@@ -6,5 +6,5 @@
     display: flex;
     width: var(--profilepanel-width);
     height: var(--global-height);
-    background-color: aquamarine;
+    background-color: #ffffff;
 }

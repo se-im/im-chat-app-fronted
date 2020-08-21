@@ -1,0 +1,70 @@
+.msg_header {
+    display: flex;
+    width: var(--messagepanel-width);
+    height: 80px;
+    border-bottom: 1px solid #d3d3d3;
+}
+.header_left, .header_right {
+    margin: 18px auto;
+}
+.header_left {
+    display: flex;
+    width: 200px;
+    margin-left: 10px;
+}
+.header_left img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-left: 10px;
+}
+.header_userinfo {
+    margin-left: 12px;
+}
+.header_userinfo div {
+    padding-top: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+.header_userinfo p {
+    font-size: 11px;
+    font-weight: bold;
+    color: #969896;
+}
+.header_userinfo span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #00ff00;
+}
+
+.header_right {
+    display: flex;
+    margin-left: auto;
+    margin-right: 3px;
+}
+.header_icons_container {
+    width: 24px;
+    height: 24px;
+    margin: 13px 10px;
+    border-radius: 15px;
+    background-color: #6633cc;
+    text-align: center;
+}
+.header_icons {
+    font-size: 22px;
+    margin: 14px 10px;
+    color: #969896;
+}
+.header_icons_focus {
+    font-size: 22px;
+    margin: 14px 10px;
+    color: #6633cc;
+}
+
+.header_icons_container>.header_icons {
+    margin: 2px auto;
+    color: #ffffff;
+}
