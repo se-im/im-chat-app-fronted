@@ -1,31 +1,45 @@
+.body{
 
-.title {
-  background: rgb(242, 154, 121);
 }
 .cvs_body{
   height: 720px;
   margin-top: 10px;
-  padding: 0 18px;
   overflow-y:auto
 }
 .cvs_body a{
   font-size: 18px;
   color: white;
 }
+/*设置item宽度*/
+.item{
+  padding: 0 18px;
+  position: relative;
+}
+/*item的鼠标覆盖样式*/
+.cvs_body ul li:hover{
+    background-color: #4a3664;
+}
+/*用户状态*/
+.userStatus{
+  position: absolute;
+  left: 58px;
+  top: 49px;
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #00ff00;
+}
+/*头 像*/
 .avatar{
-  margin-top: 7px;
-  margin-left: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-top: 5px;
 }
 .description{
   font-size: 13px;
   color: #78678f;
-
   max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.line-limit-length {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -45,6 +59,7 @@
   text-align: center;
   line-height: 15px;
 }
+/*设置滚动条*/
 .cvs_body::-webkit-scrollbar{
   width: 10px;
   height: 10px;
