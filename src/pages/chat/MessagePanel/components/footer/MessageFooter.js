@@ -17,13 +17,97 @@ class MessageFooter extends Component {
         const { TextArea } = Input;
         return (
             <div className={styles.msg_footer}>
-                <div>
-                    <PaperClipOutlined className={styles.footer_icons} />
-                    <SmileOutlined className={styles.footer_icons} />
-                    <ScissorOutlined className={styles.footer_icons} />
-                    <HistoryOutlined className={styles.footer_icons} />
-                    <ContactsOutlined className={styles.footer_icons} />
-                    <MailOutlined className={styles.footer_icons} />
+                <div className={styles.footer_icons_container}>
+                    <div
+                        onMouseEnter={() =>
+                            this.iconFocus(this.changeStyleIconPaperClip)
+                        }
+                        onMouseLeave={() =>
+                            this.iconBlur(this.changeStyleIconPaperClip)
+                        }
+                    >
+                        <PaperClipOutlined
+                            className={styles.footer_icons}
+                            ref={icon => {
+                                this.changeStyleIconPaperClip = icon;
+                            }}
+                        />
+                    </div>
+                    <div
+                        onMouseEnter={() =>
+                            this.iconFocus(this.changeStyleIconSmile)
+                        }
+                        onMouseLeave={() =>
+                            this.iconBlur(this.changeStyleIconSmile)
+                        }
+                    >
+                        <SmileOutlined
+                            className={styles.footer_icons}
+                            ref={icon => {
+                                this.changeStyleIconSmile = icon;
+                            }}
+                        />
+                    </div>
+                    <div
+                        onMouseEnter={() =>
+                            this.iconFocus(this.changeStyleIconScissor)
+                        }
+                        onMouseLeave={() =>
+                            this.iconBlur(this.changeStyleIconScissor)
+                        }
+                    >
+                        <ScissorOutlined
+                            className={styles.footer_icons}
+                            ref={icon => {
+                                this.changeStyleIconScissor = icon;
+                            }}
+                        />
+                    </div>
+                    <div
+                        onMouseEnter={() =>
+                            this.iconFocus(this.changeStyleIconHistory)
+                        }
+                        onMouseLeave={() =>
+                            this.iconBlur(this.changeStyleIconHistory)
+                        }
+                    >
+                        <HistoryOutlined
+                            className={styles.footer_icons}
+                            ref={icon => {
+                                this.changeStyleIconHistory = icon;
+                            }}
+                        />
+                    </div>
+                    <div
+                        onMouseEnter={() =>
+                            this.iconFocus(this.changeStyleIconContact)
+                        }
+                        onMouseLeave={() =>
+                            this.iconBlur(this.changeStyleIconContact)
+                        }
+                    >
+                        <ContactsOutlined
+                            className={styles.footer_icons}
+                            ref={icon => {
+                                this.changeStyleIconContact = icon;
+                            }}
+                        />
+                    </div>
+                    <div
+                        onMouseEnter={() =>
+                            this.iconFocus(this.changeStyleIconMail)
+                        }
+                        onMouseLeave={() =>
+                            this.iconBlur(this.changeStyleIconMail)
+                        }
+                    >
+                        <MailOutlined
+                            className={styles.footer_icons}
+                            ref={icon => {
+                                this.changeStyleIconMail = icon;
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className={styles.footer_input_area}>
                     <Input
@@ -38,6 +122,14 @@ class MessageFooter extends Component {
                 </div>
             </div>
         );
+    }
+    iconFocus(icon) {
+        icon.style.color = '#6633cc';
+        icon.style.fontSize = '25px';
+    }
+    iconBlur(icon) {
+        icon.style.color = '#969896';
+        icon.style.fontSize = '22px';
     }
 }
 export default MessageFooter;

@@ -74,4 +74,12 @@ export default {
             unreadMessageNum: '2',
         },
     ],
+    '/api/message': {
+        userPhoto:
+            'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3107068196,1940194195&fm=26&gp=0.jpg',
+        userName: 'User Name',
+        userState: 'busy',
+        receiveMsg: 'receive message',
+        sendMsg: 'send message',
+    },
 };

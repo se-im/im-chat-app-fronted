@@ -3,7 +3,13 @@
     height: 100px;
     border-top: 1px solid #d3d3d3;
 }
-
+.footer_icons_container {
+    height: 30px;
+    display: flex;
+}
+.footer_icons_item {
+    width: 30px;
+}
 .footer_icons {
     font-size: 22px;
     margin: 10px 10px;
