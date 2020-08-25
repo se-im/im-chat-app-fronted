@@ -25,3 +25,21 @@
     color: #fff;
     font-size: 12pt;
 }
+
+.icon{
+    color: #6c5986;
+    width: 75px;
+    height: 75px;
+    display: block;
+    line-height: 75px;
+    text-align: center;
+}
+.shezhi{
+    margin-top: 370px;
+}
+.icon:hover{
+    background-color: #4a3664;
+}
+.iconClick{
+    background-color: #63a35c;
+}
