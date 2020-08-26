@@ -1,7 +1,7 @@
-import { getRemoteList } from './service';
+import { getFriendsList } from './service';
 
-const CvsModel = {
-    namespace: 'Conversations',
+const FriendsModel = {
+    namespace: 'Friends',
 
     state: {},
 
@@ -11,8 +11,8 @@ const CvsModel = {
         },
     },
     effects: {
-        *getRemote(action, { put, call }) {
-            const data = yield call(getRemoteList);
+        *getFriends(action, { put, call }) {
+            const data = yield call(getFriendsList);
             yield put({
                 type: 'getList',
                 payload: { data },
@@ -25,7 +25,7 @@ const CvsModel = {
             return history.listen(({ pathname }) => {
                 if (pathname === '/') {
                     dispatch({
-                        type: 'getRemote',
+                        type: 'getFriends',
                     });
                 }
             });
@@ -33,4 +33,4 @@ const CvsModel = {
     },
 };
 
-export default CvsModel;
+export default FriendsModel;
