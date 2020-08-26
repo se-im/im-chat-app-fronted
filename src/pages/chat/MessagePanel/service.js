@@ -1,12 +1,10 @@
 import { request } from '../../../.umi/plugin-request/request';
 
-const getMessagePanelInfoList = () => {
+export const getMessagePanelInfoList = () => {
     return request('/api/message', {
         method: 'get',
     })
         .then(res => {
-            // console.log('getMessageInfo------');
-            // console.log(res);
             return res;
         })
         .catch(err => {
@@ -14,5 +12,3 @@ const getMessagePanelInfoList = () => {
             return err;
         });
 };
-
-export default getMessagePanelInfoList;

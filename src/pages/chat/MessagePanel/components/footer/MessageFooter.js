@@ -3,18 +3,16 @@ import { Input } from 'antd';
 import {
     PaperClipOutlined,
     SmileOutlined,
-    ScissorOutlined,
+    PictureOutlined,
     HistoryOutlined,
     ContactsOutlined,
     MailOutlined,
     SendOutlined,
 } from '@ant-design/icons';
-
 import styles from './style.css';
 
 class MessageFooter extends Component {
     render() {
-        const { TextArea } = Input;
         return (
             <div className={styles.msg_footer}>
                 <div className={styles.footer_icons_container}>
@@ -56,7 +54,7 @@ class MessageFooter extends Component {
                             this.iconBlur(this.changeStyleIconScissor)
                         }
                     >
-                        <ScissorOutlined
+                        <PictureOutlined
                             className={styles.footer_icons}
                             ref={icon => {
                                 this.changeStyleIconScissor = icon;
@@ -116,6 +114,7 @@ class MessageFooter extends Component {
                         rows={5}
                         placeholder="Please write here "
                     />
+
                     <div className={styles.footer_send_area}>
                         <SendOutlined className={styles.footer_icons_send} />
                     </div>
@@ -124,7 +123,7 @@ class MessageFooter extends Component {
         );
     }
     iconFocus(icon) {
-        icon.style.color = '#6633cc';
+        icon.style.color = '#8053b6';
         icon.style.fontSize = '25px';
     }
     iconBlur(icon) {

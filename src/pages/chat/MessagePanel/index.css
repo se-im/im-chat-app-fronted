@@ -9,8 +9,4 @@
     border-right: 1px solid #d3d3d3;
     background-color: #ffffff;
 }
-.msg_body {
-    width: var(--messagepanel-width);
-    height: 600px;
 
-}
