@@ -1,8 +1,7 @@
-import { getUserByToken } from './service';
 import { Link } from 'umi';
 
 const LoginModel = {
-    namespace: 'login',
+    namespace: 'LoginModel',
     state: {
         username: '',
         password: '',
@@ -20,7 +19,7 @@ const LoginModel = {
             const data = yield effects.call(getUserByToken, token);
 
             if (data === undefined) {
-                history.push('/login');
+                history.push('/LoginPage');
             }
             yield effects.put({
                 type: 'global/setUser',
@@ -28,7 +27,6 @@ const LoginModel = {
             });
         },
     },
-
 };
 
-export default ChatModel;
+export default LoginModel;

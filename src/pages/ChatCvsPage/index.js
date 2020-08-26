@@ -1,19 +1,16 @@
-import React from 'react';
-import styles from './index.css';
-import TabPanel from './TabPanel/index';
+import React, { Fragment } from 'react';
 import CvsPanel from './CvsPanel';
 import MessagePanel from './MessagePanel';
 import ProfilePanel from './ProfilePanel';
 import { connect } from 'umi';
 
-const index = ({ token }) => {
+const index = ({}) => {
     return (
-        <div className={styles.main_panel}>
-            <TabPanel />
+        <Fragment>
             <CvsPanel />
             <MessagePanel />
             <ProfilePanel />
-        </div>
+        </Fragment>
     );
 };
 

@@ -1,0 +1,45 @@
+.title {
+  background: rgb(242, 121, 230);
+}
+
+.tab_panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--tabpanel-width);
+    height: var(--global-height);
+    background-color: #352645;
+}
+
+.be_middle{
+    margin: 0 auto;
+}
+
+.head_pic{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.username{
+    color: #fff;
+    font-size: 12pt;
+}
+
+.icon{
+    color: #6c5986;
+    width: 75px;
+    height: 75px;
+    display: block;
+    line-height: 75px;
+    text-align: center;
+}
+.shezhi{
+    margin-top: 370px;
+}
+.icon:hover{
+    background-color: #4a3664;
+}
+.iconClick{
+    background-color: #63a35c;
+}

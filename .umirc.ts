@@ -5,16 +5,15 @@ export default defineConfig({
         type: 'none',
     },
     routes: [
-        { path: '/', component: '@/pages/chat/index' },
-        {path: '/login/index', component: '@/pages/login/index'},
-        {path: '/register/index', component: '@/pages/register/index'}
-    ],
-    plugins: [
-        ['umi-plugin-react', {
-            antd: true,
-            dva: {
-                immer: true,
-            },
-        }],
+        {
+            path: '/',
+            component: '@/layouts/HomeLayout/index',
+            routes: [{ path: '/', component: '@/pages/ChatCvsPage/index' }],
+        },
+        { path: '/LoginPage/index', component: '@/pages/LoginPage/index' },
+        {
+            path: '/RegisterPage/index',
+            component: '@/pages/RegisterPage/index',
+        },
     ],
 });

@@ -3,7 +3,7 @@ import styles from './index.css';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import CvsBody from './CvsBody/index';
+import CvsBody from './CvsBody';
 
 const index = () => {
     return (

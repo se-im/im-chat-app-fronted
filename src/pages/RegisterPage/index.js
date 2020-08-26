@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
-import img1 from '../../../assert/login/img-01.png'
-import '../../../assert/iconfont/iconfont.css'
+import img1 from '../../../assert/login/img-01.png';
+import '../../../assert/iconfont/iconfont.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import styles from './index.css';
 const layout = {
@@ -13,50 +13,41 @@ const tailLayout = {
 };
 
 export default () => {
-  return (
-      <div className="limiter">
-          <div className="container-login100">
-              <div className="wrap-login1001">
-                  <div className="login100-pic js-tilt" >
-                      <img src={img1} alt="IMG" />
-                  </div>
+    return (
+        <div className="limiter">
+            <div className="container-login100">
+                <div className="wrap-login1001">
+                    <div className="login100-pic js-tilt">
+                        <img src={img1} alt="IMG" />
+                    </div>
 
+                    <Form
+                        {...layout}
+                        name="basic"
+                        initialValues={{ remember: true }}
+                    >
+                        <span className="login100-form-title">注册</span>
 
+                        <Form.Item
+                            label="用户名"
+                            name="username"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your username!',
+                                },
+                            ]}
+                            style={{ fontSize: 25 }}
+                        >
+                            <Input className="form-item" />
+                        </Form.Item>
 
+                        <div className="container-login100-form-btn">
+                            <button className="login100-form-btn">登陆</button>
+                        </div>
+                    </Form>
 
-                  <Form
-                      {...layout}
-                      name="basic"
-                      initialValues={{ remember: true }}
-
-                  >
-                      <span className="login100-form-title">
-						注册
-					</span>
-
-                      <Form.Item
-                          label="用户名"
-                          name="username"
-                          rules={[{ required: true, message: 'Please input your username!' }]}
-                          style={{fontSize:25}}
-                      >
-                          <Input className="form-item"/>
-                      </Form.Item>
-
-
-
-
-                      <div className="container-login100-form-btn">
-                          <button className="login100-form-btn">
-                              登陆
-                          </button>
-                      </div>
-                  </Form>
-
-
-
-
-                  {/*<form className="login100-form validate-form">
+                    {/*<form className="login100-form validate-form">
 					<span className="login100-form-title">
 						注册
 					</span>
@@ -92,9 +83,8 @@ export default () => {
                           </a>
                       </div>
                   </form>*/}
-              </div>
-          </div>
-      </div>
-
-);
-}
+                </div>
+            </div>
+        </div>
+    );
+};
