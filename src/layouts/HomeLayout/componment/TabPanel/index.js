@@ -43,12 +43,6 @@ class index extends Component {
     }
 }
 
-const handleMsgClick = e => {
-    const dispatch = this.props;
-    dispatch({
-        type,
-    });
-};
 const mapStateToProps = state => {
     return { user: state.global.user };
 };
