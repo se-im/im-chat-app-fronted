@@ -1,0 +1,5 @@
+.profile_body {
+    width: var(--profilepanel-width);
+    height: 300px;
+    border-bottom: 1px solid #d3d3d3;
+}

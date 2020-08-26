@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MessageHeader from './components/header/MessageHeader';
+import MessageBody from './components/body/MessageBody';
 import MessageFooter from './components/footer/MessageFooter';
 import styles from './index.css';
 
@@ -8,7 +9,7 @@ class MessagePanel extends Component {
         return (
             <div className={styles.msg_panel}>
                 <MessageHeader />
-                <div className={styles.msg_body}>I am content</div>
+                <MessageBody />
                 <MessageFooter />
             </div>
         );

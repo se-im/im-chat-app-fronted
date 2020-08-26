@@ -3,7 +3,7 @@ import {
     UserAddOutlined,
     PhoneOutlined,
     VideoCameraOutlined,
-    InfoOutlined,
+    InfoCircleOutlined,
 } from '@ant-design/icons';
 import styles from './style.css';
 import { connect } from 'react-redux';
@@ -14,11 +14,11 @@ class MessageHeader extends Component {
         return (
             <div className={styles.msg_header}>
                 <div className={styles.header_left}>
-                    <img src={Message.userPhoto} />
+                    <img src={Message.receiver.userPhoto} />
                     <div className={styles.header_userinfo}>
-                        <div>{Message.userName}</div>
+                        <div>{Message.receiver.userName}</div>
                         <p>
-                            {Message.userState} &nbsp;
+                            {Message.receiver.userState} &nbsp;
                             {this.setUserState()}
                         </p>
                     </div>
@@ -69,8 +69,20 @@ class MessageHeader extends Component {
                             }}
                         />
                     </div>
-                    <div className={styles.header_icons_container}>
-                        <InfoOutlined className={styles.header_icons} />
+                    <div
+                        onMouseEnter={() =>
+                            this.iconFocus(this.changeStyleIconInfoCircle)
+                        }
+                        onMouseLeave={() =>
+                            this.iconBlur(this.changeStyleIconInfoCircle)
+                        }
+                    >
+                        <InfoCircleOutlined
+                            className={styles.header_icons}
+                            ref={icon => {
+                                this.changeStyleIconInfoCircle = icon;
+                            }}
+                        />
                     </div>
                 </div>
             </div>
@@ -78,16 +90,16 @@ class MessageHeader extends Component {
     }
     setUserState() {
         const { Message } = this.props;
-        if (Message.userState === 'online') {
+        if (Message.receiver.userState === 'online') {
             return <span className={styles.header_userinfo_state_on} />;
-        } else if (Message.userState === 'busy') {
+        } else if (Message.receiver.userState === 'busy') {
             return <span className={styles.header_userinfo_state_busy} />;
         } else {
             return <span className={styles.header_userinfo_state_off} />;
         }
     }
     iconFocus(icon) {
-        icon.style.color = '#6633cc';
+        icon.style.color = '#8053b6';
         icon.style.fontSize = '25px';
     }
     iconBlur(icon) {
