@@ -1,20 +1,17 @@
-import axios from 'axios';
-
 const servers = {
-    local: 'http://localhost:8001',
-    aliyun1: 'http://zmz121.cn:8080',
-    aliyun2: 'http://1.zmz121.cn:8080',
+    local: 'http://localhost',
+    aliyun1: 'http://zmz121.cn',
+    aliyun2: 'http://1.zmz121.cn',
     local1: 'http://192.168.2.206',
 };
 
-let server = servers.local;
+let server = servers.aliyun2;
 
-axios.defaults.baseURL = server;
-
-const api = {
-    getUserByToken: '/user/detail/token',
+const user_api = {
+    port: '8001',
+    api: {
+        getUserByToken: '/user/detail/token',
+    },
 };
 
-export default api;
-
-let aaa = 33;
+export default { user_api, server };

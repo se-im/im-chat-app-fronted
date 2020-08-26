@@ -17,7 +17,6 @@ const ChatModel = {
             const data = yield effects.call(getUserByToken, token);
 
             if (data === undefined) {
-                history.push('/LoginPage');
             }
             yield effects.put({
                 type: 'global/setUser',
