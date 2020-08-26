@@ -1,5 +1,7 @@
-const TabModel = {
-    namespace: 'TabPanel',
+import { getFriendsList } from './service';
+
+const FriendsModel = {
+    namespace: 'Friends',
 
     state: {},
 
@@ -9,8 +11,8 @@ const TabModel = {
         },
     },
     effects: {
-        *getRemote(action, { put, call }) {
-            const data = yield call(getRemoteList);
+        *getFriends(action, { put, call }) {
+            const data = yield call(getFriendsList);
             console.log(data);
             yield put({
                 type: 'getList',
@@ -22,9 +24,9 @@ const TabModel = {
     subscriptions: {
         setup({ dispatch, history }) {
             return history.listen(({ pathname }) => {
-                if (pathname === '/') {
+                if (pathname === '/FriendPage') {
                     dispatch({
-                        type: 'getRemote',
+                        type: 'getFriends',
                     });
                 }
             });
@@ -32,4 +34,4 @@ const TabModel = {
     },
 };
 
-export default TabModel;
+export default FriendsModel;
