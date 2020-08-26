@@ -6,15 +6,6 @@ import { connect } from 'umi';
 import './assert/iconfont.css';
 
 class index extends Component {
-    state = {
-        collapsed: false,
-    };
-
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
-    };
     render() {
         return (
             <div className={styles.tab_panel}>

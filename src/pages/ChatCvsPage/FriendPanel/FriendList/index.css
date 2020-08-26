@@ -1,0 +1,47 @@
+.friendList{
+  height: 720px;
+  margin-top: 10px;
+  overflow-y:auto
+}
+.friendList a{
+  font-size: 18px;
+  color: white;
+}
+/*设置item宽度*/
+.item{
+  padding: 0 18px;
+  position: relative;
+  margin-top: 10px;
+}
+/*item的鼠标覆盖样式*/
+.friendList ul li:hover{
+  background-color: #4a3664;
+}
+/*头 像*/
+.avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+.userName{
+  height: 50px;
+  line-height: 50px;
+}
+/*设置滚动条*/
+.cvs_body::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+
+}
+.cvs_body::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 5px;  /*滚动条的背景区域的圆角*/
+  background-color: #78678f;/*滚动条的背景颜色*/
+}
+.cvs_body::-webkit-scrollbar-thumb
+{
+  height: 20px;
+  border-radius: 5px;  /*滚动条的圆角*/
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #35244d;  /*滚动条的背景颜色*/
+}
