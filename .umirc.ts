@@ -8,7 +8,10 @@ export default defineConfig({
         {
             path: '/',
             component: '@/layouts/HomeLayout/index',
-            routes: [{ path: '/', component: '@/pages/FriendPage/index' }],
+            routes: [
+                { path: '/', component: '@/pages/ChatCvsPage/index' },
+                { path: '/FriendPage', component: '@/pages/FriendPage/index' },
+            ],
         },
         { path: '/LoginPage/index', component: '@/pages/LoginPage/index' },
         {

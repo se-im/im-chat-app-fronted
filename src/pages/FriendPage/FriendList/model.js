@@ -13,6 +13,7 @@ const FriendsModel = {
     effects: {
         *getFriends(action, { put, call }) {
             const data = yield call(getFriendsList);
+            console.log(data);
             yield put({
                 type: 'getList',
                 payload: { data },
@@ -23,7 +24,7 @@ const FriendsModel = {
     subscriptions: {
         setup({ dispatch, history }) {
             return history.listen(({ pathname }) => {
-                if (pathname === '/') {
+                if (pathname === '/FriendPage') {
                     dispatch({
                         type: 'getFriends',
                     });

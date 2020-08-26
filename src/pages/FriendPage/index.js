@@ -1,10 +1,25 @@
 import React from 'react';
 import styles from './index.css';
+import { Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import FriendList from './FriendList/FriendList';
 
-export default () => {
+const index = () => {
     return (
-        <div>
-            <h1 className={styles.title}>Page FriendPage/index</h1>
+        <div className={styles.friend_Panel}>
+            <div className={styles.friend_header}>
+                <Input
+                    size="large"
+                    className={styles.search}
+                    placeholder="Search Conversations"
+                    prefix={<SearchOutlined />}
+                />
+                <div className={styles.add}>
+                    <a className={styles.add_icon}>+</a>
+                </div>
+            </div>
+            <FriendList />
         </div>
     );
 };
+export default index;
