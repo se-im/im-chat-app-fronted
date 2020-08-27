@@ -5,20 +5,16 @@ export default defineConfig({
         type: 'none',
     },
     routes: [
-        // {
-        //     path: '/',
-        //     component: '@/layouts/HomeLayout/index',
-        //     routes: [{ path: '/', component: '@/pages/ChatCvsPage/index' }],
-        // },
+        { path: '/login/index', component: '@/pages/LoginPage/index' },
+        { path: '/register/index', component: '@/pages/RegisterPage/index' },
         {
             path: '/',
             component: '@/layouts/HomeLayout/index',
-            routes: [{ path: '/', component: '@/pages/SettingPage/index' }],
-        },
-        { path: '/LoginPage/index', component: '@/pages/LoginPage/index' },
-        {
-            path: '/RegisterPage/index',
-            component: '@/pages/RegisterPage/index',
+            routes: [{ path: '/', component: '@/pages/ChatCvsPage/index' }],
         },
     ],
+    dva: {
+        immer: true,
+        hmr: false,
+    },
 });

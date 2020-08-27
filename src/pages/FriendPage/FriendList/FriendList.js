@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './index.css';
 import { Avatar, List } from 'antd';
 import { connect } from 'react-redux';
+import { UserAddOutlined } from '@ant-design/icons';
 
-const index = ({ Friends }) => {
+const FriendList = ({ Friends }) => {
     return (
-        <div>
+        <div className={styles.body}>
+            <div className={styles.newFriend}>
+                <div className={styles.iconFriend}>
+                    <UserAddOutlined />
+                </div>
+                <p>新的朋友</p>
+                <div className={styles.unKnownUser}>1</div>
+            </div>
             <List
                 className={styles.friendList}
                 itemLayout="horizontal"
@@ -37,4 +45,4 @@ const mapStateToProps = ({ Friends }) => {
         Friends,
     };
 };
-export default connect(mapStateToProps)(index);
+export default connect(mapStateToProps)(FriendList);

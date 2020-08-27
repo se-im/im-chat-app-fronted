@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import img1 from '../../../assert/login/img-01.png';
 import '../../../assert/iconfont/iconfont.css';
 import { connect } from 'umi';
 
-const index = props => {
-    function login() {}
+const index = ({ LoginModel, dispatch }) => {
+    const [userModel, setUserModel] = useState({
+        username: 'tom',
+        password: '1',
+    });
+    function login(event) {
+        event.preventDefault();
+        dispatch({
+            type: 'global/login',
+            payload: userModel,
+        });
+    }
 
-    console.log(props);
+    function handleUsernameChange(e) {
+        setUserModel({
+            username: e.target.value,
+            password: userModel.password,
+        });
+    }
+
+    function handlePasswordChange(e) {
+        setUserModel({
+            username: userModel.username,
+            password: e.target.value,
+        });
+    }
 
     return (
         <div className="limiter">
@@ -25,6 +47,8 @@ const index = props => {
                                 className="input100"
                                 type="text"
                                 name="email"
+                                value={userModel.username}
+                                onChange={handleUsernameChange}
                                 placeholder="邮箱"
                             />
                             <span className="focus-input100" />
@@ -41,6 +65,8 @@ const index = props => {
                                 className="input100"
                                 type="password"
                                 name="pass"
+                                value={userModel.password}
+                                onChange={handlePasswordChange}
                                 placeholder="密码"
                             />
                             <span className="focus-input100" />

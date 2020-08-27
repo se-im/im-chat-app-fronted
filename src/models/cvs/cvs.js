@@ -1,18 +1,15 @@
 import { routerRedux } from 'dva';
-import produce from "immer";
+import produce from 'immer';
+
 export default {
-    namespace: 'global',
-    state: {
-        token: 'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MjkzMzUwMDAsImlhdCI6MTU5Nzc5OTAwMH0.wMsLXVQANPknS9lXKwAJC818-LbAorON9MsUBsVA0k0',
-        user: {},
-    },
+    namespace: 'cvs',
+    state: {},
     reducers: {
         setUser(state, action) {
             console.log(action.payload);
             return produce(state, draft => {
                 draft.user = action.payload;
             });
-
         },
         setText(state, action) {
             return {

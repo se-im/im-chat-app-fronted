@@ -10,8 +10,8 @@ const cvsbody = ({ Conversations }) => {
                 itemLayout="horizontal"
                 dataSource={Conversations.data}
                 split={false}
-                renderItem={item => (
-                    <List.Item className={styles.item}>
+                renderItem={(item, index) => (
+                    <List.Item className={styles.item} id={index}>
                         <List.Item.Meta
                             avatar={
                                 <Avatar
@@ -19,7 +19,11 @@ const cvsbody = ({ Conversations }) => {
                                     src={item.avatarUrl}
                                 />
                             }
-                            title={<a href="">{item.cvsName}</a>}
+                            title={
+                                <p className={styles.userName}>
+                                    {item.cvsName}
+                                </p>
+                            }
                             description={
                                 <p className={styles.description}>
                                     {item.lastMessage}
