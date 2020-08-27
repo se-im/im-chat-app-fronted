@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Button } from 'antd';
 import ProfileEdit from './profile/ProfileEdit';
 import AccountManage from './account/AccountManage';
 import UserAgreement from './agreement/UserAgreement';
@@ -7,32 +6,26 @@ import AboutMe from './about/AboutMe';
 import styles from './style.css';
 
 class ContentBody extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            item: 'profile',
-        };
-    }
     showProfile = () => {
-        if (this.state.item === 'profile') {
+        if (this.props.item2 === 'profile') {
             return (
                 <Fragment>
                     <ProfileEdit />
                 </Fragment>
             );
-        } else if (this.state.item === 'account') {
+        } else if (this.props.item2 === 'account') {
             return (
                 <Fragment>
                     <AccountManage />
                 </Fragment>
             );
-        } else if (this.state.item === 'agreement') {
+        } else if (this.props.item2 === 'agreement') {
             return (
                 <Fragment>
                     <UserAgreement />
                 </Fragment>
             );
-        } else if (this.state.item === 'about') {
+        } else if (this.props.item2 === 'about') {
             return (
                 <Fragment>
                     <AboutMe />
@@ -40,15 +33,12 @@ class ContentBody extends Component {
             );
         }
     };
+
     render() {
         return (
             <div className={styles.content_body}>
                 <div className={styles.body_container}>
                     {this.showProfile()}
-                    <div className={styles.body_isOk}>
-                        <button className={styles.body_btn1}>完成</button>
-                        {/*<button className={styles.body_btn2}>返回</button>*/}
-                    </div>
                 </div>
             </div>
         );

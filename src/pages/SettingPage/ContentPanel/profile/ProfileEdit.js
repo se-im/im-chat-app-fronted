@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'umi';
 import { Upload, message, Input, Select, DatePicker, Avatar } from 'antd';
 import { FormOutlined } from '@ant-design/icons';
 import moment from 'moment';
@@ -28,9 +29,7 @@ class ProfileEdit extends Component {
     };
     render() {
         const { imageUrl } = this.state;
-        const { Option } = Select;
-        const { TextArea } = Input;
-
+        const { user } = this.props;
         return (
             <div className={styles.body_profile_edit}>
                 <strong>个人信息</strong>
@@ -51,37 +50,41 @@ class ProfileEdit extends Component {
                                         style={{ width: '100%' }}
                                     />
                                 ) : (
-                                    <div
-                                        className={
-                                            styles.body_user_avatar_upload_btn
-                                        }
-                                    >
-                                        点击上传头像
-                                    </div>
+                                    <img
+                                        className={styles.body_user_avatar}
+                                        src={user.avatarUrl}
+                                        alt="avatar"
+                                        style={{ width: '100%' }}
+                                    />
                                 )}
                             </div>
                         </Upload>
                         <div className={styles.body_profile_edit_item_name}>
-                            <input defaultValue={'User Name'} disabled={true} />
+                            <input
+                                placeholder={'昵称'}
+                                defaultValue={user.userName}
+                                disabled={true}
+                            />
                             <div className={styles.body_profile_edit_name}>
                                 <FormOutlined border={true} /> 更改昵称
                             </div>
                         </div>
                     </div>
                     <div className={styles.body_profile_edit_item_2}>
-                        <div>Gender</div>
+                        <div>性别</div>
                         <Select
                             style={{ width: '100%' }}
                             bordered={false}
-                            defaultValue={'男'}
+                            placeholder={'在此选择性别'}
+                            defaultValue={user.gender}
                             suffixIcon={<FormOutlined />}
                         >
-                            <Option value="lucy">男</Option>
-                            <Option value="lucy">女</Option>
+                            <Select.Option value="male">男</Select.Option>
+                            <Select.Option value="female">女</Select.Option>
                         </Select>
                     </div>
                     <div className={styles.body_profile_edit_item_2}>
-                        <div>Mobile</div>
+                        <div>手机</div>
                         <Input.Group compact={true}>
                             <Input
                                 style={{ width: '10%' }}
@@ -91,50 +94,57 @@ class ProfileEdit extends Component {
                             <Input
                                 style={{ width: '90%' }}
                                 bordered={false}
-                                defaultValue="18391551595"
+                                placeholder={'在此填写电话号码'}
+                                defaultValue={user.phone}
                                 suffix={<FormOutlined />}
                             />
                         </Input.Group>
                     </div>
                     <div className={styles.body_profile_edit_item_2}>
-                        <div>Email</div>
+                        <div>邮箱</div>
                         <Input
                             bordered={false}
-                            defaultValue="2423587483@qq.com"
+                            defaultValue={user.email}
+                            placeholder={'在此填写邮箱'}
                             suffix={<FormOutlined />}
                         />
                     </div>
                     <div className={styles.body_profile_edit_item_2}>
-                        <div>Birthday</div>
+                        <div>生日</div>
                         <DatePicker
                             style={{ width: '100%' }}
                             bordered={false}
-                            defaultValue={moment('2015-06-06', 'YYYY-MM-DD')}
+                            defaultValue={moment(
+                                user.birthday
+                                    ? this.formatDate(user.birthday)
+                                    : '2050-08-20',
+                                'YYYY-MM-DD',
+                            )}
                             allowClear={false}
                         />
                     </div>
                     <div className={styles.body_profile_edit_item_2}>
-                        <div>Description</div>
-                        <TextArea
+                        <div>个人简介</div>
+                        <Input.TextArea
                             bordered={false}
                             rows={2}
-                            placeholder={
-                                'write something to introduce yourself...'
-                            }
+                            placeholder={'在此介绍一下你自己...'}
+                            defaultValue={user.description}
                         />
                     </div>
                 </div>
+                <div className={styles.body_isOk}>
+                    <button
+                        className={styles.body_btn1}
+                        onClick={this.handleSetting}
+                    >
+                        完成
+                    </button>
+                </div>
             </div>
-            //         <div className={styles.body_user_agreement}>
-            //             <strong>用户协议</strong>
-            //         </div>
-            //         <div className={styles.body_about_me}>
-            //             <strong>用户协议</strong>
-            //         </div>
-            //     </div>
-            // </div>
         );
     }
+    // 更换头像
     handleChange = info => {
         if (info.file.status === 'uploading') {
             this.setState({ loading: true });
@@ -149,12 +159,43 @@ class ProfileEdit extends Component {
             );
         }
     };
-    onChangeGender = e => {
-        console.log('radio checked', e.target.value);
-        this.setState({
-            value: e.target.value,
+    // 格式化日期
+    formatDate = date => {
+        let new_date = null;
+        if (date) {
+            new_date = new Date(date);
+        } else {
+            new_date = new Date();
+        }
+        let year = new_date.getFullYear();
+        let month = new_date.getMonth() + 1;
+        let day = new_date.getDate();
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (day < 10) {
+            day = '0' + day;
+        }
+        return year + '-' + month + '-' + day;
+    };
+    //控制信息修改
+    handleSetting = () => {
+        this.props.dispatch({
+            type: 'global/updateUserInfo',
+            payload: {
+                username: 'LuChuanHui',
+                gender: 'female',
+            },
         });
     };
 }
 
-export default ProfileEdit;
+const mapStateToProps = state => {
+    let { global } = state;
+    return {
+        user: global.cur_user,
+        current_panel: state.global.current_panel,
+    };
+};
+
+export default connect(mapStateToProps)(ProfileEdit);

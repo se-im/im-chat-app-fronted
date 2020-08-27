@@ -11,8 +11,22 @@ export default defineConfig({
             path: '/',
             component: '@/layouts/HomeLayout/index',
             routes: [
-                { path: '/', component: '@/pages/ChatCvsPage/index' },
-                { path: '/setting', component: '@/pages/SettingPage/index' },
+                {
+                    path: '/',
+                    component: '@/pages/ChatCvsPage/index',
+                },
+                {
+                    path: '/friend',
+                    component: '@/pages/FriendPage/index',
+                },
+                {
+                    path: '/group',
+                    component: '@/pages/GroupPage/index',
+                },
+                {
+                    path: '/setting',
+                    component: '@/pages/SettingPage/index',
+                },
             ],
         },
     ],

@@ -23,11 +23,22 @@ export default {
             shown: true,
             gender: null,
         },
+        current_panel: 1,
     },
     reducers: {
         setToken(state, action) {
             state.token = action.payload;
             return state;
+        },
+        setCurrentPanel(state, action) {
+            state.current_panel = action.payload;
+            return state;
+        },
+        setCurtUser(state, action) {
+            console.log(action.payload);
+            const new_state = JSON.parse(JSON.stringify(state));
+            // state.cur_user = action.payload.data;
+            return new_state;
         },
     },
     effects: {
@@ -41,8 +52,13 @@ export default {
             message.success('登录成功，正在跳转');
             yield put(routerRedux.push('/'));
         },
-        *throwError() {
-            throw new Error('hi error');
+
+        *updateUserInfo({ payload }, { call, put }) {
+            yield call(service.fetchUpdateUserInfoRemote, payload);
+            yield put({
+                type: 'setCurrentUser',
+                payload: token,
+            });
         },
     },
 };

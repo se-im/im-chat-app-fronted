@@ -68,3 +68,17 @@
 .body_profile_edit_item_2 div {
     padding-left: 10px;
 }
+.body_isOk {
+    width: 600px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.body_btn1 {
+    width: 80px;
+    height: 30px;
+    background-color: #63a35c;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+}

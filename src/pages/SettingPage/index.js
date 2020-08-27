@@ -7,14 +7,19 @@ class SettingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: 'profile',
+            item1: 'profile',
         };
     }
+    setItemType = item => {
+        this.setState({
+            item1: item,
+        });
+    };
     render() {
         return (
             <div className={styles.setting_body}>
-                <ItemBody />
-                <ContentBody item={this.state.item} />
+                <ItemBody item1={this.setItemType} />
+                <ContentBody item2={this.state.item1} />
             </div>
         );
     }

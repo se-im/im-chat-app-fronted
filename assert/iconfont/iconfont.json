@@ -2,9 +2,30 @@
     "id": "2027868",
     "name": "im项目图标",
     "font_family": "iconfont",
-    "css_prefix_text": "im",
+    "css_prefix_text": "im-",
     "description": "im项目图标",
     "glyphs": [
+        {
+            "icon_id": "7605168",
+            "name": "setting",
+            "font_class": "setting",
+            "unicode": "e63b",
+            "unicode_decimal": 58939
+        },
+        {
+            "icon_id": "14997310",
+            "name": "添加好友",
+            "font_class": "tianjiahaoyou",
+            "unicode": "e60f",
+            "unicode_decimal": 58895
+        },
+        {
+            "icon_id": "641815",
+            "name": "个人信息",
+            "font_class": "information",
+            "unicode": "e676",
+            "unicode_decimal": 58998
+        },
         {
             "icon_id": "817824",
             "name": "用户协议",
@@ -18,13 +39,6 @@
             "font_class": "bangzhuguanyuwomen",
             "unicode": "e649",
             "unicode_decimal": 58953
-        },
-        {
-            "icon_id": "11518537",
-            "name": "个人信息 ",
-            "font_class": "gerenxinxi",
-            "unicode": "e635",
-            "unicode_decimal": 58933
         },
         {
             "icon_id": "7766795",

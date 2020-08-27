@@ -24,18 +24,32 @@
 .username{
     color: #fff;
     font-size: 12pt;
+    padding: 5px 0;
 }
 
 .icon{
-    color: #6c5986;
+    color: white;
     width: 75px;
     height: 75px;
-    font-size: large;
+    font-size: 35px;
     line-height: 75px;
     text-align: center;
 }
-.shezhi{
-    margin-top: 390px;
+
+.choosen{
+    color: #57b846;
+    background-color: #4a3664;
+}
+
+.icon_message{
+    font-size: 35px;
+}
+
+.icon_group{
+    font-size: 30px;
+}
+.setting_icon{
+    margin-top: 378px;
 }
 .icon:hover{
     background-color: #4a3664;

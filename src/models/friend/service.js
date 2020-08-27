@@ -1,9 +1,9 @@
 import request from '../../../util/request';
 import api from '../../../util/api';
 
-const getToken = async param => {
+const getFriendList = async token => {
     return request
-        .post(api.user_api.login, param)
+        .post(api.user_api.friend, token)
         .then(res => {
             return res;
         })
@@ -11,18 +11,14 @@ const getToken = async param => {
             throw error;
         });
 };
-
-const fetchUpdateUserInfoRemote = async params => {
+const getNewFriendList = async token => {
     return request
-        .post(api.user_api.updateUserInfo, params)
+        .post(api.user_api.newFriend, token)
         .then(res => {
-            console.log('fetch');
-            console.log(res);
             return res;
         })
         .catch(error => {
             throw error;
         });
 };
-
-export default { getToken, fetchUpdateUserInfoRemote };
+export default { getFriendList, getNewFriendList };
