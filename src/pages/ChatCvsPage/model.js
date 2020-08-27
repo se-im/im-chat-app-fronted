@@ -14,7 +14,6 @@ const ChatModel = {
         //effects -> {put, call}
         *getUser(action, effects) {
             const token1 = yield effects.select(state => state.global.token);
-            console.log(token1);
             const data = yield effects.call(getUserByToken, token1);
             yield effects.put({
                 type: 'global/setUser',
