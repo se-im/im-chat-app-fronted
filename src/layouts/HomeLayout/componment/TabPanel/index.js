@@ -6,7 +6,6 @@ import { connect } from 'umi';
 import './assert/iconfont.css';
 
 const index = props => {
-    console.log(props);
     return (
         <div className={styles.tab_panel}>
             <Avatar
@@ -42,7 +41,6 @@ const index = props => {
 
 const mapStateToProps = state => {
     let { global } = state;
-    console.log(global);
     return { user: global.cur_user };
 };
 

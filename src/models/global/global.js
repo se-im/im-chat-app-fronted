@@ -1,5 +1,7 @@
 import { routerRedux } from 'dva';
 import produce from 'immer';
+import service from './service';
+import { message } from 'antd';
 
 let token =
     'eyJ0eXBlIjoiSldUIiwiYWxn' +
@@ -23,31 +25,21 @@ export default {
         },
     },
     reducers: {
-        setUser(state, action) {
-            console.log(action.payload);
-            return produce(state, draft => {
-                draft.user = action.payload;
-            });
-        },
-        setText(state, action) {
-            return {
-                ...state,
-                text: 'setted dva',
-            };
-        },
-        signin(state) {
-            return {
-                ...state,
-                login: true,
-            };
+        setToken(state, action) {
+            state.token = action.payload;
+            return state;
         },
     },
     effects: {
-        *login(action, { call, put }) {
+        *login({ payload }, { call, put }) {
+            const token = yield call(service.getToken, payload);
+            console.log(token);
             yield put({
-                type: 'signin',
+                type: 'setToken',
+                payload: token,
             });
-            yield put(routerRedux.push('/admin'));
+            message.success('登录成功，正在跳转');
+            yield put(routerRedux.push('/'));
         },
         *throwError() {
             throw new Error('hi error');

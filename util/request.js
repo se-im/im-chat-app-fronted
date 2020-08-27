@@ -1,15 +1,15 @@
 import axios from 'axios';
-import api from './api';
+import { server, apiPortMap } from './api';
 import { message } from 'antd';
-import global from '../src/models/global';
-
-const codeMessage = {
-    200: '服务器成功返回请求的数据。',
-    401: '用户没有登录',
+import global from '../src/models/global/global';
+import querystring from 'querystring';
+const response_status = {
+    success: 200,
+    unlogin: 401,
 };
 
-// 全局默认配置
-axios.defaults.timeout = 10000;
+axios.defaults.headers.post['Content-Type'] =
+    'application/x-www-form-urlencoded;charset=UTF-8;Accept-Language:zh-CN,zh;q=0.8';
 
 // 请求body拦截器
 axios.interceptors.request.use(config => {
@@ -18,6 +18,7 @@ axios.interceptors.request.use(config => {
         ...config,
         headers: {
             post: {
+                'Content-Type': 'application/x-www-form-urlencoded',
                 token: global.state.token,
             },
             get: {
@@ -37,26 +38,37 @@ axios.interceptors.request.use(config => {
 // 返回拦截器
 axios.interceptors.response.use(
     config => {
-        console.log(config);
-        let response = config.data;
-        if (response.status === codeMessage['200']) {
-            return config.data;
-        } else if (response.status === codeMessage['401']) {
-            message.error(response.msg);
-            // history.push("/login/index")
+        try {
+            let response = config.data;
+            if (response !== undefined) {
+                if (response.status === response_status.success) {
+                    return response.data;
+                } else {
+                    message.error(response.msg);
+                    console.log(response);
+                    if (response.status === response_status.unlogin) {
+                        history.push('/login/index');
+                    }
+                }
+                return Promise.reject(response.msg);
+            }
+        } catch (err) {
+            return Promise.reject(err.message);
         }
     },
     error => {
-        if (JSON.stringify(error).indexOf('timeout') !== -1) {
-            message.error('连接超时,请刷新试试');
-        } else {
-            message.error(error.response);
-        }
+        message.error(error.message);
+        return Promise.reject(error);
     },
 );
 
+function genDomain(url) {
+    return server + ':' + apiPortMap.get(url + '');
+}
+
 const get = (url, parmas) => {
-    console.log(url);
+    let domain = genDomain(url);
+    url = domain + url;
     return new Promise((resolve, reject) => {
         axios
             .get(url, {
@@ -66,21 +78,23 @@ const get = (url, parmas) => {
                 resolve(res);
             })
             .catch(err => {
-                reject(err);
+                throw err;
+                // reject(err);
             });
     });
 };
 const post = (url, params) => {
+    let domain = genDomain(url);
+    url = domain + url;
     return new Promise((resolve, reject) => {
         axios
-            .post(url, params)
+            .post(url, querystring.stringify(params))
             .then(res => {
-                if (res) {
-                    resolve(res);
-                }
+                resolve(res);
             })
             .catch(err => {
-                reject(err);
+                throw err;
+                // reject(err);
             });
     });
 };

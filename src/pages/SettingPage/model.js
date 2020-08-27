@@ -2,7 +2,7 @@ import { getUserByToken } from './service';
 import { Link } from 'umi';
 
 const ChatModel = {
-    namespace: 'chatPanel',
+    namespace: 'setting',
     state: {},
     reducers: {
         //action->{type, payload}
