@@ -5,7 +5,7 @@ const servers = {
     local1: 'http://192.168.2.206',
 };
 
-let server = servers.local;
+let server = servers.aliyun2;
 
 const user_api = {
     getUserByToken: '/user/detail/token',
