@@ -14,6 +14,7 @@ const ChatModel = {
         //effects -> {put, call}
         *setUser(action, effects) {
             const token = yield effects.select(state => state.global.token);
+            console.log(token);
             const data = yield effects.call(getUserByToken, token);
 
             if (data === undefined) {
@@ -24,7 +25,7 @@ const ChatModel = {
             });
         },
     },
-    /*    subscriptions: {
+    subscriptions: {
         setup({ dispatch, history }, done) {
             history.listen((location, action) => {
                 if (location.pathname === '/') {
@@ -34,7 +35,7 @@ const ChatModel = {
                 }
             });
         },
-    },*/
+    },
 };
 
 export default ChatModel;

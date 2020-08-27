@@ -23,10 +23,15 @@ export default {
             shown: true,
             gender: null,
         },
+        current_panel: 1,
     },
     reducers: {
         setToken(state, action) {
             state.token = action.payload;
+            return state;
+        },
+        setCurrentPanel(state, action) {
+            state.current_panel = action.payload;
             return state;
         },
     },
