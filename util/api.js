@@ -10,6 +10,8 @@ let server = servers.aliyun2;
 const user_api = {
     getUserByToken: '/user/detail/token',
     login: '/user/login',
+    friend: '/user/friend/queryFriend',
+    newFriend: '/user/friend/queryFriendRequestReceived',
 };
 
 const chat_api = {};

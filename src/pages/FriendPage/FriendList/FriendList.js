@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styles from './index.css';
 import { Avatar, List } from 'antd';
 import { connect } from 'react-redux';
 import { UserAddOutlined } from '@ant-design/icons';
 
-const FriendList = ({ Friends }) => {
+const FriendList = ({ friend }) => {
     return (
         <div className={styles.body}>
             <div className={styles.newFriend}>
@@ -12,12 +12,12 @@ const FriendList = ({ Friends }) => {
                     <UserAddOutlined />
                 </div>
                 <p>新的朋友</p>
-                <div className={styles.unKnownUser}>1</div>
+                <div className={styles.unKnownUser}>2</div>
             </div>
             <List
                 className={styles.friendList}
                 itemLayout="horizontal"
-                dataSource={Friends.data}
+                dataSource={friend.data}
                 split={false}
                 renderItem={item => (
                     <List.Item className={styles.item}>
@@ -30,7 +30,7 @@ const FriendList = ({ Friends }) => {
                             }
                             title={
                                 <a href="" className={styles.userName}>
-                                    {item.userName}
+                                    {item.note}
                                 </a>
                             }
                         />
@@ -40,9 +40,9 @@ const FriendList = ({ Friends }) => {
         </div>
     );
 };
-const mapStateToProps = ({ Friends }) => {
+const mapStateToProps = ({ friend }) => {
     return {
-        Friends,
+        friend,
     };
 };
 export default connect(mapStateToProps)(FriendList);
