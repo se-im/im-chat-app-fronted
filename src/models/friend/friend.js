@@ -15,9 +15,6 @@ const FriendsModel = {
             newState.haveFetched = true;
             return newState;
         },
-        getNewFriendList(state, { payload }) {
-            return payload;
-        },
     },
     effects: {
         *getFriends(action, { put, call, select }) {
@@ -34,17 +31,6 @@ const FriendsModel = {
                 payload: data,
             });
         },
-        *getNewFriends(action, effects) {
-            const token = yield effects.select(state => state.global.token);
-            const newFriendList = yield effects.call(
-                friendService.getNewFriendList,
-                token,
-            );
-            // yield effects.put({
-            //     type: 'getNewFriendList',
-            //     payload: { newFriendList },
-            // });
-        },
     },
 
     subscriptions: {
@@ -53,9 +39,6 @@ const FriendsModel = {
                 if (pathname === '/friend') {
                     dispatch({
                         type: 'getFriends',
-                    });
-                    dispatch({
-                        type: 'getNewFriends',
                     });
                 }
             });
