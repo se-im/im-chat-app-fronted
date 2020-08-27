@@ -16,8 +16,6 @@ const fetchUpdateUserInfoRemote = async params => {
     return request
         .post(api.user_api.updateUserInfo, params)
         .then(res => {
-            console.log('fetch');
-            console.log(res);
             return res;
         })
         .catch(error => {

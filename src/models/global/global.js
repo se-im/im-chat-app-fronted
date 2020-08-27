@@ -4,15 +4,15 @@ import service from './service';
 import { message } from 'antd';
 
 let token =
-    'eyJ0eXBlIjoiSldUIiwiYWxn' +
-    'IjoiSFMyNTYifQ.eyJleHAiOjE2Mjk5NDcxMzQsImlhdCI6MTU5ODQxMTEzNH0.1KD0qOmY6BESz-gD1GD7jOyWXnXR1twPT3WBijRMA78';
+    'eyJ0eXBlIjoiSldUIiwiYW' +
+    'xnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAwNjkzMzgsImlhdCI6MTU5ODUzMzMzOH0.xhaSotlTN0MJgZK19FyC_HM7kgDEZNRPcrluurCI5xw';
 export default {
     namespace: 'global',
     state: {
         token: token,
         cur_user: {
             id: 8,
-            username: 'tom',
+            username: 'name',
             description: '',
             email: '',
             phone: '',
@@ -39,12 +39,6 @@ export default {
             state.current_panel = action.payload;
             return state;
         },
-        setCurtUser(state, action) {
-            console.log(action.payload);
-            const new_state = JSON.parse(JSON.stringify(state));
-            // state.cur_user = action.payload.data;
-            return new_state;
-        },
     },
     effects: {
         *login({ payload }, { call, put }) {
@@ -61,8 +55,8 @@ export default {
         *updateUserInfo({ payload }, { call, put }) {
             yield call(service.fetchUpdateUserInfoRemote, payload);
             yield put({
-                type: 'setCurrentUser',
-                payload: token,
+                type: 'setUser',
+                payload: payload,
             });
         },
     },

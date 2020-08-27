@@ -61,8 +61,9 @@ class ProfileEdit extends Component {
                         </Upload>
                         <div className={styles.body_profile_edit_item_name}>
                             <input
+                                id={'username'}
                                 placeholder={'昵称'}
-                                defaultValue={user.userName}
+                                defaultValue={user.username}
                                 disabled={true}
                             />
                             <div className={styles.body_profile_edit_name}>
@@ -136,7 +137,7 @@ class ProfileEdit extends Component {
                 <div className={styles.body_isOk}>
                     <button
                         className={styles.body_btn1}
-                        onClick={this.handleSetting}
+                        onClick={this.updateUserInfo}
                     >
                         完成
                     </button>
@@ -178,13 +179,23 @@ class ProfileEdit extends Component {
         }
         return year + '-' + month + '-' + day;
     };
-    //控制信息修改
-    handleSetting = () => {
+    //更新用户信息
+    updateUserInfo = () => {
+        let username = document.getElementById('username');
         this.props.dispatch({
             type: 'global/updateUserInfo',
             payload: {
-                username: 'LuChuanHui',
-                gender: 'female',
+                id: this.props.user.id,
+                username: 'lu',
+                description: '',
+                email: '',
+                phone: '',
+                birthday: 1598043966000,
+                avatarUrl:
+                    'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
+                createTime: 1597331350000,
+                shown: true,
+                gender: null,
             },
         });
     };
