@@ -4,15 +4,15 @@ import service from './service';
 import { message } from 'antd';
 
 let token =
-    'eyJ0eXBlIjoiSldUIiwiYWxn' +
-    'IjoiSFMyNTYifQ.eyJleHAiOjE2Mjk5NDcxMzQsImlhdCI6MTU5ODQxMTEzNH0.1KD0qOmY6BESz-gD1GD7jOyWXnXR1twPT3WBijRMA78';
+    'eyJ0eXBlIjoiSldUIiwiYW' +
+    'xnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAwNjkzMzgsImlhdCI6MTU5ODUzMzMzOH0.xhaSotlTN0MJgZK19FyC_HM7kgDEZNRPcrluurCI5xw';
 export default {
     namespace: 'global',
     state: {
         token: token,
         cur_user: {
             id: 8,
-            username: 'tom',
+            username: 'name',
             description: '',
             email: '',
             phone: '',
@@ -51,8 +51,13 @@ export default {
             message.success('登录成功，正在跳转');
             yield put(routerRedux.push('/'));
         },
-        *throwError() {
-            throw new Error('hi error');
+
+        *updateUserInfo({ payload }, { call, put }) {
+            yield call(service.fetchUpdateUserInfoRemote, payload);
+            yield put({
+                type: 'setUser',
+                payload: payload,
+            });
         },
     },
 };
