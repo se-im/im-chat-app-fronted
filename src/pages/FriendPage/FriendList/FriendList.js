@@ -12,7 +12,7 @@ const FriendList = ({ friend }) => {
                     <UserAddOutlined />
                 </div>
                 <p>新的朋友</p>
-                <div className={styles.unKnownUser}>2</div>
+                <div className={styles.unKnownUser} />
             </div>
             <List
                 className={styles.friendList}
