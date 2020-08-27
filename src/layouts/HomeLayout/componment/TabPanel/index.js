@@ -26,12 +26,14 @@ const index = props => {
 
     return (
         <div className={styles.tab_panel}>
-            <Avatar
-                size={56}
-                icon={<UserOutlined />}
-                src={props.user.avatarUrl}
-                className={styles.be_middle + ' ' + styles.head_pic}
-            />
+            <Link to={'/login/index'}>
+                <Avatar
+                    size={56}
+                    icon={<UserOutlined />}
+                    src={props.user.avatarUrl}
+                    className={styles.be_middle + ' ' + styles.head_pic}
+                />{' '}
+            </Link>
             <h5 className={styles.username}>{props.user.username}</h5>
             {/*聊天图标*/}
             <Link
