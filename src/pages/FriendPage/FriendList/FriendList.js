@@ -4,7 +4,7 @@ import { Avatar, List } from 'antd';
 import { connect } from 'react-redux';
 import { UserAddOutlined } from '@ant-design/icons';
 
-const FriendList = ({ friend, newFriend }) => {
+const FriendList = props => {
     return (
         <div className={styles.body}>
             <div className={styles.newFriend}>
@@ -17,7 +17,7 @@ const FriendList = ({ friend, newFriend }) => {
             <List
                 className={styles.friendList}
                 itemLayout="horizontal"
-                dataSource={friend.data}
+                dataSource={props.friend}
                 split={false}
                 renderItem={item => (
                     <List.Item className={styles.item}>
@@ -40,10 +40,10 @@ const FriendList = ({ friend, newFriend }) => {
         </div>
     );
 };
-const mapStateToProps = ({ friend, newFriend }) => {
+const mapStateToProps = state => {
     return {
-        friend,
-        newFriend,
+        friend: state.friend.friendList,
+        newFriend: state.newFriend.newFriendList,
     };
 };
 export default connect(mapStateToProps)(FriendList);

@@ -6,8 +6,8 @@ const newFriend = {
         newFriendList: [],
         haveFetched: false,
     },
-    reducer: {
-        setNewFriendList(state, action) {
+    reducers: {
+        setNewFriends(state, action) {
             const newState = JSON.parse(JSON.stringify(state));
             newState.newFriendList = action.payload;
             newState.haveFetched = true;
@@ -16,20 +16,26 @@ const newFriend = {
     },
     effects: {
         *getNewFriends(action, effects) {
-            const haveFetched = effects.select(state.newFriend.haveFetched);
-            if (haveFetched) return;
+            const haveFetched = effects.select(
+                state => state.newFriend.haveFetched,
+            );
+            // console.log(haveFetched);
+            if (haveFetched) {
+                return;
+            }
             const token = yield effects.select(state => state.global.token);
             const newFriendList = yield effects.call(
-                friendService.getNewFriendList,
+                friendService.fetchNewFriendList,
                 token,
             );
+            console.log(newFriendList);
             yield effects.put({
-                type: 'setNewFriendList',
+                type: 'setNewFriends',
                 payload: newFriendList,
             });
         },
     },
-    subscription: {
+    subscriptions: {
         setup({ dispatch, history }) {
             return history.listen(({ pathname }) => {
                 if (pathname === '/friend') {
@@ -41,3 +47,4 @@ const newFriend = {
         },
     },
 };
+export default newFriend;
