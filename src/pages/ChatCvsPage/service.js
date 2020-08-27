@@ -1,22 +1,18 @@
 import axios from 'axios';
 import { message } from 'antd';
 import api from '../../../util/api';
+import request from '../../../util/request';
 
-export const getUserByToken = token => {
-    return axios
-        .get(api.getUserByToken, {
-            params: {
-                token: token,
-            },
-        })
+const getUserByToken = async token => {
+    return request
+        .get(api.user_api.getUserByToken, { token: token })
         .then(res => {
-            if (res.data.status === 200) {
-                return res.data.data;
-            } else {
-                message.error(res.data.msg);
-            }
+            return res;
         })
         .catch(error => {
-            //message.error(error);
+            throw error;
         });
 };
+
+export { getUserByToken };
+export default { getUserByToken };

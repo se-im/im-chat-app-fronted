@@ -54,7 +54,7 @@ const index = ({ LoginModel, dispatch }) => {
                             <span className="focus-input100" />
                             <span className="symbol-input100">
                                 <i
-                                    className="iconfont icon-email"
+                                    className="iconfont im-user"
                                     aria-hidden="true"
                                 />
                             </span>
@@ -72,7 +72,7 @@ const index = ({ LoginModel, dispatch }) => {
                             <span className="focus-input100" />
                             <span className="symbol-input100">
                                 <i
-                                    className="iconfont icon-password"
+                                    className="iconfont im-password1"
                                     aria-hidden="true"
                                 />
                             </span>
