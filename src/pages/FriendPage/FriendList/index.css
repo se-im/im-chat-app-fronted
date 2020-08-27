@@ -5,8 +5,8 @@
 .friendList{
 }
 .friendList a{
-  font-size: 18px;
-  color: white;
+  font-size: 16px;
+  color: #753fae;
 }
 /*设置item宽度*/
 .item{
@@ -16,7 +16,7 @@
 }
 /*item的鼠标覆盖样式*/
 .friendList ul li:hover{
-  background-color: #4a3664;
+  background-color: papayawhip;
 }
 /*头 像*/
 .avatar{
@@ -54,7 +54,7 @@
   position: relative;
 }
 .newFriend:hover{
-  background-color: #4a3664;
+  background-color: papayawhip;
 }
 .iconFriend{
   position: absolute;
@@ -81,7 +81,7 @@
   line-height: 50px;
 
   font-size: 20px;
-  color: #fdfdfe;
+  color: #753fae;
 }
 .unKnownUser{
   position: absolute;

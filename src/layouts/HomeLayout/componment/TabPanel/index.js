@@ -15,7 +15,7 @@ const index = props => {
                 src={props.user.avatarUrl}
                 className={styles.be_middle + ' ' + styles.head_pic}
             />
-            <h5 className={styles.username}>{props.user.username} user</h5>
+            <h5 className={styles.username}>{props.user.username}</h5>
             <span
                 className={'iconfont icon-message-fill' + ' ' + styles.icon}
             />
