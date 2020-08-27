@@ -39,15 +39,15 @@ const MsgModel = {
         },
     },
     subscriptions: {
-        // setup({ dispatch, history }) {
-        //     history.listen(({ pathname }) => {
-        //         if (pathname === '/') {
-        //             dispatch({
-        //                 type: 'getMessagePanelInfo',
-        //             });
-        //         }
-        //     });
-        // },
+        setup({ dispatch, history }) {
+            history.listen(({ pathname }) => {
+                if (pathname === '/') {
+                    dispatch({
+                        type: 'getMessagePanelInfo',
+                    });
+                }
+            });
+        },
     },
 };
 
