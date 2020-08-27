@@ -3,7 +3,7 @@ import styles from './index.css';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
-import './assert/iconfont.css';
+import '../../../../../assert/iconfont/iconfont.css';
 
 const index = props => {
     return (
