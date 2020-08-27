@@ -12,7 +12,7 @@ const getFriendList = async token => {
         });
 };
 const getNewFriendList = async token => {
-    return request
+    return await request
         .post(api.user_api.newFriend, token)
         .then(res => {
             return res;

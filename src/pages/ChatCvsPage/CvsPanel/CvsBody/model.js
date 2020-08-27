@@ -21,15 +21,15 @@ const CvsModel = {
     },
 
     subscriptions: {
-        // setup({ dispatch, history }) {
-        //     return history.listen(({ pathname }) => {
-        //         if (pathname === '/') {
-        //             dispatch({
-        //                 type: 'getRemote',
-        //             });
-        //         }
-        //     });
-        // },
+        setup({ dispatch, history }) {
+            return history.listen(({ pathname }) => {
+                if (pathname === '/') {
+                    dispatch({
+                        type: 'getRemote',
+                    });
+                }
+            });
+        },
     },
 };
 

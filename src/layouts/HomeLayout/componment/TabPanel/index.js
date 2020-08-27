@@ -44,7 +44,6 @@ const index = props => {
 };
 
 const mapStateToProps = state => {
-    console.log(state);
     let { global } = state;
     return { user: global.cur_user, router: state.router };
 };
