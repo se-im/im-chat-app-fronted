@@ -30,6 +30,11 @@ export default {
             state.token = action.payload;
             return state;
         },
+
+        setUser(state, action) {
+            state.cur_user = action.payload;
+        },
+
         setCurrentPanel(state, action) {
             state.current_panel = action.payload;
             return state;

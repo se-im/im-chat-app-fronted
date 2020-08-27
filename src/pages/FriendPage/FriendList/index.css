@@ -95,3 +95,6 @@
   text-align: center;
   line-height: 15px;
 }
+.componentHover{
+  display: none;
+}

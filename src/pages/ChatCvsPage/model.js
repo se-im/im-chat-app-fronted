@@ -12,29 +12,26 @@ const ChatModel = {
     },
     effects: {
         //effects -> {put, call}
-        *setUser(action, effects) {
-            const token = yield effects.select(state => state.global.token);
-            const data = yield effects.call(getUserByToken, token);
-
-            if (data === undefined) {
-            }
+        *getUser(action, effects) {
+            const token1 = yield effects.select(state => state.global.token);
+            const data = yield effects.call(getUserByToken, token1);
             yield effects.put({
                 type: 'global/setUser',
                 payload: data,
             });
         },
     },
-    /*    subscriptions: {
+    subscriptions: {
         setup({ dispatch, history }, done) {
             history.listen((location, action) => {
                 if (location.pathname === '/') {
                     dispatch({
-                        type: 'setUser',
+                        type: 'getUser',
                     });
                 }
             });
         },
-    },*/
+    },
 };
 
 export default ChatModel;
