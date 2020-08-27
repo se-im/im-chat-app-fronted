@@ -1,0 +1,32 @@
+.item_body {
+    width: var(--cvspanel-width);
+    height: var(--global-height);
+    border-right: 1px solid #d3d3d3;
+}
+
+.body_item_container {
+    margin-top: 20px;
+}
+.body_item {
+    /*margin-left: 30px;*/
+    line-height: 40px;
+    color: #808080;
+}
+.body_item strong{
+    font-size: 15px;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+.body_item span{
+    margin-top: 10px;
+    padding-left: 30px;
+    font-size: 25px;
+    vertical-align: middle;
+}
+.body_item:hover {
+    color: #8053b6;
+}
+.body_item strong:hover {
+    font-size: 16px;
+}
+

@@ -1,0 +1,116 @@
+.content_body {
+    width: 795px;
+    height: var(--global-height);
+}
+
+.body_container {
+    width: 600px;
+    margin: 10px auto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+}
+.body_profile_edit {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+.body_profile_edit_container {
+    height:420px;
+    margin: 10px 0;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+}
+.body_profile_edit_item_1 {
+    display: flex;
+    width: 600px;
+    height: 90px;
+}
+.body_user_avatar_container {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #d3d3d3;
+    border-radius: 35px;
+    margin: 10px 15px 0 15px;
+    text-align: center;
+}
+.body_user_avatar {
+    border-radius: 35px;
+    text-align: center;
+}
+.body_user_avatar_upload_btn {
+    padding-top: 20px;
+    color: #d3d3d3;
+    font-size: 10px;
+}
+.body_profile_edit_item_name {
+    width: 200px;
+    height: 90px;
+    margin-left: auto;
+    padding-top: 20px;
+    font-size: 15px;
+    text-align: center;
+    color: #969896;
+}
+.body_profile_edit_item_name input {
+    width: 190px;
+    text-align: center;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+.body_profile_edit_name {
+    margin: 3px auto;
+    width: 120px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #a9a9a9;
+    font-style: italic;
+}
+.body_profile_edit_item_2 {
+    width: 600px;
+    height: 60px;
+    border-top: 1px solid #d3d3d3;
+    padding: 3px 15px;
+    font-size: 15px;
+    color: #000000;
+}
+.body_profile_edit_item_2 div {
+    padding-left: 10px;
+}
+
+
+.body_account_manage {
+
+}
+.body_account_manage_container {
+    height:420px;
+    margin: 10px 0;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+}
+.body_account_manage_item {
+    display: flex;
+    height: 60px;
+    padding: 5px 20px;
+    border-bottom: 1px solid #d3d3d3;
+}
+.body_account_manage_off {
+    margin-left: auto;
+    width: 100px;
+    padding: 18px 0;
+    text-align: center;
+    font-size: 12px;
+    border-left: 1px solid #d3d3d3;
+}
+
+.body_user_agreement {
+
+
+
+}
+.body_about_me {
+
+}
+

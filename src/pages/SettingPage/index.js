@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ItemBody from './ItemPanel/ItemBody';
+import ContentBody from './ContentPanel/ContentBody';
 import styles from './index.css';
 
-export default () => {
-    return (
-        <div>
-            <h1 className={styles.title}>Page SettingPage/index</h1>
-        </div>
-    );
-};
+class SettingPage extends Component {
+    render() {
+        return (
+            <div className={styles.setting_body}>
+                <ItemBody />
+                <ContentBody />
+            </div>
+        );
+    }
+}
+
+export default SettingPage;

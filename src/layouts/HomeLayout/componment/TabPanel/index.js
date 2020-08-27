@@ -4,8 +4,12 @@ import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
 import '../../../../../assert/iconfont/iconfont.css';
+import { Link } from 'umi';
 
 const index = props => {
+    let path = props.router.location.pathname;
+    let baseIconClass = `iconfont ${styles.icon}`;
+
     return (
         <div className={styles.tab_panel}>
             <Avatar
@@ -14,40 +18,35 @@ const index = props => {
                 src={props.user.avatarUrl}
                 className={styles.be_middle + ' ' + styles.head_pic}
             />
-            <h5 className={styles.username}>{props.user.username} user</h5>
-            <span
-                className={'iconfont icon-message-fill' + ' ' + styles.icon}
+            <h5 className={styles.username}>{props.user.username}</h5>
+            {/*聊天图标*/}
+            <Link
+                to={'/'}
+                className={`${baseIconClass} im-message1 ${styles.icon_message}`}
             />
-            <span className={'iconfont icon-user' + ' ' + styles.icon} />
-            <span
-                className={
-                    'iconfont icon-fenleiorguangchangorqitatianchong' +
-                    ' ' +
-                    styles.icon
-                }
+            {/*好友图标*/}
+            <Link
+                to={'/friend'}
+                className={`${baseIconClass} im-people ${styles.icon_message}`}
             />
-            <span
-                className={
-                    'iconfont icon-shezhi' +
-                    ' ' +
-                    styles.icon +
-                    ' ' +
-                    styles.shezhi
-                }
+            {/*群聊图标*/}
+            <Link
+                to={'/group'}
+                className={`${baseIconClass} im-friends ${styles.icon_group}`}
+            />
+            {/*设置图标*/}
+            <Link
+                to={'/setting'}
+                className={`${baseIconClass} im-setting ${styles.setting_icon} ${styles.icon_group}`}
             />
         </div>
     );
 };
 
-const handleMsgClick = e => {
-    const dispatch = this.props;
-    dispatch({
-        type,
-    });
-};
 const mapStateToProps = state => {
+    console.log(state);
     let { global } = state;
-    return { user: global.cur_user };
+    return { user: global.cur_user, router: state.router };
 };
 
 export default connect(mapStateToProps)(index);

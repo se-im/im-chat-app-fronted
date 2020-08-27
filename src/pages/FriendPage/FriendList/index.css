@@ -1,13 +1,12 @@
 .body{
   height: 720px;
-  margin-top: 10px;
   overflow-y:auto
 }
 .friendList{
 }
 .friendList a{
-  font-size: 18px;
-  color: white;
+  font-size: 16px;
+  color: #753fae;
 }
 /*设置item宽度*/
 .item{
@@ -17,7 +16,7 @@
 }
 /*item的鼠标覆盖样式*/
 .friendList ul li:hover{
-  background-color: #4a3664;
+  background-color: papayawhip;
 }
 /*头 像*/
 .avatar{
@@ -50,6 +49,49 @@
 
 
 .newFriend{
-  background-color: #63a35c;
   height: 60px;
+  border-bottom: 1px #35244d solid;
+  position: relative;
+}
+.newFriend:hover{
+  background-color: papayawhip;
+}
+.iconFriend{
+  position: absolute;
+  top:4px;
+  left: 18px;
+
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  background-color: darkorange;
+  color: #fdfdfe;
+  line-height: 50px;
+  text-align: center;
+  font-size: 35px;
+}
+.newFriend p{
+  position: absolute;
+  left:68px;
+  top: 4px;
+
+  width: 120px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+
+  font-size: 20px;
+  color: #753fae;
+}
+.unKnownUser{
+  position: absolute;
+  left: 59px;
+  height: 16px;
+  width: 16px;
+  font-size: 8px;
+  color: white;
+  border-radius: 8px;
+  background-color: #8053b6;
+  text-align: center;
+  line-height: 15px;
 }
