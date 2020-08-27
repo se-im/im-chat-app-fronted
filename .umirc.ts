@@ -5,10 +5,15 @@ export default defineConfig({
         type: 'none',
     },
     routes: [
+        // {
+        //     path: '/',
+        //     component: '@/layouts/HomeLayout/index',
+        //     routes: [{ path: '/', component: '@/pages/ChatCvsPage/index' }],
+        // },
         {
             path: '/',
             component: '@/layouts/HomeLayout/index',
-            routes: [{ path: '/', component: '@/pages/ChatCvsPage/index' }],
+            routes: [{ path: '/', component: '@/pages/SettingPage/index' }],
         },
         { path: '/LoginPage/index', component: '@/pages/LoginPage/index' },
         {

@@ -1,0 +1,7 @@
+.setting_body {
+    display: flex;
+    width: var(--settingpage-width);
+    height: var(--global-height);
+    border: 1px solid #d3d3d3;
+    background-color: #ffffff;
+}

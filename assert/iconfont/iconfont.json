@@ -6,6 +6,34 @@
     "description": "im项目图标",
     "glyphs": [
         {
+            "icon_id": "817824",
+            "name": "用户协议",
+            "font_class": "yonghuxieyi",
+            "unicode": "e657",
+            "unicode_decimal": 58967
+        },
+        {
+            "icon_id": "912879",
+            "name": "关于我们",
+            "font_class": "bangzhuguanyuwomen",
+            "unicode": "e649",
+            "unicode_decimal": 58953
+        },
+        {
+            "icon_id": "11518537",
+            "name": "个人信息 ",
+            "font_class": "gerenxinxi",
+            "unicode": "e635",
+            "unicode_decimal": 58933
+        },
+        {
+            "icon_id": "7766795",
+            "name": "icon_setting",
+            "font_class": "icon_setting",
+            "unicode": "eb9d",
+            "unicode_decimal": 60317
+        },
+        {
             "icon_id": "10793064",
             "name": "password",
             "font_class": "password1",
