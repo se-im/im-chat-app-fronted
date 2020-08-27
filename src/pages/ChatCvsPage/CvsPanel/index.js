@@ -1,24 +1,13 @@
 import React from 'react';
 import styles from './index.css';
-import { Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import CvsBody from './CvsBody';
+import Search from './SearchPanel/search';
 
 const index = () => {
     return (
         <div className={styles.cvs_Panel}>
-            <div className={styles.cvs_header}>
-                <Input
-                    size="large"
-                    className={styles.search}
-                    placeholder="Search Conversations"
-                    prefix={<SearchOutlined />}
-                />
-                <div className={styles.add}>
-                    <a className={styles.add_icon}>+</a>
-                </div>
-            </div>
+            <Search />
             <CvsBody />
         </div>
     );

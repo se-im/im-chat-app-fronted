@@ -7,10 +7,14 @@ export default defineConfig({
     routes: [
         { path: '/login/index', component: '@/pages/LoginPage/index' },
         { path: '/register/index', component: '@/pages/RegisterPage/index' },
+
         {
             path: '/',
             component: '@/layouts/HomeLayout/index',
-            routes: [{ path: '/', component: '@/pages/ChatCvsPage/index' }],
+            routes: [
+                { path: '/', component: '@/pages/ChatCvsPage/index' },
+                { path: '/FriendPage', component: '@/pages/FriendPage/index' },
+            ],
         },
     ],
     dva: {
