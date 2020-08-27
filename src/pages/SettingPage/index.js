@@ -4,11 +4,17 @@ import ContentBody from './ContentPanel/ContentBody';
 import styles from './index.css';
 
 class SettingPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            item: 'profile',
+        };
+    }
     render() {
         return (
             <div className={styles.setting_body}>
                 <ItemBody />
-                <ContentBody />
+                <ContentBody item={this.state.item} />
             </div>
         );
     }
