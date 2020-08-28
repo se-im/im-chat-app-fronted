@@ -2,16 +2,41 @@ import React from 'react';
 import styles from './index.css';
 import { connect } from 'react-redux';
 import { List, Avatar } from 'antd';
-const cvsbody = ({ Conversations }) => {
+const index = ({ cvs: cvs, dispatch }) => {
+    function clickCvs(item, index) {
+        dispatch({
+            type: 'cvs/setCurCvs',
+            payload: item,
+        });
+    }
+
+    function genStyle(item) {
+        if (cvs.cur_cvs === item) {
+            return styles.cur_cvs;
+        } else {
+            return '';
+        }
+    }
+
+    function genUnreadMessageNumDiv(unreadMessageNum) {
+        if (unreadMessageNum > 0) {
+            return <p className={styles.unreadMsgNum}>{unreadMessageNum}</p>;
+        }
+    }
+
     return (
         <div className={styles.body}>
             <List
                 className={styles.cvs_body}
                 itemLayout="horizontal"
-                dataSource={Conversations.data}
+                dataSource={cvs.data}
                 split={false}
                 renderItem={(item, index) => (
-                    <List.Item className={styles.item} id={index}>
+                    <List.Item
+                        className={styles.item + ' ' + genStyle(item)}
+                        id={index}
+                        onClick={clickCvs.bind(this, item, index)}
+                    >
                         <List.Item.Meta
                             avatar={
                                 <Avatar
@@ -33,12 +58,10 @@ const cvsbody = ({ Conversations }) => {
                         <div>
                             <span className={styles.userStatus} />
                             <i className={styles.lastMsgTime}>
-                                {item.lastMessageTime}
+                                {item.lastMessageTimeFormated}
                             </i>
                             <br />
-                            <p className={styles.unreadMsgNum}>
-                                {item.unreadMessageNum}
-                            </p>
+                            {genUnreadMessageNumDiv(item.unreadMessageNum)}
                         </div>
                     </List.Item>
                 )}
@@ -46,9 +69,9 @@ const cvsbody = ({ Conversations }) => {
         </div>
     );
 };
-const mapStateToProps = ({ Conversations }) => {
+const mapStateToProps = ({ cvs }) => {
     return {
-        Conversations,
+        cvs: cvs,
     };
 };
-export default connect(mapStateToProps)(cvsbody);
+export default connect(mapStateToProps)(index);

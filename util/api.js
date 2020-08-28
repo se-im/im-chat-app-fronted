@@ -14,7 +14,9 @@ const user_api = {
     newFriend: '/user/friend/queryFriendRequestReceived',
 };
 
-const chat_api = {};
+const chat_api = {
+    getCvsList: '/chat/cvs/list',
+};
 
 const file_api = {};
 

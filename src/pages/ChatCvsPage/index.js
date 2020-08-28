@@ -9,7 +9,7 @@ const index = ({}) => {
         <Fragment>
             <CvsPanel />
             <MessagePanel />
-            <ProfilePanel />
+            <ProfilePanel style={{ display: true }} />
         </Fragment>
     );
 };

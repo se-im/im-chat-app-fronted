@@ -4,8 +4,9 @@ import service from './service';
 import { message } from 'antd';
 
 let token =
-    'eyJ0eXBlIjoiSldUIiwiYWxn' +
-    'IjoiSFMyNTYifQ.eyJleHAiOjE2Mjk5NDcxMzQsImlhdCI6MTU5ODQxMTEzNH0.1KD0qOmY6BESz-gD1GD7jOyWXnXR1twPT3WBijRMA78';
+    'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMy' +
+    'NTYifQ.eyJleHAiOjE2MzAxMTAyMjQsImlhdCI6MTU5ODU' +
+    '3NDIyNH0.JK1TDAxBCm635cOY0tu9FShKlmn818MuV19SOpGapVU';
 export default {
     namespace: 'global',
     state: {

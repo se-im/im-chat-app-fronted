@@ -1,5 +1,4 @@
 import { getMessagePanelInfoList } from './service';
-import { getRemoteList } from '../CvsPanel/CvsBody/service';
 
 const MsgModel = {
     namespace: 'Message',
@@ -30,12 +29,12 @@ const MsgModel = {
     },
     effects: {
         *getMessagePanelInfo({ payload }, { put, call }) {
-            const data1 = yield call(getMessagePanelInfoList);
-            const data2 = yield call(getRemoteList);
-            yield put({
-                type: 'setMessagePanelInfo',
-                payload: { data1, data2 },
-            });
+            // const data1 = yield call(getMessagePanelInfoList);
+            // const data2 = yield call(getRemoteList);
+            // yield put({
+            //     type: 'setMessagePanelInfo',
+            //     payload: { data1, data2 },
+            // });
         },
     },
     subscriptions: {
