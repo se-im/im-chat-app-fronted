@@ -52,8 +52,13 @@ export default {
             message.success('登录成功，正在跳转');
             yield put(routerRedux.push('/'));
         },
-        *throwError() {
-            throw new Error('hi error');
+
+        *updateUserInfo({ payload }, { call, put }) {
+            yield call(service.fetchUpdateUserInfoRemote, payload);
+            yield put({
+                type: 'setUser',
+                payload: payload,
+            });
         },
     },
 };

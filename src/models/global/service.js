@@ -12,4 +12,15 @@ const getToken = async param => {
         });
 };
 
-export default { getToken };
+const fetchUpdateUserInfoRemote = async params => {
+    return request
+        .post(api.user_api.updateUserInfo, params)
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+
+export default { getToken, fetchUpdateUserInfoRemote };

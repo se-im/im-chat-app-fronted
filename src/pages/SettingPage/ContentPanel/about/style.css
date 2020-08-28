@@ -1,0 +1,19 @@
+.body_about_manage {
+    padding-top: 20px;
+
+}
+.body_about_manage_container {
+    height: 450px;
+    margin: 10px auto;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: normal;
+}
+.body_agreement_manage_title {
+    margin: 10px auto;
+    text-align: center;
+}
+.body_agreement_manage_content {
+    padding: 3px 20px;
+}

@@ -9,41 +9,28 @@ const FriendsModel = {
     },
 
     reducers: {
-        setFriendList(state, { payload }) {
+        setFriends(state, { payload }) {
             let newState = JSON.parse(JSON.stringify(state));
             newState.friendList = payload;
             newState.haveFetched = true;
             return newState;
         },
-        getNewFriendList(state, { payload }) {
-            return payload;
-        },
     },
+
     effects: {
         *getFriends(action, { put, call, select }) {
             const haveFetched = yield select(state => state.friend.haveFetched);
-            console.log(haveFetched);
+            // console.log(haveFetched);
             if (haveFetched) {
                 return;
             }
             const token = yield select(state => state.global.token);
-            const data = yield call(friendService.getFriendList, token);
-            console.log(data);
+            // console.log(token);
+            const data = yield call(friendService.fetchFriendList, token);
             yield put({
-                type: 'setFriendList',
+                type: 'setFriends',
                 payload: data,
             });
-        },
-        *getNewFriends(action, effects) {
-            const token = yield effects.select(state => state.global.token);
-            const newFriendList = yield effects.call(
-                friendService.getNewFriendList,
-                token,
-            );
-            // yield effects.put({
-            //     type: 'getNewFriendList',
-            //     payload: { newFriendList },
-            // });
         },
     },
 
@@ -53,9 +40,6 @@ const FriendsModel = {
                 if (pathname === '/friend') {
                     dispatch({
                         type: 'getFriends',
-                    });
-                    dispatch({
-                        type: 'getNewFriends',
                     });
                 }
             });

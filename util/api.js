@@ -3,15 +3,18 @@ const servers = {
     aliyun1: 'http://zmz121.cn',
     aliyun2: 'http://1.zmz121.cn',
     local1: 'http://192.168.2.206',
+    cui: 'http://172.29.12.13',
 };
 
-let server = servers.aliyun2;
+// let server = servers.aliyun2;
+let server = servers.cui;
 
 const user_api = {
     getUserByToken: '/user/detail/token',
     login: '/user/login',
     friend: '/user/friend/queryFriend',
     newFriend: '/user/friend/queryFriendRequestReceived',
+    updateUserInfo: '/user/update',
 };
 
 const chat_api = {
