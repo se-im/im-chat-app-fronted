@@ -1,8 +1,9 @@
-
 .profile_panel {
     display: flex;
     flex-direction: column;
     width: var(--profilepanel-width);
     height: var(--global-height);
     background-color: #ffffff;
+    border: 1px solid #d3d3d3;
+    border-left: none;
 }
