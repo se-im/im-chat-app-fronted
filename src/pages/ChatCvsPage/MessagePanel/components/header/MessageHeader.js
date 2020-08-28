@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 const MessageHeader = props => {
     const { cur_cvs } = props.cvs;
     function userStateCircle() {
-        if (cur_cvs.isOnline === true) {
+        if (cur_cvs.online === true) {
             return (
                 <p>
                     在线 &nbsp; &nbsp;
@@ -27,6 +27,11 @@ const MessageHeader = props => {
             );
         }
     }
+
+    function showProfilePanel() {
+        props.dispatch({});
+    }
+
     return (
         <div className={styles.msg_header}>
             <div className={styles.header_left}>
@@ -40,7 +45,10 @@ const MessageHeader = props => {
                 <UserAddOutlined className={styles.header_icons} />
                 <PhoneOutlined className={styles.header_icons} />
                 <VideoCameraOutlined className={styles.header_icons} />
-                <InfoCircleOutlined className={styles.header_icons} />
+                <InfoCircleOutlined
+                    className={styles.header_icons}
+                    onClick={showProfilePanel}
+                />
             </div>
         </div>
     );
