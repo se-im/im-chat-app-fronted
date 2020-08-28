@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import UserProfilePanel from './UserProfile/UserProfilePanel';
 import styles from './index.css';
+import { connect } from 'umi';
 
-class ProfilePanel extends Component {
-    render() {
-        return (
-            <div className={styles.profile_panel}>
-                <UserProfilePanel />
-            </div>
-        );
+const index = ({ currentCvsType }) => {
+    function getProfile() {
+        if (currentCvsType === 'U') {
+            return <UserProfilePanel />;
+        } else {
+            //return <GroupPro
+        }
     }
-}
-export default ProfilePanel;
+    return <div className={styles.profile_panel}>{getProfile()}</div>;
+};
+
+const mapStateToProps = state => {
+    return { currentCvsType: state.chatPanel.currentCvsType };
+};
+
+export default connect(mapStateToProps)(index);

@@ -47,8 +47,9 @@
 .main_panel{
     display: flex;
     flex-direction: row;
-    width: var(--gloabl-width);
+    /*width: var(--gloabl-width);*/
     height: var(--global-height);
     background-color: #d20eee;
-    margin: 13px auto 0;
+    justify-content: center;
+    /*margin: 13px auto 0;*/
 }

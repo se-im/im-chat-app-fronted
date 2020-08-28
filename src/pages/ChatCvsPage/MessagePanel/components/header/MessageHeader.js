@@ -29,7 +29,9 @@ const MessageHeader = props => {
     }
 
     function showProfilePanel() {
-        props.dispatch({});
+        props.dispatch({
+            type: 'chatPanel/changeProfilePannelStatus',
+        });
     }
 
     return (
