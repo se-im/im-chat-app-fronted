@@ -74,6 +74,7 @@ class ProfileEdit extends Component {
                     <div className={styles.body_profile_edit_item_2}>
                         <div>性别</div>
                         <Select
+                            id={'gender'}
                             style={{ width: '100%' }}
                             bordered={false}
                             placeholder={'在此选择性别'}
@@ -93,6 +94,7 @@ class ProfileEdit extends Component {
                                 defaultValue="+86"
                             />
                             <Input
+                                id={'phone'}
                                 style={{ width: '90%' }}
                                 bordered={false}
                                 placeholder={'在此填写电话号码'}
@@ -104,6 +106,7 @@ class ProfileEdit extends Component {
                     <div className={styles.body_profile_edit_item_2}>
                         <div>邮箱</div>
                         <Input
+                            id={'email'}
                             bordered={false}
                             defaultValue={user.email}
                             placeholder={'在此填写邮箱'}
@@ -113,6 +116,7 @@ class ProfileEdit extends Component {
                     <div className={styles.body_profile_edit_item_2}>
                         <div>生日</div>
                         <DatePicker
+                            id={'birthday'}
                             style={{ width: '100%' }}
                             bordered={false}
                             defaultValue={moment(
@@ -127,6 +131,7 @@ class ProfileEdit extends Component {
                     <div className={styles.body_profile_edit_item_2}>
                         <div>个人简介</div>
                         <Input.TextArea
+                            id={'description'}
                             bordered={false}
                             rows={2}
                             placeholder={'在此介绍一下你自己...'}
@@ -179,24 +184,43 @@ class ProfileEdit extends Component {
         }
         return year + '-' + month + '-' + day;
     };
+    //判断两个值是否相等
+    isNotSame = (value1, value2) => {
+        if (value1 === value2 || value1 === null) {
+            return false;
+        } else {
+            return true;
+        }
+    };
     //更新用户信息
     updateUserInfo = () => {
-        let username = document.getElementById('username');
+        const { user, imageUrl } = this.props;
+        let username = document.getElementById('username').value;
+        let mySelect = document.getElementById('gender').val();
+        var selectIndex = mySelect.selectedIndex;
+
+        let phone = document.getElementById('phone').value;
+        let email = document.getElementById('email').value;
+        let birthday = new Date(document.getElementById('birthday').value);
+        console.log(gender);
+        let newUserInfo = {
+            id: user.id,
+            username: this.isNotSame(username, user.username)
+                ? username
+                : user.username,
+            avatarUrl: this.isNotSame(imageUrl, user.avatarUrl)
+                ? imageUrl
+                : user.avatarUrl,
+            gender: this.isNotSame(gender, user.gender) ? gender : user.gender,
+            phone: this.isNotSame(phone, user.phone) ? phone : user.phone,
+            email: this.isNotSame(email, user.email) ? email : user.email,
+            birthday: birthday.getTime(birthday),
+            createTime: 1597331350000,
+            shown: true,
+        };
         this.props.dispatch({
             type: 'global/updateUserInfo',
-            payload: {
-                id: this.props.user.id,
-                username: 'lu',
-                description: '',
-                email: '',
-                phone: '',
-                birthday: 1598043966000,
-                avatarUrl:
-                    'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
-                createTime: 1597331350000,
-                shown: true,
-                gender: null,
-            },
+            payload: newUserInfo,
         });
     };
 }

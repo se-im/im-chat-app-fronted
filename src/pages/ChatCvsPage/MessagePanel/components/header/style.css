@@ -72,6 +72,11 @@
     margin: 14px 10px;
     color: #969896;
 }
+.header_icons:hover {
+    color: #8053b6;
+    font-size: 25px;
+
+}
 .header_icons_container_main {
     display: flex;
 }

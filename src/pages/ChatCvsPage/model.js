@@ -3,7 +3,9 @@ import { Link } from 'umi';
 
 const ChatModel = {
     namespace: 'chatPanel',
-    state: {},
+    state: {
+        currentCvsType: 'U',
+    },
     reducers: {
         //action->{type, payload}
         setUserR(state, action) {

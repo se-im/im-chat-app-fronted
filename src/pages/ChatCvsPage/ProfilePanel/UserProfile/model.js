@@ -1,15 +1,10 @@
-import { routerRedux } from 'dva';
-import produce from 'immer';
-import service from './service';
+import service from '../../../../models/global/service';
 import { message } from 'antd';
+import { routerRedux } from 'dva';
 
-let token =
-    'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJ' +
-    'leHAiOjE2MzAxMTU4NDEsImlhdCI6MTU5ODU3OTg0MX0.l_va81kjzsehdXtzcjwqW8XQQJbtsnW4_3UAKP8ZPeo';
 export default {
-    namespace: 'global',
+    namespace: 'userProfileModel',
     state: {
-        token: token,
         cur_user: {
             id: 8,
             username: 'tom',
@@ -23,7 +18,6 @@ export default {
             shown: true,
             gender: null,
         },
-        current_panel: 1,
     },
     reducers: {
         setToken(state, action) {

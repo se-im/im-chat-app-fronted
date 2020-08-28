@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     UserAddOutlined,
     PhoneOutlined,
@@ -7,96 +7,40 @@ import {
 } from '@ant-design/icons';
 import styles from './style.css';
 import { connect } from 'react-redux';
-import cvs from '../../../../../models/cvs/cvs';
 
-const index = props => {
+const MessageHeader = props => {
     const { cur_cvs } = props.cvs;
-
     function userStateCircle() {
         if (cur_cvs.isOnline === true) {
-            return <span className={styles.header_userinfo_state_on} />;
+            return (
+                <p>
+                    在线 &nbsp; &nbsp;
+                    <span className={styles.header_userinfo_state_on} />
+                </p>
+            );
         } else {
-            return <span className={styles.header_userinfo_state_off} />;
+            return (
+                <p>
+                    离线 &nbsp; &nbsp;
+                    <span className={styles.header_userinfo_state_off} />
+                </p>
+            );
         }
     }
-    function iconFocus(icon) {
-        icon.style.color = '#8053b6';
-        icon.style.fontSize = '25px';
-    }
-    function iconBlur(icon) {
-        icon.style.color = '#969896';
-        icon.style.fontSize = '22px';
-    }
-
     return (
         <div className={styles.msg_header}>
             <div className={styles.header_left}>
                 <img src={cur_cvs.avatarUrl} />
                 <div className={styles.header_userinfo}>
                     <div>{cur_cvs.cvsName}</div>
-                    <p>
-                        {cur_cvs.isOnline} &nbsp;
-                        {userStateCircle()}
-                    </p>
+                    {userStateCircle()}
                 </div>
             </div>
             <div className={styles.header_right}>
-                <div
-                    onMouseEnter={() => iconFocus(changeStyleIconUserAdd)}
-                    onMouseLeave={() => iconBlur(changeStyleIconUserAdd)}
-                >
-                    <UserAddOutlined
-                        className={styles.header_icons}
-                        ref={icon => {
-                            this.changeStyleIconUserAdd = icon;
-                        }}
-                    />
-                </div>
-                <div
-                    onMouseEnter={() =>
-                        this.iconFocus(this.changeStyleIconPhone)
-                    }
-                    onMouseLeave={() =>
-                        this.iconBlur(this.changeStyleIconPhone)
-                    }
-                >
-                    <PhoneOutlined
-                        className={styles.header_icons}
-                        ref={icon => {
-                            this.changeStyleIconPhone = icon;
-                        }}
-                    />
-                </div>
-                <div
-                    onMouseEnter={() =>
-                        this.iconFocus(this.changeStyleIconVideoCamera)
-                    }
-                    onMouseLeave={() =>
-                        this.iconBlur(this.changeStyleIconVideoCamera)
-                    }
-                >
-                    <VideoCameraOutlined
-                        className={styles.header_icons}
-                        ref={icon => {
-                            this.changeStyleIconVideoCamera = icon;
-                        }}
-                    />
-                </div>
-                <div
-                    onMouseEnter={() =>
-                        this.iconFocus(this.changeStyleIconInfoCircle)
-                    }
-                    onMouseLeave={() =>
-                        this.iconBlur(this.changeStyleIconInfoCircle)
-                    }
-                >
-                    <InfoCircleOutlined
-                        className={styles.header_icons}
-                        ref={icon => {
-                            this.changeStyleIconInfoCircle = icon;
-                        }}
-                    />
-                </div>
+                <UserAddOutlined className={styles.header_icons} />
+                <PhoneOutlined className={styles.header_icons} />
+                <VideoCameraOutlined className={styles.header_icons} />
+                <InfoCircleOutlined className={styles.header_icons} />
             </div>
         </div>
     );
