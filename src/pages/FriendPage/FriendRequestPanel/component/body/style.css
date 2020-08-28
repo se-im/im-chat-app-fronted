@@ -4,6 +4,7 @@
     width: var(--messagepanel-width);
     height: 720px;
     overflow-y:auto;
+    border-bottom: 1px solid #d3d3d3;
 }
 .body_content{
     margin: 0 15px;
@@ -19,6 +20,9 @@
 }
 .item_button{
     border-radius: 3px;
+}
+.item_refuseBtn{
+    margin-left: 10px;
 }
 /*设置滚动条*/
 .friendRequest_body::-webkit-scrollbar{

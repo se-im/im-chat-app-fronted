@@ -21,9 +21,9 @@ const FriendsModel = {
         *getFriends(action, { put, call, select }) {
             const haveFetched = yield select(state => state.friend.haveFetched);
             // console.log(haveFetched);
-            if (haveFetched) {
-                return;
-            }
+            // if (haveFetched) {
+            //     return;
+            // }
             const token = yield select(state => state.global.token);
             // console.log(token);
             const data = yield call(friendService.fetchFriendList, token);

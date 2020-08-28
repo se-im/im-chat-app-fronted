@@ -8,19 +8,19 @@ export default {
     namespace: 'global',
     state: {
         token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxMzA5ODAsImlhdCI6MTU5ODU5NDk4MH0.yUEmnoeI5J_D5DMTj52unmoiIcB4EOWr6v7ycl2nU54',
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxNDMzMDEsImlhdCI6MTU5ODYwNzMwMX0.H0G22w3bWWUNIVJmdcDtmp2P9w6-WRVgjwTIxjy1YmA',
         cur_user: {
-            id: 12,
-            username: 'Jim',
-            description: '',
+            id: 19,
+            username: 'yxz',
+            description: 'ddd',
             email: '',
             phone: '',
-            birthday: 1598645123000,
+            birthday: 1598043966000,
             avatarUrl:
-                'http://1.zmz121.cn:8010/res/file/pic/17201800000320200121080107498725.png',
-            createTime: 1598044634000,
+                'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
+            createTime: 1597331350000,
             shown: true,
-            gender: null,
+            gender: 'mail',
         },
         current_panel: 1,
     },
