@@ -2,13 +2,13 @@ import { routerRedux } from 'dva';
 import produce from 'immer';
 import service from './service';
 import { message } from 'antd';
+import request from '../../../util/request';
 
-let token =
-    'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxMzA5ODAsImlhdCI6MTU5ODU5NDk4MH0.yUEmnoeI5J_D5DMTj52unmoiIcB4EOWr6v7ycl2nU54';
 export default {
     namespace: 'global',
     state: {
-        token: token,
+        token:
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxMzA5ODAsImlhdCI6MTU5ODU5NDk4MH0.yUEmnoeI5J_D5DMTj52unmoiIcB4EOWr6v7ycl2nU54',
         cur_user: {
             id: 12,
             username: 'Jim',
@@ -26,7 +26,9 @@ export default {
     },
     reducers: {
         setToken(state, action) {
+            console.log(action.payload);
             state.token = action.payload;
+            request.refreshAxiosConfig(action.payload);
             return state;
         },
 
