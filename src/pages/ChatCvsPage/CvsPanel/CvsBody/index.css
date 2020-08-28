@@ -29,11 +29,19 @@
 .userStatus {
     position: absolute;
     left: 58px;
-    top: 43px;
-    width: 6px;
-    height: 6px;
-    border-radius: 3px;
+    top: 47px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.userStatusOnline{
     background-color: #00ff00;
+
+}
+
+.userStatusOffline{
+    background-color: #969896;
 }
 
 /*头 像*/

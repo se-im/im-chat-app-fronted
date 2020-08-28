@@ -1,0 +1,40 @@
+.friendRequest_body {
+    display: flex;
+    flex-direction: column;
+    width: var(--messagepanel-width);
+    height: 720px;
+    overflow-y:auto;
+}
+.body_content{
+    margin: 0 15px;
+}
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 1px;
+}
+.title{
+    font-size: 16px;
+}
+.item_button{
+    border-radius: 3px;
+}
+/*设置滚动条*/
+.friendRequest_body::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+
+}
+.friendRequest_body::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;  /*滚动条的背景区域的圆角*/
+    background-color: whitesmoke;/*滚动条的背景颜色*/
+}
+.friendRequest_body::-webkit-scrollbar-thumb
+{
+    height: 20px;
+    border-radius: 5px;  /*滚动条的圆角*/
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: papayawhip;  /*滚动条的背景颜色*/
+}

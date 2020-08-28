@@ -32,12 +32,12 @@ class ProfileEdit extends Component {
 
     onFinish(values) {
         //TODO
-        values.avatarUrl = this.props.imageUrl;
+        // values.avatarUrl = this.props.imageUrl;
         this.props.dispatch({
             type: 'global/updateUserInfo',
             payload: values,
         });
-        console.log(values.birthday);
+        console.log(values);
     }
 
     handleUserChange(e) {
@@ -244,26 +244,6 @@ class ProfileEdit extends Component {
             day = '0' + day;
         }
         return year + '-' + month + '-' + day;
-    };
-    //更新用户信息
-    updateUserInfo = () => {
-        let username = document.getElementById('username');
-        this.props.dispatch({
-            type: 'global/updateUserInfo',
-            payload: {
-                id: this.props.user.id,
-                username: 'lu',
-                description: '',
-                email: '',
-                phone: '',
-                birthday: 1598043966000,
-                avatarUrl:
-                    'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
-                createTime: 1597331350000,
-                shown: true,
-                gender: null,
-            },
-        });
     };
 }
 

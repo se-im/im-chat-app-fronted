@@ -1,0 +1,22 @@
+.friendRequest_header {
+    width: var(--messagepanel-width);
+    height: 79px;
+    border-bottom: 1px solid #d3d3d3;
+}
+.header_content{
+    height: 100%;
+    width: var(--messagepanel-width);
+}
+.header_icon{
+    float: left;
+    font-size: 35px;
+    margin:0 15px ;
+    line-height: 79px;
+}
+.header_content p{
+    float: left;
+    width: 200px;
+    height: 50px;
+    margin-top: 26px;
+    font-size: 22px;
+}

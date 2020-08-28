@@ -9,13 +9,19 @@
     height: 80px;
     margin-top: 30px;
 }
-.header_user_name {
+.header_user_note_container {
+    padding-bottom: 30px;
+}
+.header_user_note {
+    width: 200px;
     margin-top: 5px;
     color: #000000;
     font-size: 20px;
+    text-align: center;
+    font-weight: bold;
 }
-.header_user_edit {
-    margin: 10px auto;
+.header_note_edit {
+    margin: 2px auto;
     border-radius: 8px;
     font-size: 12px;
 }

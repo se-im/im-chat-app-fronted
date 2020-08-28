@@ -1,0 +1,9 @@
+.group_header {
+    width: var(--profilepanel-width);
+    height: 320px;
+    border-bottom: 1px solid #d3d3d3;
+    text-align: center;
+}
+.header_members {
+    padding: 10px 10px;
+}
