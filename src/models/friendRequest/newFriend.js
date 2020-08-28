@@ -1,16 +1,18 @@
 import friendService from './service';
 
-const newFriend = {
+const NewFriend = {
     namespace: 'newFriend',
     state: {
         newFriendList: [],
         haveFetched: false,
+        newFriendListLength: 0,
     },
     reducers: {
         setNewFriends(state, action) {
             const newState = JSON.parse(JSON.stringify(state));
             newState.newFriendList = action.payload;
             newState.haveFetched = true;
+            newState.newFriendListLength = newState.newFriendList.length;
             return newState;
         },
     },
@@ -19,7 +21,7 @@ const newFriend = {
             const haveFetched = effects.select(
                 state => state.newFriend.haveFetched,
             );
-            // console.log(haveFetched);
+            console.log(haveFetched);
             if (haveFetched) {
                 return;
             }
@@ -47,4 +49,4 @@ const newFriend = {
         },
     },
 };
-export default newFriend;
+export default NewFriend;
