@@ -74,8 +74,8 @@ const ProfileHeader = props => {
         </Fragment>
     );
 };
-const mapStateToProps = ({ userProfileModel }) => ({
-    userProfileModel,
+const mapStateToProps = ({ chatPanel }) => ({
+    chatPanel,
 });
 
 export default connect(mapStateToProps)(ProfileHeader);

@@ -4,18 +4,18 @@ import MessagePanel from './MessagePanel';
 import ProfilePanel from './ProfilePanel';
 import { connect } from 'umi';
 
-const index = ({}) => {
+const index = ({ showProfilePanel }) => {
     return (
         <Fragment>
             <CvsPanel />
             <MessagePanel />
-            <ProfilePanel style={{ display: true }} />
+            {showProfilePanel && <ProfilePanel />}
         </Fragment>
     );
 };
 
 const mapStateToProps = state => {
-    return { token: state.global.token };
+    return { showProfilePanel: state.chatPanel.showProfilePanel };
 };
 
 export default connect(mapStateToProps)(index);

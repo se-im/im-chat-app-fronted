@@ -1,25 +1,24 @@
 import friendService from './service';
+import { message } from 'antd';
 
 const handleFriendRequest = {
     namespace: 'handleFriendRequest',
 
     state: {
-        haveAdded: false,
+        responseMsg: '',
     },
 
     reducers: {
         setFriendRequest(state, { payload }) {
+            console.log(payload);
             let newState = JSON.parse(JSON.stringify(state));
-            if (payload.equals('同意好友请求！')) {
-                newState.haveAdded = true;
-            }
+            newState.responseMsg = payload;
             return newState;
         },
     },
 
     effects: {
-        *handleFriendRequest(action, effects) {
-            console.log(1);
+        *agreeFriendRequest(action, effects) {
             const data = action.payload;
             const requestId = data.requestId;
             const status = data.status;
@@ -28,7 +27,21 @@ const handleFriendRequest = {
                 requestId,
                 status,
             );
-            // console.log(result);
+            yield effects.put({
+                type: 'setFriendRequest',
+                payload: result,
+            });
+            message.success(111);
+        },
+        *refuseFriendRequest(action, effects) {
+            const data = action.payload;
+            const requestId = data.requestId;
+            const status = data.status;
+            const result = yield effects.call(
+                friendService.handleNewFriendRequest,
+                requestId,
+                status,
+            );
             yield effects.put({
                 type: 'setFriendRequest',
                 payload: result,

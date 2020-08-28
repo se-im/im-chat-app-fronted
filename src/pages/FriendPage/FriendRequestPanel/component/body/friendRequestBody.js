@@ -31,7 +31,7 @@ const friendRequestBody = props => {
                                     type="primary"
                                     size="middle"
                                     className={styles.item_button}
-                                    onClick={handleFriendRequest.bind(
+                                    onClick={agreeFriendRequest.bind(
                                         this,
                                         item,
                                         index,
@@ -39,7 +39,21 @@ const friendRequestBody = props => {
                                 >
                                     同意
                                 </Button>
-                                {haveAdded(props.haveAdded)}
+                                <Button
+                                    type="default"
+                                    size="middle"
+                                    className={
+                                        styles.item_button +
+                                        ' ' +
+                                        styles.item_refuseBtn
+                                    }
+                                    onClick={refuseFriendRequest.bind(
+                                        this,
+                                        item,
+                                    )}
+                                >
+                                    拒绝
+                                </Button>
                             </div>
                         </List.Item>
                     )}
@@ -47,30 +61,30 @@ const friendRequestBody = props => {
             </div>
         </div>
     );
-    function handleFriendRequest(item) {
+    function agreeFriendRequest(item) {
         props.dispatch({
-            type: 'handleFriendRequest/handleFriendRequest',
+            type: 'handleFriendRequest/agreeFriendRequest',
             payload: {
                 requestId: item.requestId,
-                status: item.status,
+                status: 2,
             },
         });
     }
-    function haveAdded(haveAdded) {
-        if (haveAdded) {
-            return <p>好友添加成功！</p>;
-        } else {
-            return '';
-        }
+    function refuseFriendRequest(item) {
+        props.dispatch({
+            type: 'handleFriendRequest/refuseFriendRequest',
+            payload: {
+                requestId: item.requestId,
+                status: 1,
+            },
+        });
     }
 };
 
 const mapStateToProps = state => {
-    // console.log(state.newFriend.newFriendList);
-    console.log(state.handleFriendRequest.haveAdded);
     return {
         newFriendList: state.newFriend.newFriendList,
-        haveAdded: state.handleFriendRequest.haveAdded,
+        responseMsg: state.handleFriendRequest.responseMsg,
     };
 };
 export default connect(mapStateToProps)(friendRequestBody);

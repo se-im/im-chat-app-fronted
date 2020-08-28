@@ -24,6 +24,14 @@ const index = ({ cvs: cvs, dispatch }) => {
         }
     }
 
+    function genUserStatusStyle(isOnline) {
+        if (isOnline) {
+            return styles.userStatusOnline;
+        } else {
+            return styles.userStatusOffline;
+        }
+    }
+
     return (
         <div className={styles.body}>
             <List
@@ -56,7 +64,13 @@ const index = ({ cvs: cvs, dispatch }) => {
                             }
                         />
                         <div>
-                            <span className={styles.userStatus} />
+                            <span
+                                className={
+                                    styles.userStatus +
+                                    ' ' +
+                                    genUserStatusStyle(item.online)
+                                }
+                            />
                             <i className={styles.lastMsgTime}>
                                 {item.lastMessageTimeFormated}
                             </i>

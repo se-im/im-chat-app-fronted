@@ -12,28 +12,28 @@ axios.defaults.headers.post['Content-Type'] =
     'application/x-www-form-urlencoded;charset=UTF-8;Accept-Language:zh-CN,zh;q=0.8';
 
 // 请求body拦截器
-axios.interceptors.request.use(config => {
-    let newConfig = config;
-    newConfig = {
-        ...config,
-        headers: {
-            post: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                token: global.state.token,
-            },
-            get: {
-                token: global.state.token,
-            },
-            put: {
-                token: global.state.token,
-            },
-            delete: {
-                token: global.state.token,
-            },
-        },
-    };
-    return newConfig;
-});
+// axios.interceptors.request.use(config => {
+//     let newConfig = config;
+//     newConfig = {
+//         ...config,
+//         headers: {
+//             post: {
+//                 'Content-Type': 'application/x-www-form-urlencoded',
+//                 token: global.state.token,
+//             },
+//             get: {
+//                 token: global.state.token,
+//             },
+//             put: {
+//                 token: global.state.token,
+//             },
+//             delete: {
+//                 token: global.state.token,
+//             },
+//         },
+//     };
+//     return newConfig;
+// });
 
 // 返回拦截器
 axios.interceptors.response.use(
@@ -66,6 +66,12 @@ function genDomain(url) {
     return server + ':' + apiPortMap.get(url + '');
 }
 
+let token = global.state.token;
+
+const refreshAxiosConfig = token1 => {
+    token = token1;
+};
+
 const get = (url, parmas) => {
     let domain = genDomain(url);
     url = domain + url;
@@ -73,12 +79,13 @@ const get = (url, parmas) => {
         axios
             .get(url, {
                 params: parmas,
+                headers: { token: token },
             })
             .then(res => {
                 resolve(res);
             })
             .catch(err => {
-                throw err;
+                // throw err;
                 // reject(err);
             });
     });
@@ -88,7 +95,9 @@ const post = (url, params) => {
     url = domain + url;
     return new Promise((resolve, reject) => {
         axios
-            .post(url, querystring.stringify(params))
+            .post(url, querystring.stringify(params), {
+                headers: { token: token },
+            })
             .then(res => {
                 resolve(res);
             })
@@ -99,4 +108,4 @@ const post = (url, params) => {
     });
 };
 
-export default { get, post };
+export default { get, post, refreshAxiosConfig };

@@ -20,6 +20,9 @@
 .item_button{
     border-radius: 3px;
 }
+.item_refuseBtn{
+    margin-left: 10px;
+}
 /*设置滚动条*/
 .friendRequest_body::-webkit-scrollbar{
     width: 10px;
