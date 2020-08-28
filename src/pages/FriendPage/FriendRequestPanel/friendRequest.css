@@ -1,9 +1,8 @@
-.profile_panel {
+.friendRequest_panel {
     display: flex;
     flex-direction: column;
-    width: var(--profilepanel-width);
+    width: var(--messagepanel-width);
     height: var(--global-height);
+    border-right: 1px solid #d3d3d3;
     background-color: #ffffff;
-    border: 1px solid #d3d3d3;
-    border-left: none;
 }

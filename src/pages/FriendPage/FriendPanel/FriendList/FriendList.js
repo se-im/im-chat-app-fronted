@@ -12,7 +12,7 @@ const FriendList = props => {
                     <UserAddOutlined />
                 </div>
                 <p>新的朋友</p>
-                <div className={styles.unKnownUser} />
+                <div className={styles.unKnownUser} id={'unReadMsg'} />
             </div>
             <List
                 className={styles.friendList}
@@ -43,7 +43,6 @@ const FriendList = props => {
 const mapStateToProps = state => {
     return {
         friend: state.friend.friendList,
-        newFriend: state.newFriend.newFriendList,
     };
 };
 export default connect(mapStateToProps)(FriendList);
