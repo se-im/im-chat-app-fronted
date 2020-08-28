@@ -4,7 +4,7 @@ import service from './service';
 import { message } from 'antd';
 
 let token =
-    'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxMTUxMTMsImlhdCI6MTU5ODU3OTExM30.v1wCxDS5yDUvaH_UiaYl7caIIK_eaO3GBIuuEV1Tw5I';
+    'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxMzU5MDMsImlhdCI6MTU5ODU5OTkwM30.N6mxWogHpYQlCsqY79sKui6UFMQvO6XPz-ZRXw7IPJ8';
 export default {
     namespace: 'global',
     state: {

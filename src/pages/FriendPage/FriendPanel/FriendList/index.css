@@ -12,7 +12,7 @@
 .item{
   padding: 0 18px;
   position: relative;
-  margin-top: 10px;
+  border-bottom: 0.5px solid #bbb;
 }
 /*item的鼠标覆盖样式*/
 .friendList ul li:hover{
@@ -85,14 +85,14 @@
 }
 .unKnownUser{
   position: absolute;
-  left: 63px;
-  top: 2px;
-  height: 8px;
-  width: 8px;
-  font-size: 4px;
+  left: 278px;
+  top: 22px;
+  height: 15px;
+  width: 18px;
+  font-size: 8px;
   color: white;
-  border-radius: 4px;
-  background-color: red;
+  border-radius: 8px;
+  background-color: #FF5C49;
   text-align: center;
   line-height: 15px;
 }

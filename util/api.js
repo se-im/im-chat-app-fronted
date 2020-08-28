@@ -14,6 +14,7 @@ const user_api = {
     login: '/user/login',
     friend: '/user/friend/queryFriend',
     newFriend: '/user/friend/queryFriendRequestReceived',
+    processFriendRequest: '/user/friend/processFriendRequest',
     updateUserInfo: '/user/update',
 };
 

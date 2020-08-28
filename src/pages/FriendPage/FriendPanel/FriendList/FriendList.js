@@ -5,6 +5,11 @@ import { connect } from 'react-redux';
 import { UserAddOutlined } from '@ant-design/icons';
 
 const FriendList = props => {
+    function unReadFriendRequest(length) {
+        if (length > 0) {
+            return <div className={styles.unKnownUser}>{length}</div>;
+        }
+    }
     return (
         <div className={styles.body}>
             <div className={styles.newFriend}>
@@ -12,13 +17,12 @@ const FriendList = props => {
                     <UserAddOutlined />
                 </div>
                 <p>新的朋友</p>
-                <div className={styles.unKnownUser} id={'unReadMsg'} />
+                {unReadFriendRequest(props.newFriendListLength)}
             </div>
             <List
                 className={styles.friendList}
                 itemLayout="horizontal"
                 dataSource={props.friend}
-                split={false}
                 renderItem={item => (
                     <List.Item className={styles.item}>
                         <List.Item.Meta
@@ -43,6 +47,7 @@ const FriendList = props => {
 const mapStateToProps = state => {
     return {
         friend: state.friend.friendList,
+        newFriendListLength: state.newFriend.newFriendListLength,
     };
 };
 export default connect(mapStateToProps)(FriendList);
