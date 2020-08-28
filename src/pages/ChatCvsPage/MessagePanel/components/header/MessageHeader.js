@@ -28,6 +28,8 @@ const index = props => {
         icon.style.fontSize = '22px';
     }
 
+    return <div></div>;
+
     return (
         <div className={styles.msg_header}>
             <div className={styles.header_left}>
@@ -106,4 +108,4 @@ const mapStateToProps = ({ cvs, global }) => ({
     global,
 });
 
-export default connect(mapStateToProps)(MessageHeader);
+export default connect(mapStateToProps)(index);

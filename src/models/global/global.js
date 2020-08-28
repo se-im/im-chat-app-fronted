@@ -4,9 +4,7 @@ import service from './service';
 import { message } from 'antd';
 
 let token =
-    'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMy' +
-    'NTYifQ.eyJleHAiOjE2MzAxMTAyMjQsImlhdCI6MTU5ODU' +
-    '3NDIyNH0.JK1TDAxBCm635cOY0tu9FShKlmn818MuV19SOpGapVU';
+    'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxMTUxMTMsImlhdCI6MTU5ODU3OTExM30.v1wCxDS5yDUvaH_UiaYl7caIIK_eaO3GBIuuEV1Tw5I';
 export default {
     namespace: 'global',
     state: {
@@ -14,7 +12,7 @@ export default {
         cur_user: {
             id: 8,
             username: 'tom',
-            description: '',
+            description: 'ddd',
             email: '',
             phone: '',
             birthday: 1598043966000,
@@ -22,7 +20,7 @@ export default {
                 'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
             createTime: 1597331350000,
             shown: true,
-            gender: null,
+            gender: 'mail',
         },
         current_panel: 1,
     },

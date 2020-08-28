@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'umi';
-import { Upload, message, Input, Select, DatePicker, Avatar } from 'antd';
+import { Upload, message, Input, Select, DatePicker, Avatar, Form } from 'antd';
 import { FormOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import styles from './style.css';
@@ -10,6 +10,7 @@ function getBase64(img, callback) {
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
 }
+
 function beforeUpload(file) {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
@@ -26,125 +27,188 @@ class ProfileEdit extends Component {
     state = {
         loading: false,
         value: 1,
+        username: this.props.user.username,
     };
+
+    onFinish(values) {
+        //TODO
+        let username = this.state.username;
+        console.log(values);
+    }
+
+    handleUserChange(e) {
+        this.setState({
+            username: e.target.value,
+        });
+    }
+
     render() {
         const { imageUrl } = this.state;
         const { user } = this.props;
         return (
-            <div className={styles.body_profile_edit}>
-                <strong>个人信息</strong>
-                <div className={styles.body_profile_edit_container}>
-                    <div className={styles.body_profile_edit_item_1}>
-                        <Upload
-                            name="avatar"
-                            beforeUpload={beforeUpload}
-                            onChange={this.handleChange}
-                            showUploadList={false}
-                        >
-                            <div className={styles.body_user_avatar_container}>
-                                {imageUrl ? (
-                                    <img
-                                        className={styles.body_user_avatar}
-                                        src={imageUrl}
-                                        alt="avatar"
-                                        style={{ width: '100%' }}
+            <Fragment>
+                <Form
+                    name="basic"
+                    initialValues={{ remember: true, ...user }}
+                    onFinish={this.onFinish.bind(this)}
+                >
+                    <div className={styles.body_profile_edit}>
+                        <strong>个人信息</strong>
+
+                        <div className={styles.body_profile_edit_container}>
+                            <div className={styles.body_profile_edit_item_1}>
+                                <Upload
+                                    name="avatar"
+                                    beforeUpload={beforeUpload}
+                                    onChange={this.handleChange}
+                                    showUploadList={false}
+                                >
+                                    <div
+                                        className={
+                                            styles.body_user_avatar_container
+                                        }
+                                    >
+                                        {imageUrl ? (
+                                            <img
+                                                className={
+                                                    styles.body_user_avatar
+                                                }
+                                                src={imageUrl}
+                                                alt="avatar"
+                                                style={{ width: '100%' }}
+                                            />
+                                        ) : (
+                                            <img
+                                                className={
+                                                    styles.body_user_avatar
+                                                }
+                                                src={user.avatarUrl}
+                                                alt="avatar"
+                                                style={{ width: '100%' }}
+                                            />
+                                        )}
+                                    </div>
+                                </Upload>
+
+                                <div
+                                    className={
+                                        styles.body_profile_edit_item_name
+                                    }
+                                >
+                                    <input
+                                        id={'username'}
+                                        placeholder={'昵称'}
+                                        value={this.state.username}
+                                        disabled={false}
+                                        name="username"
+                                        onChange={this.handleUserChange.bind(
+                                            this,
+                                        )}
                                     />
-                                ) : (
-                                    <img
-                                        className={styles.body_user_avatar}
-                                        src={user.avatarUrl}
-                                        alt="avatar"
-                                        style={{ width: '100%' }}
-                                    />
-                                )}
+                                    <div
+                                        className={
+                                            styles.body_profile_edit_name
+                                        }
+                                    >
+                                        <FormOutlined /> 更改昵称
+                                    </div>
+                                </div>
                             </div>
-                        </Upload>
-                        <div className={styles.body_profile_edit_item_name}>
-                            <input
-                                id={'username'}
-                                placeholder={'昵称'}
-                                defaultValue={user.username}
-                                disabled={true}
-                            />
-                            <div className={styles.body_profile_edit_name}>
-                                <FormOutlined border={true} /> 更改昵称
+                            <div className={styles.body_profile_edit_item_2}>
+                                <div>性别</div>
+                                <Form.Item name="gender" className={''}>
+                                    <Select
+                                        style={{ width: '100%' }}
+                                        bordered={false}
+                                        placeholder={'在此选择性别'}
+                                        // defaultValue={user.gender}
+                                        suffixIcon={<FormOutlined />}
+                                        name="gender"
+                                    >
+                                        <Select.Option value="male">
+                                            男
+                                        </Select.Option>
+                                        <Select.Option value="female">
+                                            女
+                                        </Select.Option>
+                                    </Select>
+                                </Form.Item>
+                            </div>
+                            <div className={styles.body_profile_edit_item_2}>
+                                <div>手机</div>
+                                <Input.Group compact={true}>
+                                    <Input
+                                        style={{ width: '10%' }}
+                                        bordered={false}
+                                        defaultValue="+86"
+                                    />
+                                    <Form.Item name="tel" className={''}>
+                                        <Input
+                                            style={{ width: '90%' }}
+                                            bordered={false}
+                                            placeholder={'在此填写电话号码'}
+                                            // defaultValue={user.phone}
+                                            suffix={<FormOutlined />}
+                                            name="tel"
+                                        />
+                                    </Form.Item>
+                                </Input.Group>
+                            </div>
+
+                            <div className={styles.body_profile_edit_item_2}>
+                                <div>邮箱</div>
+                                <Form.Item name="password" className={''}>
+                                    <Input
+                                        bordered={false}
+                                        // defaultValue={user.email}
+                                        placeholder={'在此填写邮箱'}
+                                        suffix={<FormOutlined />}
+                                        name="email"
+                                    />
+                                </Form.Item>
+                            </div>
+                            <div className={styles.body_profile_edit_item_2}>
+                                <div>生日</div>
+                                <DatePicker
+                                    style={{ width: '100%' }}
+                                    bordered={false}
+                                    defaultValue={moment(
+                                        user.birthday
+                                            ? this.formatDate(user.birthday)
+                                            : '2050-08-20',
+                                        'YYYY-MM-DD',
+                                    )}
+                                    allowClear={false}
+                                    name="birthday"
+                                />
+                            </div>
+                            <div className={styles.body_profile_edit_item_2}>
+                                <div>个人简介</div>
+                                <Form.Item name="description" className={''}>
+                                    <Input.TextArea
+                                        bordered={false}
+                                        rows={2}
+                                        placeholder={'在此介绍一下你自己...'}
+                                        // defaultValue={user.description}
+                                        name="description"
+                                    />
+                                </Form.Item>
                             </div>
                         </div>
+                        <div className={styles.body_isOk}>
+                            <button
+                                className={styles.body_btn1}
+                                // onClick={this.updateUserInfo}
+                            >
+                                完成
+                            </button>
+                        </div>
                     </div>
-                    <div className={styles.body_profile_edit_item_2}>
-                        <div>性别</div>
-                        <Select
-                            style={{ width: '100%' }}
-                            bordered={false}
-                            placeholder={'在此选择性别'}
-                            defaultValue={user.gender}
-                            suffixIcon={<FormOutlined />}
-                        >
-                            <Select.Option value="male">男</Select.Option>
-                            <Select.Option value="female">女</Select.Option>
-                        </Select>
-                    </div>
-                    <div className={styles.body_profile_edit_item_2}>
-                        <div>手机</div>
-                        <Input.Group compact={true}>
-                            <Input
-                                style={{ width: '10%' }}
-                                bordered={false}
-                                defaultValue="+86"
-                            />
-                            <Input
-                                style={{ width: '90%' }}
-                                bordered={false}
-                                placeholder={'在此填写电话号码'}
-                                defaultValue={user.phone}
-                                suffix={<FormOutlined />}
-                            />
-                        </Input.Group>
-                    </div>
-                    <div className={styles.body_profile_edit_item_2}>
-                        <div>邮箱</div>
-                        <Input
-                            bordered={false}
-                            defaultValue={user.email}
-                            placeholder={'在此填写邮箱'}
-                            suffix={<FormOutlined />}
-                        />
-                    </div>
-                    <div className={styles.body_profile_edit_item_2}>
-                        <div>生日</div>
-                        <DatePicker
-                            style={{ width: '100%' }}
-                            bordered={false}
-                            defaultValue={moment(
-                                user.birthday
-                                    ? this.formatDate(user.birthday)
-                                    : '2050-08-20',
-                                'YYYY-MM-DD',
-                            )}
-                            allowClear={false}
-                        />
-                    </div>
-                    <div className={styles.body_profile_edit_item_2}>
-                        <div>个人简介</div>
-                        <Input.TextArea
-                            bordered={false}
-                            rows={2}
-                            placeholder={'在此介绍一下你自己...'}
-                            defaultValue={user.description}
-                        />
-                    </div>
-                </div>
-                <div className={styles.body_isOk}>
-                    <button
-                        className={styles.body_btn1}
-                        onClick={this.updateUserInfo}
-                    >
-                        完成
-                    </button>
-                </div>
-            </div>
+                </Form>
+            </Fragment>
         );
     }
+
     // 更换头像
     handleChange = info => {
         if (info.file.status === 'uploading') {
