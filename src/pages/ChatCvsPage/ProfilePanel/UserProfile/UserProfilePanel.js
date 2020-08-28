@@ -25,6 +25,15 @@ const ProfileHeader = props => {
             <div className={styles.profile_body}>
                 <div className={styles.body_item}>
                     <div className={styles.body_item_title}>
+                        <strong>Nickname</strong>
+                    </div>
+                    <div className={styles.body_item_content}>
+                        18391551595
+                        <span className={'iconfont'}>&#xeb9d;</span>
+                    </div>
+                </div>
+                <div className={styles.body_item}>
+                    <div className={styles.body_item_title}>
                         <strong>Mobile</strong>
                     </div>
                     <div className={styles.body_item_content}>
@@ -63,13 +72,11 @@ const ProfileHeader = props => {
 
             <div className={styles.body_footer}>
                 <div className={styles.footer_item_title}>
-                    <div className={styles.body_item_title}>
-                        <strong>Description</strong>
-                    </div>
-                    <span className={'iconfont'}>&#xeb9d;</span>
+                    <strong>Description</strong>
                 </div>
-
-                <p placeholder={'nothing~~~'} />
+                <div className={styles.footer_item_content}>
+                    <p>There is nothing...</p>
+                </div>
             </div>
         </Fragment>
     );
