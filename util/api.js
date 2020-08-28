@@ -16,6 +16,8 @@ const user_api = {
     newFriend: '/user/friend/queryFriendRequestReceived',
     processFriendRequest: '/user/friend/processFriendRequest',
     updateUserInfo: '/user/update',
+    getFriendInfoById: '/user/friend/queryFriendDetail',
+    updateFriendNote: '/user/friend/updateFriendNote',
 };
 
 const chat_api = {

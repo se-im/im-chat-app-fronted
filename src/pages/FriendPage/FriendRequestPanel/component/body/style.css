@@ -4,6 +4,7 @@
     width: var(--messagepanel-width);
     height: 720px;
     overflow-y:auto;
+    border-bottom: 1px solid #d3d3d3;
 }
 .body_content{
     margin: 0 15px;

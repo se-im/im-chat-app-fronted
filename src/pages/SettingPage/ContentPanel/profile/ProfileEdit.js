@@ -32,7 +32,11 @@ class ProfileEdit extends Component {
 
     onFinish(values) {
         //TODO
-        let username = this.state.username;
+        // values.avatarUrl = this.props.imageUrl;
+        this.props.dispatch({
+            type: 'global/updateUserInfo',
+            payload: values,
+        });
         console.log(values);
     }
 
@@ -58,7 +62,8 @@ class ProfileEdit extends Component {
                         <div className={styles.body_profile_edit_container}>
                             <div className={styles.body_profile_edit_item_1}>
                                 <Upload
-                                    name="avatar"
+                                    name="avatarUrl"
+                                    action=""
                                     beforeUpload={beforeUpload}
                                     onChange={this.handleChange}
                                     showUploadList={false}
@@ -70,6 +75,7 @@ class ProfileEdit extends Component {
                                     >
                                         {imageUrl ? (
                                             <img
+                                                name="avatarUrl"
                                                 className={
                                                     styles.body_user_avatar
                                                 }
@@ -95,35 +101,37 @@ class ProfileEdit extends Component {
                                         styles.body_profile_edit_item_name
                                     }
                                 >
-                                    <input
-                                        id={'username'}
-                                        placeholder={'昵称'}
-                                        value={this.state.username}
-                                        disabled={false}
-                                        name="username"
-                                        onChange={this.handleUserChange.bind(
-                                            this,
-                                        )}
-                                    />
-                                    <div
-                                        className={
-                                            styles.body_profile_edit_name
-                                        }
-                                    >
-                                        <FormOutlined /> 更改昵称
-                                    </div>
+                                    <Form.Item name="username">
+                                        <input
+                                            name="username"
+                                            placeholder={'昵称'}
+                                            value={this.state.username}
+                                            disabled={false}
+                                            onChange={this.handleUserChange.bind(
+                                                this,
+                                            )}
+                                        />
+                                    </Form.Item>
+
+                                    {/*<div*/}
+                                    {/*    className={*/}
+                                    {/*        styles.body_profile_edit_name*/}
+                                    {/*    }*/}
+                                    {/*>*/}
+                                    {/*    <FormOutlined /> 更改昵称*/}
+                                    {/*</div>*/}
                                 </div>
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>性别</div>
                                 <Form.Item name="gender" className={''}>
                                     <Select
+                                        name="gender"
                                         style={{ width: '100%' }}
                                         bordered={false}
                                         placeholder={'在此选择性别'}
                                         // defaultValue={user.gender}
                                         suffixIcon={<FormOutlined />}
-                                        name="gender"
                                     >
                                         <Select.Option value="male">
                                             男
@@ -135,21 +143,21 @@ class ProfileEdit extends Component {
                                 </Form.Item>
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
-                                <div>手机</div>
+                                <div>电话</div>
                                 <Input.Group compact={true}>
                                     <Input
                                         style={{ width: '10%' }}
                                         bordered={false}
                                         defaultValue="+86"
                                     />
-                                    <Form.Item name="tel" className={''}>
+                                    <Form.Item name="phone" className={''}>
                                         <Input
-                                            style={{ width: '90%' }}
+                                            name="phone"
+                                            // defaultValue={user.phone}
+                                            // style={{ width: '90%' }}
                                             bordered={false}
                                             placeholder={'在此填写电话号码'}
-                                            // defaultValue={user.phone}
                                             suffix={<FormOutlined />}
-                                            name="tel"
                                         />
                                     </Form.Item>
                                 </Input.Group>
@@ -157,13 +165,13 @@ class ProfileEdit extends Component {
 
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>邮箱</div>
-                                <Form.Item name="password" className={''}>
+                                <Form.Item name="email" className={''}>
                                     <Input
+                                        name="email"
                                         bordered={false}
                                         // defaultValue={user.email}
                                         placeholder={'在此填写邮箱'}
                                         suffix={<FormOutlined />}
-                                        name="email"
                                     />
                                 </Form.Item>
                             </div>
@@ -186,22 +194,16 @@ class ProfileEdit extends Component {
                                 <div>个人简介</div>
                                 <Form.Item name="description" className={''}>
                                     <Input.TextArea
+                                        name="description"
                                         bordered={false}
                                         rows={2}
                                         placeholder={'在此介绍一下你自己...'}
-                                        // defaultValue={user.description}
-                                        name="description"
                                     />
                                 </Form.Item>
                             </div>
                         </div>
                         <div className={styles.body_isOk}>
-                            <button
-                                className={styles.body_btn1}
-                                // onClick={this.updateUserInfo}
-                            >
-                                完成
-                            </button>
+                            <button className={styles.body_btn1}>完成</button>
                         </div>
                     </div>
                 </Form>
@@ -242,26 +244,6 @@ class ProfileEdit extends Component {
             day = '0' + day;
         }
         return year + '-' + month + '-' + day;
-    };
-    //更新用户信息
-    updateUserInfo = () => {
-        let username = document.getElementById('username');
-        this.props.dispatch({
-            type: 'global/updateUserInfo',
-            payload: {
-                id: this.props.user.id,
-                username: 'lu',
-                description: '',
-                email: '',
-                phone: '',
-                birthday: 1598043966000,
-                avatarUrl:
-                    'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
-                createTime: 1597331350000,
-                shown: true,
-                gender: null,
-            },
-        });
     };
 }
 

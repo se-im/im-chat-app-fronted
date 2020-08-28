@@ -49,7 +49,7 @@
     flex-direction: row;
     /*width: var(--gloabl-width);*/
     height: var(--global-height);
-    background-color: #d20eee;
+    /*background-color: #d20eee;*/
     justify-content: center;
     /*margin: 13px auto 0;*/
 }

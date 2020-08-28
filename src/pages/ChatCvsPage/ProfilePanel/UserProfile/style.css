@@ -1,40 +1,34 @@
 .profile_header {
     width: var(--profilepanel-width);
-    height: 200px;
+    height: 220px;
     border-bottom: 1px solid #d3d3d3;
     text-align: center;
 }
-
 .header_user_photo {
     width: 80px;
     height: 80px;
     margin-top: 30px;
 }
-.header_user_name {
+.header_user_note_container {
+    padding-bottom: 30px;
+}
+.header_user_note {
+    width: 200px;
     margin-top: 5px;
     color: #000000;
     font-size: 20px;
+    text-align: center;
+    font-weight: bold;
 }
-.header_user_motto {
-    width: auto;
-    height: auto;
-    margin-left: 3px;
-    border: none;
-    outline: none;
-    overflow: hidden;
-    white-space:nowrap;
-    text-overflow: ellipsis;
-    font-size: 12px;
-}
-.header_user_edit {
-    margin-top: 10px;
+.header_note_edit {
+    margin: 2px auto;
     border-radius: 8px;
     font-size: 12px;
 }
 
 .profile_body {
     width: var(--profilepanel-width);
-    height: 280px;
+    height: 450px;
 }
 .body_item {
     width: var(--profilepanel-width);
@@ -60,14 +54,21 @@
 .body_footer {
     width: var(--profilepanel-width);
     height: 300px;
+    /*text-align: center;*/
 }
 .footer_item_title {
-    display: flex;
-}
-.footer_item_title span {
-    margin-left: auto;
-    padding: 15px 10px;
+    margin: 10px auto;
+    color: #000000;
+    text-align: center;
     font-size: 16px;
-    font-weight: bold;
-    color: #999999;
+}
+.footer_item_content {
+    margin: 10px auto;
+    width: 180px;
+    height: 180px;
+    border: 1px solid #DBDBDB;
+    border-radius: 8px;
+}
+.footer_item_content p {
+    padding: 10px 10px;
 }

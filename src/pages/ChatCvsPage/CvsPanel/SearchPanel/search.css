@@ -2,6 +2,7 @@
     height: 79px;
     border-bottom: 1px solid;
     border-color: #753fae;
+    position: relative;
 }
 .search{
     float: left;
@@ -20,20 +21,10 @@
     color: #78678f;
 }
 
-.add{
-    float: left;
-    height: 40px;
-    width: 40px;
-    margin-top: 18px;
-    margin-left: 15px;
-    border-radius: 20px;
-    background-color: #753fae;
-    position: relative;
-}
 .add_icon{
     position: absolute;
-    left: 9px;
-    bottom: -1px;
+    right: 26px;
+    top: 16px;
     font-size: 30px;
-    color: white;
+    color: #753fae;
 }

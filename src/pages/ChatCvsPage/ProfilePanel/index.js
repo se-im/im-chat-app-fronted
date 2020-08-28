@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserProfilePanel from './UserProfile/UserProfilePanel';
+import GroupProfilePanel from './GroupProfile/GroupProfilePanel';
 import styles from './index.css';
 import { connect } from 'umi';
 
@@ -8,7 +9,7 @@ const index = ({ currentCvsType }) => {
         if (currentCvsType === 'U') {
             return <UserProfilePanel />;
         } else {
-            //return <GroupPro
+            return <GroupProfilePanel />;
         }
     }
     return <div className={styles.profile_panel}>{getProfile()}</div>;
