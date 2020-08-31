@@ -3,7 +3,7 @@ import api from '../../../util/api';
 
 const fetchGroupList = async token => {
     return request
-        .post(api.user_api.groupJoined, token)
+        .get(api.user_api.groupJoined)
         .then(res => {
             return res;
         })
@@ -11,4 +11,14 @@ const fetchGroupList = async token => {
             throw error;
         });
 };
-export default { fetchGroupList };
+const createGroup = async userIdList => {
+    return request
+        .post_json(api.user_api.createGroup, userIdList)
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+export default { fetchGroupList, createGroup };

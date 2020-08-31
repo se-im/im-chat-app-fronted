@@ -108,12 +108,16 @@ const post = (url, params) => {
     });
 };
 
-const post_json = (url, params) => {
+const post_json = (url, body, param) => {
     let domain = genDomain(url);
     url = domain + url;
+    if (param) {
+        url = url + parseRequestParam(param);
+    }
+
     return new Promise((resolve, reject) => {
         axios
-            .post(url, params, {
+            .post(url, body, {
                 headers: { token: token },
             })
             .then(res => {
@@ -124,5 +128,25 @@ const post_json = (url, params) => {
                 // reject(err);
             });
     });
+};
+
+const parseRequestParam = param => {
+    let res = '';
+    let length = Object.keys(param).length;
+    if (length === 0) {
+        return '';
+    }
+    let i = 0;
+    for (let val in param) {
+        if (i > 0) {
+            res = res + '&';
+        } else {
+            res = res + '?';
+        }
+        i++;
+        res += val + '=' + param[val];
+    }
+
+    return res;
 };
 export default { get, post, post_json, refreshAxiosConfig };

@@ -20,7 +20,14 @@ const user_api = {
     updateUserInfo: '/user/update',
     getFriendInfoById: '/user/friend/queryFriendDetail',
     updateFriendNote: '/user/friend/updateFriendNote',
+
+    getGroupInfo: '/user/group/queryGroupInfo',
+    updateGroupInfo: '/user/group/updateGroupInfo',
+    getAllGroupMembers: '/user/group/selectGroupUser',
+    exitGroupById: '/user/group/withdrawFromGroup',
+    addGroupMembersByUserId: '/user/group/addGroupUser',
     groupJoined: '/user/group/joined',
+    createGroup: '/user/group/create',
 };
 
 const chat_api = {

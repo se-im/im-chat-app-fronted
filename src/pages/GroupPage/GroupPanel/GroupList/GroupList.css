@@ -15,7 +15,7 @@
     border-bottom: 0.5px solid #bbb;
 }
 /*item的鼠标覆盖样式*/
-.friendList ul li:hover{
+.groupList ul li:hover{
     background-color: papayawhip;
 }
 /*头 像*/

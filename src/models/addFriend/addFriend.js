@@ -53,7 +53,6 @@ const addFriend = {
             );
             yield put({
                 type: 'handleOK',
-                payload: responseMsg,
             });
             message.success(responseMsg);
         },

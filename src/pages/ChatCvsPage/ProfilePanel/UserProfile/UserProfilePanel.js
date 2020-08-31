@@ -6,7 +6,6 @@ import styles from './style.css';
 
 const ProfileHeader = props => {
     const { chatPanel } = props;
-    let userNote = '';
     // 格式化日期
     const formatDate = date => {
         let new_date = null;
@@ -27,9 +26,8 @@ const ProfileHeader = props => {
         return year + '-' + month + '-' + day;
     };
     const onFinish = values => {
-        // console.log(values);
         props.dispatch({
-            type: 'chatPanel/getNewUserProfile',
+            type: 'chatPanel/updateUserNote',
             payload: values,
         });
     };

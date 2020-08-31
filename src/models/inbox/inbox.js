@@ -35,7 +35,7 @@ const InboxModel = {
             const cvsId = payload.id;
             let inboxList = yield call(service.fetchInbox, cvsId);
             yield put({
-                type: '/setCvsInbox',
+                type: 'setCvsInbox',
                 payload: inboxList,
             });
         },
