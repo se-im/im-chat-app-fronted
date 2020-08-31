@@ -112,20 +112,15 @@ class ProfileEdit extends Component {
                                             )}
                                         />
                                     </Form.Item>
-
-                                    {/*<div*/}
-                                    {/*    className={*/}
-                                    {/*        styles.body_profile_edit_name*/}
-                                    {/*    }*/}
-                                    {/*>*/}
-                                    {/*    <FormOutlined /> 更改昵称*/}
-                                    {/*</div>*/}
                                 </div>
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>性别</div>
-                                <Form.Item name="gender" className={''}>
+                                <Form.Item name="gender">
                                     <Select
+                                        className={
+                                            styles.body_profile_edit_item_2_input
+                                        }
                                         name="gender"
                                         style={{ width: '100%' }}
                                         bordered={false}
@@ -145,16 +140,17 @@ class ProfileEdit extends Component {
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>电话</div>
                                 <Input.Group compact={true}>
-                                    <Input
-                                        style={{ width: '10%' }}
-                                        bordered={false}
-                                        defaultValue="+86"
-                                    />
                                     <Form.Item name="phone" className={''}>
+                                        <Input
+                                            style={{ width: '15%' }}
+                                            bordered={false}
+                                            defaultValue="+86"
+                                        />
+
                                         <Input
                                             name="phone"
                                             // defaultValue={user.phone}
-                                            // style={{ width: '90%' }}
+                                            style={{ width: '85%' }}
                                             bordered={false}
                                             placeholder={'在此填写电话号码'}
                                             suffix={<FormOutlined />}
@@ -169,7 +165,6 @@ class ProfileEdit extends Component {
                                     <Input
                                         name="email"
                                         bordered={false}
-                                        // defaultValue={user.email}
                                         placeholder={'在此填写邮箱'}
                                         suffix={<FormOutlined />}
                                     />
