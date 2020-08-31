@@ -4,6 +4,7 @@
     width: var(--messagepanel-width);
     height: 610px;
     overflow: auto;
+    padding: 0 8px;
 }
 .msg_body::-webkit-scrollbar {
     width: auto;
