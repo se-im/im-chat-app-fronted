@@ -25,6 +25,8 @@ const user_api = {
     getAllGroupMembers: '/user/group/selectGroupUser',
     exitGroupById: '/user/group/withdrawFromGroup',
     addGroupMembersByUserId: '/user/group/addGroupUser',
+    groupJoined: '/user/group/joined',
+    createGroup: '/user/group/create',
 };
 
 const chat_api = {

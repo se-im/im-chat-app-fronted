@@ -8,7 +8,7 @@ export default {
     namespace: 'global',
     state: {
         token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAxNDMzMDEsImlhdCI6MTU5ODYwNzMwMX0.H0G22w3bWWUNIVJmdcDtmp2P9w6-WRVgjwTIxjy1YmA',
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzAzOTAyOTIsImlhdCI6MTU5ODg1NDI5Mn0.ImPWN3MSrkhGDzAdIntKljV7UQ7_FJBO1InpB1cO5HU',
         cur_user: {
             id: 19,
             username: 'yxz',

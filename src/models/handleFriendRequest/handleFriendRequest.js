@@ -31,7 +31,7 @@ const handleFriendRequest = {
                 type: 'setFriendRequest',
                 payload: result,
             });
-            message.success(111);
+            message.success(result);
         },
         *refuseFriendRequest(action, effects) {
             const data = action.payload;

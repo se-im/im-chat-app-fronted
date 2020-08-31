@@ -1,0 +1,37 @@
+.friend_header{
+    height: 79px;
+    border-bottom: 1px solid;
+    border-color: #753fae;
+    position: relative;
+}
+.search{
+    float: left;
+    margin-left: 30px;
+    margin-top: 18px;
+    width: 220px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+}
+.search input::placeholder{
+    color: #753fae;
+}
+.search svg{
+    font-size: 16px;
+    color: #78678f;
+}
+
+.add_icon{
+    position: absolute;
+    right: 26px;
+    top: 16px;
+    font-size: 30px;
+    color: #753fae;
+}
+.modal{
+    text-align: center;
+}
+.inputId{
+    width: 350px;
+    height: 216px;
+}
