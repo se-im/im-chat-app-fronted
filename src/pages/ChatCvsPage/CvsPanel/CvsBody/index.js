@@ -8,6 +8,10 @@ const index = ({ cvs: cvs, dispatch }) => {
             type: 'cvs/setCurCvs',
             payload: item,
         });
+        dispatch({
+            type: 'inbox/getInboxList',
+            payload: item,
+        });
     }
 
     function genStyle(item) {

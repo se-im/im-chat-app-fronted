@@ -23,6 +23,7 @@ export default {
             online: false,
         },
         cur_cvs_index: -1,
+        haveCvsChosen: false,
     },
     reducers: {
         setCvsList(state, action) {
@@ -33,6 +34,7 @@ export default {
 
         setCurCvs(state, action) {
             state.cur_cvs = action.payload;
+            state.haveCvsChosen = true;
         },
     },
     effects: {

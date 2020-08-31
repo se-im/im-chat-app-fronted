@@ -7,6 +7,7 @@ const servers = {
 };
 
 // let server = servers.aliyun2;
+// let server = servers.cui;
 let server = servers.cui;
 
 const user_api = {
@@ -31,6 +32,7 @@ const user_api = {
 
 const chat_api = {
     getCvsList: '/chat/cvs/list',
+    getAllInbox: '/chat/inbox/query/all',
 };
 
 const file_api = {};
