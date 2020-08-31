@@ -108,4 +108,21 @@ const post = (url, params) => {
     });
 };
 
+const post_json = (url, params) => {
+    let domain = genDomain(url);
+    url = domain + url;
+    return new Promise((resolve, reject) => {
+        axios
+            .post(url, params, {
+                headers: { token: token },
+            })
+            .then(res => {
+                resolve(res);
+            })
+            .catch(err => {
+                throw err;
+                // reject(err);
+            });
+    });
+};
 export default { get, post, refreshAxiosConfig };
