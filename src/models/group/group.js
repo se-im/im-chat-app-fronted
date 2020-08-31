@@ -8,18 +8,21 @@ const GroupsModel = {
     state: {
         visible: false,
         groupList: [],
+        friendMap: {},
         userIdList: [], //用于创建群聊的用户id
         friendList: [],
+        checkedList: [],
     },
 
     reducers: {
         showModal(state, { payload }) {
-            const friendList = payload;
+            const friend = payload;
             let newState = JSON.parse(JSON.stringify(state));
             newState.visible = true;
             newState.friendList = [];
-            for (const i of friendList) {
+            for (const i of friend) {
                 newState.friendList.push(i.note);
+                newState.friendMap[i.note] = i.friendId;
             }
             return newState;
         },
@@ -44,6 +47,16 @@ const GroupsModel = {
             newState.userIdList = data.ids;
             return newState;
         },
+        setCheckedList(state, { payload }) {
+            const data = payload;
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.checkedList = data;
+            const friend = newState.friendMap;
+            const list = [];
+            for (let i of data[0]) list.push(friend[i]);
+            newState.userIdList = list;
+            return newState;
+        },
     },
 
     effects: {
@@ -65,6 +78,7 @@ const GroupsModel = {
         *showGroupModal(action, { put, call, select }) {
             const token = yield select(state => state.global.token);
             const friendList = yield call(friendService.fetchFriendList, token);
+
             yield put({
                 type: 'showModal',
                 payload: friendList,
