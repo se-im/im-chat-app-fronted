@@ -125,4 +125,4 @@ const post_json = (url, params) => {
             });
     });
 };
-export default { get, post, refreshAxiosConfig };
+export default { get, post, refreshAxiosConfig, post_json };

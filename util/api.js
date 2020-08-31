@@ -6,9 +6,8 @@ const servers = {
     cui: 'http://172.29.12.13',
 };
 
-// let server = servers.aliyun2;
-// let server = servers.cui;
-let server = servers.local;
+let server = servers.aliyun2;
+// let server = 'http://192.168.2.206';
 
 const user_api = {
     getUserByToken: '/user/detail/token',
@@ -21,6 +20,7 @@ const user_api = {
     getFriendInfoById: '/user/friend/queryFriendDetail',
     updateFriendNote: '/user/friend/updateFriendNote',
     groupJoined: '/user/group/joined',
+    createGroup: '/user/group/create',
 };
 
 const chat_api = {

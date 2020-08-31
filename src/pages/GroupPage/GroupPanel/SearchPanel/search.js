@@ -1,11 +1,24 @@
 import React from 'react';
 import styles from './search.css';
-import { Input, Modal } from 'antd';
+import { Input, Modal, Menu, Dropdown, Checkbox } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import '../../../../../assert/iconfont/iconfont.css';
 import { connect } from 'react-redux';
 
 const index = props => {
+    const { TextArea } = Input;
+    const CheckboxGroup = Checkbox.Group;
+    const menu = (
+        <Menu>
+            <Menu.Item key={'1'} onClick={showModal.bind(this)}>
+                <p>创建群聊</p>
+            </Menu.Item>
+            <Menu.Item key={'2'}>
+                <p>添加群成员</p>
+            </Menu.Item>
+        </Menu>
+    );
+    const friendList = props.friendList;
     return (
         <div className={styles.friend_header}>
             <Input
@@ -14,75 +27,66 @@ const index = props => {
                 placeholder="Search Conversations"
                 prefix={<SearchOutlined />}
             />
-            <span
-                className={'iconfont im-icon-test' + ' ' + styles.add_icon}
-                onClick={showModal.bind(this)}
-            />
+            <Dropdown overlay={menu} placement="bottomCenter" arrow>
+                <span
+                    className={'iconfont im-icon-test' + ' ' + styles.add_icon}
+                />
+            </Dropdown>
+            {/*<span className={'iconfont im-icon-test' + ' ' + styles.add_icon} onClick={showModal.bind(this)}/>*/}
             <Modal
                 title="创建群聊"
                 visible={props.visible}
                 onOk={handleOK.bind(this)}
                 onCancel={handleCancel.bind(this)}
             >
-                <div className={styles.modal}>
-                    <Input
-                        size="large"
-                        className={styles.inputId}
-                        bordered={true}
-                        placeholder="请输入要添加好友的id"
-                        addonBefore="id:"
-                        onChange={handleIdChange.bind(this)}
-                    />
-                    <br />
-                    <Input
-                        size="large"
-                        className={styles.inputId}
-                        bordered={true}
-                        placeholder="请输入备注信息"
-                        addonBefore="note:"
-                        onChange={handleNoteChange.bind(this)}
-                    />
-                </div>
+                {/*<div className={styles.modal}>*/}
+                {/*    <TextArea*/}
+                {/*        size="large"*/}
+                {/*        className={styles.inputId}*/}
+                {/*        bordered={true}*/}
+                {/*        autoSize={{ minRows: 4, maxRows: 6 }}*/}
+                {/*        placeholder="请输入要加入群聊的用户id"*/}
+                {/*        onChange={handleIdChange.bind(this)}*/}
+                {/*    />*/}
+                {/*</div>*/}
+                <CheckboxGroup
+                    options={friendList}
+                    // value={checkedList}
+                    onChange={() => {}}
+                />
             </Modal>
         </div>
     );
     function showModal() {
         props.dispatch({
-            type: 'addFriend/showModal',
+            type: 'group/showGroupModal',
         });
     }
     function handleOK() {
         props.dispatch({
-            type: 'addFriend/addNewFriend',
+            type: 'group/createGroup',
         });
     }
     function handleCancel() {
         props.dispatch({
-            type: 'addFriend/handleCancel',
+            type: 'group/handleCancel',
         });
     }
     function handleIdChange(e) {
-        let id = e.target.value;
+        let ids = e.target.value;
+        let idsArray = ids.split(',').map(Number);
         props.dispatch({
-            type: 'addFriend/handleIdChange',
+            type: 'group/setUserIdList',
             payload: {
-                id: id,
-            },
-        });
-    }
-    function handleNoteChange(e) {
-        let note = e.target.value;
-        props.dispatch({
-            type: 'addFriend/handleNoteChange',
-            payload: {
-                note: note,
+                ids: idsArray,
             },
         });
     }
 };
 const mapStateToProps = state => {
     return {
-        visible: state.addFriend.visible,
+        visible: state.group.visible,
+        friendList: state.group.friendList,
     };
 };
 export default connect(mapStateToProps)(index);
