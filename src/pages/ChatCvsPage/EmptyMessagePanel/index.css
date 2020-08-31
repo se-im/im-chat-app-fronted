@@ -1,0 +1,9 @@
+
+.empty_panel {
+    display: flex;
+    flex-direction: column;
+    width: var(--messagepanel-width);
+    height: var(--global-height);
+    border-right: 1px solid #d3d3d3;
+    background-color: #ffffff;
+}
