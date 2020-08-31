@@ -33,6 +33,70 @@ const updateFriendNote = async (id, note) => {
             throw error;
         });
 };
+const getGroupInfoById = async id => {
+    return request
+        .post(api.user_api.getGroupInfo, { groupId: id })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+const updateGroupInfoById = async (id, avatar, name, desc) => {
+    return request
+        .post(api.user_api.updateGroupInfo, {
+            id: id,
+            avatarUrl: avatar,
+            name: name,
+            description: desc,
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+const getGroupMembersByGroupId = async id => {
+    return request
+        .post(api.user_api.getAllGroupMembers, { groupId: id })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+const exitGroupByGroupId = async id => {
+    return request
+        .post(api.user_api.exitGroupById, { groupId: id })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+const addGroupMembers = async id => {
+    return request
+        .post(api.user_api.addGroupMembersByUserId, { groupId: id })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
 
-export { getUserByToken, getFriendInfoById, updateFriendNote };
+export {
+    getUserByToken,
+    getFriendInfoById,
+    updateFriendNote,
+    getGroupInfoById,
+    updateGroupInfoById,
+    getGroupMembersByGroupId,
+    exitGroupByGroupId,
+    addGroupMembers,
+};
 export default { getUserByToken };

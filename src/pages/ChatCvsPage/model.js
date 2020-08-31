@@ -1,4 +1,13 @@
-import { getUserByToken, getFriendInfoById, updateFriendNote } from './service';
+import {
+    getUserByToken,
+    getFriendInfoById,
+    updateFriendNote,
+    getGroupInfoById,
+    updateGroupInfoById,
+    getGroupMembersByGroupId,
+    exitGroupByGroupId,
+    addGroupMembers,
+} from './service';
 import { Link } from 'umi';
 
 const ChatModel = {
@@ -18,7 +27,19 @@ const ChatModel = {
             phone: 123456,
             username: 'Jim',
         },
-        profileForGroup: {},
+        profileForGroup: {
+            id: 7,
+            name: 'a3tom的群聊',
+            avatarUrl:
+                'http://1.zmz121.cn:8010/res/file/pic/17201800000320200321080339502649.png',
+            memberNum: 6,
+            createUserId: 8,
+            description: 'To help student ',
+            createTime: 1598579812000,
+            members: [],
+            visible: false,
+            userID: '',
+        },
     },
     reducers: {
         //action->{type, payload}
@@ -33,14 +54,24 @@ const ChatModel = {
         revertProfilePanel(state, action) {
             state.showProfilePanel = !state.showProfilePanel;
         },
-        setUserProfileNote(state, action) {
-            state.profileForUser.note = action.payload.note;
+        setUserProfile(state, action) {
+            state.profileForUser = action.payload;
             return state;
         },
-        setUserProfile(state, action) {
-            // console.log('===');
-            // console.log(action.payload);
-            state.profileForUser = action.payload;
+        setGroupProfile(state, action) {
+            state.profileForGroup = action.payload;
+            return state;
+        },
+        setVisibleToShowModel(state, action) {
+            state.profileForGroup.visible = true;
+            return state;
+        },
+        setVisibleToCancelModel(state, action) {
+            state.profileForGroup.visible = false;
+            return state;
+        },
+        setUserIdForAddGroupMember(state, action) {
+            state.profileForGroup.userID = action.payload;
             return state;
         },
     },
@@ -70,31 +101,56 @@ const ChatModel = {
                 });
             } else if (cvsType === 'G') {
                 //获取群聊信息
+                const cur_group = yield effects.call(
+                    getGroupInfoById,
+                    cur_cvs.relationEntityId,
+                );
+                cur_group.members = yield effects.call(
+                    getGroupMembersByGroupId,
+                    cur_cvs.relationEntityId,
+                );
                 //put到当前state
+                yield effects.put({
+                    type: 'setGroupProfile',
+                    payload: cur_group,
+                });
             }
-
             yield effects.put({
                 type: 'revertProfilePanel',
             });
         },
-        *getNewUserProfile(action, effects) {
+        *updateUserNote(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
-            const cur_user = yield effects.call(
+            yield effects.call(
                 updateFriendNote,
                 cur_cvs.relationEntityId,
                 action.payload.note,
             );
-            // yield effects.put({
-            //     type: 'setUserProfile',
-            //     payload: cur_user,
-            // });
+        },
+        *updateGroupInfo(action, effects) {
+            const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
+            yield effects.call(
+                updateGroupInfoById,
+                cur_cvs.relationEntityId,
+                action.payload.avatarUrl,
+                action.payload.name,
+                action.payload.description,
+            );
+        },
+        *exitGroup(action, effects) {
+            const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
+            yield effects.call(exitGroupByGroupId, cur_cvs.relationEntityId);
+        },
+        *addNewMemberToGroup(action, effects) {
+            const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
+            yield effects.call(addGroupMembers, cur_cvs.relationEntityId);
         },
 
         //effects -> {put, call}
         *getUser(action, effects) {
             const token1 = yield effects.select(state => state.global.token);
             const data = yield effects.call(getUserByToken, token1);
-            console.log(data);
+            // console.log(data);
             yield effects.put({
                 type: 'global/setUser',
                 payload: data,
