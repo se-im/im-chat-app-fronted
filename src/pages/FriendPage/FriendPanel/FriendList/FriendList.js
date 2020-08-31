@@ -23,6 +23,7 @@ const FriendList = props => {
                 className={styles.friendList}
                 itemLayout="horizontal"
                 dataSource={props.friend}
+                split={false}
                 renderItem={item => (
                     <List.Item className={styles.item}>
                         <List.Item.Meta
