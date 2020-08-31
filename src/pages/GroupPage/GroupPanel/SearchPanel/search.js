@@ -51,12 +51,20 @@ const index = props => {
                 {/*</div>*/}
                 <CheckboxGroup
                     options={friendList}
-                    // value={checkedList}
-                    onChange={() => {}}
+                    onChange={checkedList.bind(this)}
                 />
             </Modal>
         </div>
     );
+    function checkedList(e) {
+        const checkedList = [];
+        checkedList.push(e);
+        // let checkedArr = checkedList.toString();
+        props.dispatch({
+            type: 'group/setCheckedList',
+            payload: checkedList,
+        });
+    }
     function showModal() {
         props.dispatch({
             type: 'group/showGroupModal',
@@ -87,6 +95,7 @@ const mapStateToProps = state => {
     return {
         visible: state.group.visible,
         friendList: state.group.friendList,
+        checkedList: state.group.checkedList,
     };
 };
 export default connect(mapStateToProps)(index);
