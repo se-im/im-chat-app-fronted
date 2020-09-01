@@ -2,7 +2,6 @@ import friendInfoService from './service';
 
 const friendInfo = {
     namespace: 'friendInfo',
-
     state: {
         cur_friendInfo: [
             {
