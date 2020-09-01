@@ -1,5 +1,6 @@
-import { fetchCvsList } from './service';
+import { fetchCvsList, createCvs } from './service';
 import util from '../../../util/util';
+import { message } from 'antd';
 
 export default {
     namespace: 'cvs',
@@ -44,6 +45,10 @@ export default {
                 type: 'setCvsList',
                 payload: { data },
             });
+        },
+        *proposeCvs({ payload }, { call, put }) {
+            const res = yield call(createCvs, payload);
+            message.success(res);
         },
     },
 

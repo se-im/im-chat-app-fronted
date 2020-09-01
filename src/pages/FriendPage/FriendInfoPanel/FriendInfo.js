@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'umi';
 import { Avatar } from 'antd';
 import styles from './style.css';

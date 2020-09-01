@@ -4,6 +4,7 @@
     width: var(--messagepanel-width);
     height: var(--global-height);
     border-right: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
     background-color: #ffffff;
 }
 .friendInfo_header {
@@ -66,4 +67,9 @@
 }
 .body_content_item_desc_content {
     margin: 5px 20px;
+}
+
+.body_content_button{
+    width: 120px;
+    margin: 0 auto;
 }

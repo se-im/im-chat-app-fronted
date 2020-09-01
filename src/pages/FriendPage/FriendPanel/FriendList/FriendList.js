@@ -43,7 +43,6 @@ const FriendList = props => {
         });
     }
     function newFriendChosenStyle() {
-        console.log(props.haveNewFriendChosen);
         if (props.haveNewFriendChosen) return styles.itemClick;
         else return ' ';
     }
