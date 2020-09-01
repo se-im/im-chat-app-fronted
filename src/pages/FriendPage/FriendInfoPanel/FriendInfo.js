@@ -124,16 +124,29 @@ const FriendInfo = props => {
     );
 
     function proposeCvs(friendId) {
-        props.dispatch({
-            type: 'cvs/proposeCvs',
-            payload: friendId,
-        });
+        const cvsList = props.cvs.data;
+
+        let isExist = false;
+        for (let i of cvsList) {
+            if (friendId === i.relationEntityId && i.cvsType === 'U') {
+                isExist = true;
+            }
+        }
+        if (!isExist) {
+            props.dispatch({
+                type: 'cvs/proposeCvs',
+                payload: friendId,
+            });
+        } else {
+            message.success('会话已存在');
+        }
     }
 };
 
-const mapStateToProps = ({ friendInfo }) => {
+const mapStateToProps = ({ friendInfo, cvs }) => {
     return {
         friendInfo,
+        cvs,
     };
 };
 

@@ -1,5 +1,6 @@
 import { fetchCvsList, createCvs } from './service';
 import util from '../../../util/util';
+import { routerRedux } from 'dva';
 import { message } from 'antd';
 
 export default {
@@ -37,6 +38,13 @@ export default {
             state.cur_cvs = action.payload;
             state.haveCvsChosen = true;
         },
+
+        setCurCvsId(state, { payload }) {
+            let newState = JSON.parse(JSON.stringify(state));
+            console.log(newState.data);
+            newState.cur_cvs.id = payload;
+            return newState;
+        },
     },
     effects: {
         *getCvslist(action, { put, call, select }) {
@@ -48,7 +56,11 @@ export default {
         },
         *proposeCvs({ payload }, { call, put }) {
             const res = yield call(createCvs, payload);
-            message.success(res);
+            yield put({
+                type: 'setCurCvsId',
+                payload: res,
+            });
+            yield put(routerRedux.push('/'));
         },
     },
 
