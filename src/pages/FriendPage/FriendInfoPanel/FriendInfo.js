@@ -33,10 +33,10 @@ const FriendInfo = props => {
                     <Avatar
                         className={styles.header_avatar}
                         shape={'circle'}
-                        src={friendInfo.cur_friendInfo[0].avatarUrl}
+                        src={friendInfo.cur_friendInfo.avatarUrl}
                     />
                     {/*<UserAddOutlined />*/}
-                    <p>{friendInfo.cur_friendInfo[0].username}</p>
+                    <p>{friendInfo.cur_friendInfo.username}</p>
                 </div>
             </div>
             <div className={styles.friendInfo_body}>
@@ -46,7 +46,7 @@ const FriendInfo = props => {
                             <strong>用户名</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo[0].username}
+                            {friendInfo.cur_friendInfo.username}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
@@ -54,7 +54,7 @@ const FriendInfo = props => {
                             <strong>用户ID</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo[0].id}
+                            {friendInfo.cur_friendInfo.id}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
@@ -62,7 +62,7 @@ const FriendInfo = props => {
                             <strong>性别</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo[0].gender}
+                            {friendInfo.cur_friendInfo.gender}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
@@ -70,7 +70,7 @@ const FriendInfo = props => {
                             <strong>生日</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {formatDate(friendInfo.cur_friendInfo[0].birthday)}
+                            {formatDate(friendInfo.cur_friendInfo.birthday)}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
@@ -78,7 +78,7 @@ const FriendInfo = props => {
                             <strong>电话</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo[0].phone}
+                            {friendInfo.cur_friendInfo.phone}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
@@ -86,7 +86,7 @@ const FriendInfo = props => {
                             <strong>邮箱</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo[0].email}
+                            {friendInfo.cur_friendInfo.email}
                         </div>
                     </div>
                     <div className={styles.body_content_item_last}>
@@ -94,7 +94,7 @@ const FriendInfo = props => {
                             <strong>简介</strong>
                         </div>
                         <div className={styles.body_content_item_desc_content}>
-                            {friendInfo.cur_friendInfo[0].description}
+                            {friendInfo.cur_friendInfo.description}
                         </div>
                     </div>
                 </div>

@@ -4,18 +4,7 @@ const groupInfo = {
     namespace: 'groupInfo',
 
     state: {
-        cur_groupInfo: [
-            {
-                id: 30,
-                name: '47tom的群聊',
-                avatarUrl:
-                    'http://1.zmz121.cn:8010/res/file/pic/17201800000320200321080339502649.png',
-                memberNum: 5,
-                createUserId: 8,
-                description: '',
-                createTime: 1598920229000,
-            },
-        ],
+        cur_groupInfo: {},
         haveGroupChosen: false,
     },
 
@@ -24,6 +13,7 @@ const groupInfo = {
             let newState = JSON.parse(JSON.stringify(state));
             newState.cur_groupInfo = payload;
             newState.haveGroupChosen = true;
+            console.log(newState.cur_groupInfo);
             return newState;
         },
     },

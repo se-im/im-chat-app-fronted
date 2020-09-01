@@ -3,16 +3,22 @@ import FriendPanel from './FriendPanel/index';
 import FriendRequest from './FriendRequestPanel/friendRequest';
 import { connect } from 'react-redux';
 import FriendInfo from './FriendInfoPanel/FriendInfo';
+import EmptyMessagePanel from '../ChatCvsPage/EmptyMessagePanel';
 
-const index = () => {
+const index = ({ haveNewFriendChosen, haveFriendChosen }) => {
     return (
         <Fragment>
             <FriendPanel />
-            {/*<FriendRequest />*/}
-            <FriendInfo />
             {haveNewFriendChosen && <FriendRequest />}
-            {/*{haveFriendChosen}*/}
+            {haveFriendChosen && <FriendInfo />}
+            {!haveNewFriendChosen && !haveFriendChosen && <EmptyMessagePanel />}
         </Fragment>
     );
 };
-export default index;
+const mapStateToProps = state => {
+    return {
+        haveNewFriendChosen: state.newFriend.haveNewFriendChosen,
+        haveFriendChosen: state.friend.haveFriendChosen,
+    };
+};
+export default connect(mapStateToProps)(index);
