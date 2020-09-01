@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Input } from 'antd';
+import { Input, Popover } from 'antd';
+import { Picker } from 'emoji-mart';
 import {
     PaperClipOutlined,
     SmileOutlined,
@@ -10,12 +11,25 @@ import {
     SendOutlined,
 } from '@ant-design/icons';
 import styles from './style.css';
+import 'emoji-mart/css/emoji-mart.css';
 import { connect } from 'umi';
 
 class MessageFooter extends Component {
     state = {
         inputValue: '',
     };
+    emoji = (
+        <Picker
+            showPreview={false}
+            showSkinTones={false}
+            emojiSize={30}
+            onClick={emoji => {
+                this.setState({
+                    inputValue: this.state.inputValue + emoji.native,
+                });
+            }}
+        />
+    );
     render() {
         return (
             <div className={styles.msg_footer}>
@@ -43,12 +57,14 @@ class MessageFooter extends Component {
                             this.iconBlur(this.changeStyleIconSmile)
                         }
                     >
-                        <SmileOutlined
-                            className={styles.footer_icons}
-                            ref={icon => {
-                                this.changeStyleIconSmile = icon;
-                            }}
-                        />
+                        <Popover trigger={'click'} content={this.emoji}>
+                            <SmileOutlined
+                                className={styles.footer_icons}
+                                ref={icon => {
+                                    this.changeStyleIconSmile = icon;
+                                }}
+                            />
+                        </Popover>
                     </div>
                     <div
                         onMouseEnter={() =>
