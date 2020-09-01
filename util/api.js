@@ -34,6 +34,7 @@ const chat_api = {
     getCvsList: '/chat/cvs/list',
     getAllInbox: '/chat/inbox/query/all',
     sendMessage: '/chat/message/send',
+    createCvs: '/chat/cvs/create',
 };
 
 const file_api = {};

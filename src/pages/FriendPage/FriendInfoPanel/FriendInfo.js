@@ -1,6 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'umi';
-import { Upload, message, Input, Select, DatePicker, Avatar, Form } from 'antd';
+import {
+    Upload,
+    message,
+    Input,
+    Select,
+    DatePicker,
+    Avatar,
+    Form,
+    Button,
+} from 'antd';
 import { UserAddOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import styles from './style.css';
@@ -98,9 +107,28 @@ const FriendInfo = props => {
                         </div>
                     </div>
                 </div>
+                <div className={styles.body_content_button}>
+                    <Button
+                        type="primary"
+                        block
+                        onClick={proposeCvs.bind(
+                            this,
+                            friendInfo.cur_friendInfo.id,
+                        )}
+                    >
+                        发起会话
+                    </Button>
+                </div>
             </div>
         </div>
     );
+
+    function proposeCvs(friendId) {
+        props.dispatch({
+            type: 'cvs/proposeCvs',
+            payload: friendId,
+        });
+    }
 };
 
 const mapStateToProps = ({ friendInfo }) => {
