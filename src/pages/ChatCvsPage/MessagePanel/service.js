@@ -1,6 +1,7 @@
-import { request } from '../../../.umi/plugin-request/request';
+import request from '../../../../util/request';
+import api from '../../../../util/api';
 
-export const getMessagePanelInfoList = () => {
+const getMessagePanelInfoList = () => {
     return request('/api/message', {
         method: 'get',
     })
@@ -12,3 +13,21 @@ export const getMessagePanelInfoList = () => {
             return err;
         });
 };
+
+const sendMessageRemote = (cvsId, msg) => {
+    request
+        .post(api.chat_api.sendMessage, {
+            cvsId: cvsId,
+            msg: msg,
+            msgType: 'text',
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+            return err;
+        });
+};
+
+export default { sendMessageRemote };

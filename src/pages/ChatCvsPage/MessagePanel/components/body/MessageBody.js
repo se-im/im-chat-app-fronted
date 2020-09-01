@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { Avatar } from 'antd';
 import styles from './style.css';
 import MessageItem from './MessageItem/index';
-const index = ({ cur_inbox }) => {
-    const inbox = cur_inbox;
+const index = ({ cur_inbox, cur_cvs }) => {
+    const inbox = JSON.parse(JSON.stringify(cur_inbox));
+    inbox['cvsType'] = cur_cvs.cvsType;
     return (
         <div className={styles.msg_body}>
-            {inbox.forEach((v, i) => (
-                <MessageItem message={v} />
+            {inbox.map((v, i) => (
+                <MessageItem message={v} cvsType={cur_cvs.cvsType} key={i} />
             ))}
-            }{/*<div className={styles.body_sender}>*/}
+            {/*<div className={styles.body_sender}>*/}
             {/*    <Avatar*/}
             {/*        className={styles.body_sender_photo}*/}
             {/*        shape="circle"*/}
@@ -42,6 +43,7 @@ const index = ({ cur_inbox }) => {
 const mapStateToProps = state => {
     return {
         cur_inbox: state.inbox.cur_inbox,
+        cur_cvs: state.cvs.cur_cvs,
     };
 };
 
