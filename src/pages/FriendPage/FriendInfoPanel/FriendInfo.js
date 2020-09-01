@@ -124,7 +124,7 @@ const FriendInfo = props => {
         if (!isExist) {
             props.dispatch({
                 type: 'cvs/proposeCvs',
-                payload: friendId,
+                payload: { groupId: friendId, cvsType: 'U' },
             });
         } else {
             message.success('会话已存在');

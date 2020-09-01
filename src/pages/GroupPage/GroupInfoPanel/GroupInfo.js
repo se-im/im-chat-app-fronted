@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'umi';
-import { Avatar } from 'antd';
+import { Avatar, Button } from 'antd';
 import styles from './GroupInfo.css';
 
 const GroupInfo = props => {
@@ -88,14 +88,45 @@ const GroupInfo = props => {
                         </div>
                     </div>
                 </div>
+                <div className={styles.body_content_button}>
+                    <Button
+                        type="primary"
+                        block
+                        onClick={proposeCvs.bind(
+                            this,
+                            groupInfo.cur_groupInfo.id,
+                        )}
+                    >
+                        发起群聊
+                    </Button>
+                </div>
             </div>
         </div>
     );
+    function proposeCvs(groupId) {
+        const cvsList = props.cvs.data;
+
+        let isExist = false;
+        for (let i of cvsList) {
+            if (groupId === i.relationEntityId && i.cvsType === 'G') {
+                isExist = true;
+            }
+        }
+        if (!isExist) {
+            props.dispatch({
+                type: 'cvs/proposeCvs',
+                payload: { groupId: groupId, cvsType: 'G' },
+            });
+        } else {
+            message.success('群聊已存在');
+        }
+    }
 };
 
-const mapStateToProps = ({ groupInfo }) => {
+const mapStateToProps = ({ groupInfo, cvs }) => {
     return {
         groupInfo,
+        cvs,
     };
 };
 

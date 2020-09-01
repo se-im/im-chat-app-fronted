@@ -41,7 +41,6 @@ export default {
 
         setCurCvsId(state, { payload }) {
             let newState = JSON.parse(JSON.stringify(state));
-            console.log(newState.data);
             newState.cur_cvs.id = payload;
             return newState;
         },
@@ -55,7 +54,9 @@ export default {
             });
         },
         *proposeCvs({ payload }, { call, put }) {
-            const res = yield call(createCvs, payload);
+            const groupId = payload.groupId;
+            const cvsType = payload.cvsType;
+            const res = yield call(createCvs, groupId, cvsType);
             yield put({
                 type: 'setCurCvsId',
                 payload: res,
