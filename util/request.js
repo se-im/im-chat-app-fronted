@@ -3,6 +3,9 @@ import { server, apiPortMap } from './api';
 import { message } from 'antd';
 import global from '../src/models/global/global';
 import querystring from 'querystring';
+
+import { routerRedux } from 'dva';
+
 const response_status = {
     success: 200,
     unlogin: 401,
@@ -47,7 +50,7 @@ axios.interceptors.response.use(
                     message.error(response.msg);
                     console.log(response);
                     if (response.status === response_status.unlogin) {
-                        history.push('/login/index');
+                        routerRedux.push('/login/index');
                     }
                 }
                 return Promise.reject(response.msg);

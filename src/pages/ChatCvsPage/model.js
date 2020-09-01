@@ -148,12 +148,29 @@ const ChatModel = {
 
         //effects -> {put, call}
         *getUser(action, effects) {
-            const token1 = yield effects.select(state => state.global.token);
+            // const token1 = yield effects.select(state => state.global.token);
+            let token1 = yield window.localStorage.getItem('token');
+            if (token1 === undefined || token1 === '') {
+                token1 = yield effects.select(state => state.global.token);
+            } else {
+                yield effects.put({
+                    type: 'global/setToken',
+                    payload: token1,
+                });
+            }
             const data = yield effects.call(getUserByToken, token1);
             // console.log(data);
             yield effects.put({
                 type: 'global/setUser',
                 payload: data,
+            });
+
+            yield effects.put({
+                type: 'websocket/setWebsocketToken',
+            });
+
+            yield effects.put({
+                type: 'cvs/getCvslist',
             });
         },
     },

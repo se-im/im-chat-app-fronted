@@ -1,18 +1,14 @@
-import { routerRedux } from 'dva';
-import produce from 'immer';
-import service from './service';
+import service from '../../../../models/global/service';
 import { message } from 'antd';
-import request from '../../../util/request';
+import { routerRedux } from 'dva';
 
 export default {
-    namespace: 'global',
+    namespace: 'userProfileModel',
     state: {
-        token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA0ODQwNjQsImlhdCI6MTU5ODk0ODA2NH0.BpTiRe56HfgFpzb8MOBmO3N3c15DApq8YAm7Co7Gu8w',
         cur_user: {
-            id: 19,
+            id: 8,
             username: 'tom',
-            description: 'ddd',
+            description: '',
             email: '',
             phone: '',
             birthday: 1598043966000,
@@ -20,15 +16,12 @@ export default {
                 'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
             createTime: 1597331350000,
             shown: true,
-            gender: 'mail',
+            gender: null,
         },
-        current_panel: 1,
     },
     reducers: {
         setToken(state, action) {
-            console.log(action.payload);
             state.token = action.payload;
-            request.refreshAxiosConfig(action.payload);
             return state;
         },
 
@@ -44,12 +37,12 @@ export default {
     effects: {
         *login({ payload }, { call, put }) {
             const token = yield call(service.getToken, payload);
+            console.log(token);
             yield put({
                 type: 'setToken',
                 payload: token,
             });
             message.success('登录成功，正在跳转');
-            window.localStorage.setItem('token', token);
             yield put(routerRedux.push('/'));
         },
 

@@ -25,4 +25,18 @@ var sortTwoCate = function(a, b) {
         }
     }
 };
-export default { sortCvs };
+
+const genLoginPacket = token => {
+    let packet = {
+        header: {
+            version: '1',
+        },
+        body: {
+            packetType: 2,
+            content: token,
+        },
+    };
+    return JSON.stringify(packet);
+};
+
+export default { sortCvs, genLoginPacket };

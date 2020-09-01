@@ -6,7 +6,7 @@ import { connect } from 'umi';
 
 const index = ({ LoginModel, dispatch }) => {
     const [userModel, setUserModel] = useState({
-        username: 'zmz',
+        username: 'tom',
         password: '1',
     });
     function login(event) {
@@ -40,7 +40,7 @@ const index = ({ LoginModel, dispatch }) => {
                     </div>
 
                     <form className="login100-form validate-form">
-                        <span className="login100-form-title">登陆</span>
+                        <span className="login100-form-title">登录</span>
 
                         <div className="wrap-input100 validate-input">
                             <input

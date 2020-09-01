@@ -47,15 +47,5 @@ export default {
         },
     },
 
-    subscriptions: {
-        setup({ dispatch, history }) {
-            return history.listen(({ pathname }) => {
-                if (pathname === '/') {
-                    dispatch({
-                        type: 'getCvslist',
-                    });
-                }
-            });
-        },
-    },
+    subscriptions: {},
 };
