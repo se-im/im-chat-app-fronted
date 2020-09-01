@@ -13,6 +13,7 @@ const groupInfo = {
             let newState = JSON.parse(JSON.stringify(state));
             newState.cur_groupInfo = payload;
             newState.haveGroupChosen = true;
+            // console.log(newState.cur_groupInfo);
             return newState;
         },
     },

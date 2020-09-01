@@ -1,20 +1,13 @@
 import React, { Fragment } from 'react';
 import GroupPanel from './GroupPanel/Group';
-import EmptyMessagePanel from '../ChatCvsPage/EmptyMessagePanel';
-import { connect } from 'react-redux';
+import GroupInfo from './GroupInfoPanel/GroupInfo';
 
-const index = ({ haveGroupChosen }) => {
+const index = () => {
     return (
         <Fragment>
             <GroupPanel />
-            {haveGroupChosen && <EmptyMessagePanel />}
+            <GroupInfo />
         </Fragment>
     );
 };
-const mapStateToProps = state => {
-    return {
-        haveGroupChosen: state.groupInfo.haveGroupChosen,
-    };
-};
-
-export default connect(mapStateToProps)(index);
+export default index;

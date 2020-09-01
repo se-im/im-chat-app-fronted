@@ -1,13 +1,12 @@
-.friendInfo_panel {
+.groupInfo_panel {
     display: flex;
     flex-direction: column;
     width: var(--messagepanel-width);
     height: var(--global-height);
     border-right: 1px solid #d3d3d3;
-    border-bottom: 1px solid #d3d3d3;
     background-color: #ffffff;
 }
-.friendInfo_header {
+.groupInfo_header {
     width: var(--messagepanel-width);
     height: 79px;
     border-bottom: 1px solid #d3d3d3;
@@ -30,7 +29,8 @@
     font-size: 25px;
     font-weight: bold;
 }
-.friendInfo_body {
+
+.groupInfo_body {
     width: var(--messagepanel-width);
     height: 720px;
 }
@@ -45,7 +45,7 @@
     border-bottom: 1px solid #d3d3d3;
 }
 .body_content_item_title {
-    width: 80px;
+    width: 100px;
     padding: 15px 15px;
     border-right: 1px solid #d3d3d3;
     text-align: center;
@@ -59,17 +59,21 @@
 .body_content_item_last {
     color: #000000;
 }
+.body_content_item_members {
+    text-align: center;
+    margin-top: 15px;
+    border-bottom: 1px solid #d3d3d3;
+}
+.body_content_item_members_content {
+    margin: 5px 20px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
 .body_content_item_desc {
     text-align: center;
     margin-top: 15px;
     border-bottom: 1px solid #d3d3d3;
-
 }
 .body_content_item_desc_content {
     margin: 5px 20px;
-}
-
-.body_content_button{
-    width: 120px;
-    margin: 0 auto;
 }
