@@ -12,8 +12,7 @@ const FriendsModel = {
             note: '',
             avatarUrl: '',
         },
-
-        haveNewFriendChosen: true,
+        haveFriendChosen: false,
     },
 
     reducers: {
@@ -26,6 +25,12 @@ const FriendsModel = {
         setCurFriend(state, { payload }) {
             let newState = JSON.parse(JSON.stringify(state));
             newState.cur_friend = payload;
+            newState.haveFriendChosen = true;
+            return newState;
+        },
+        setFriendNotChosen(state, action) {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.haveFriendChosen = false;
             return newState;
         },
     },

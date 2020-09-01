@@ -8,10 +8,10 @@ export default {
     namespace: 'global',
     state: {
         token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA0NTUxMjYsImlhdCI6MTU5ODkxOTEyNn0.Q9e96-pyofs48-9fRWv1CR6hiaVzu22baytTlsYTWtY',
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA0NjM2OTQsImlhdCI6MTU5ODkyNzY5NH0.QDQtr6CnMW5_xWdMrrFqW4GjRTSD-HFVGkyFXJCbOzc',
         cur_user: {
             id: 19,
-            username: 'tom',
+            username: 'yxz',
             description: 'ddd',
             email: '',
             phone: '',
