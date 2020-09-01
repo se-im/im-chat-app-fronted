@@ -78,9 +78,11 @@ const exitGroupByGroupId = async id => {
             throw error;
         });
 };
-const addGroupMembers = async id => {
+const addGroupMembers = async (id, userID) => {
     return request
-        .post_json(api.user_api.addGroupMembersByUserId, [12], { groupId: id })
+        .post_json(api.user_api.addGroupMembersByUserId, [userID], {
+            groupId: id,
+        })
         .then(res => {
             return res;
         })

@@ -4,6 +4,19 @@ import { Avatar, List } from 'antd';
 import { connect } from '../../../../.umi/plugin-dva/exports';
 
 const index = props => {
+    function groupClick(item) {
+        props.dispatch({
+            type: 'groupInfo/getGroupInfo',
+            payload: item.groupId,
+        });
+    }
+    function groupChosenStyle(item) {
+        if (props.cur_groupInfo.id === item.groupId && props.haveGroupChosen) {
+            return styles.itemClick;
+        } else {
+            return ' ';
+        }
+    }
     return (
         <div>
             <List
@@ -12,7 +25,10 @@ const index = props => {
                 dataSource={props.groupList}
                 split={false}
                 renderItem={item => (
-                    <List.Item className={styles.item}>
+                    <List.Item
+                        className={styles.item + ' ' + groupChosenStyle(item)}
+                        onClick={groupClick.bind(this, item)}
+                    >
                         <List.Item.Meta
                             avatar={
                                 <Avatar
@@ -35,6 +51,8 @@ const index = props => {
 const mapStateToProps = state => {
     return {
         groupList: state.group.groupList,
+        cur_groupInfo: state.groupInfo.cur_groupInfo,
+        haveGroupChosen: state.groupInfo.haveGroupChosen,
     };
 };
 

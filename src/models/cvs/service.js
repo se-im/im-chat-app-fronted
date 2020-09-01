@@ -11,3 +11,13 @@ export const fetchCvsList = async () => {
             throw error;
         });
 };
+export const createCvs = async friendId => {
+    return request
+        .post(api.chat_api.createCvs, { cvsType: 'U', entityId: friendId })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};

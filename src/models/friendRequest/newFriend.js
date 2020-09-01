@@ -5,7 +5,7 @@ const NewFriend = {
 
     state: {
         newFriendList: [],
-        haveFetched: false,
+        haveNewFriendChosen: false,
         newFriendListLength: 0,
     },
 
@@ -15,6 +15,16 @@ const NewFriend = {
             newState.newFriendList = payload;
             newState.newFriendListLength = payload.length;
             newState.haveFetched = true;
+            return newState;
+        },
+        setNewFriendChosen(state, { payload }) {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.haveNewFriendChosen = true;
+            return newState;
+        },
+        setNewFriendNotChosen(state, { payload }) {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.haveNewFriendChosen = false;
             return newState;
         },
     },
