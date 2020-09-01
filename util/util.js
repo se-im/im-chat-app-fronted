@@ -5,7 +5,7 @@ const sortCvs = cvsList => {
 function compare(obj1, obj2, property) {
     var value1 = obj1[property];
     var value2 = obj2[property];
-    return value1 - value2; // 升序
+    return value2 - value1; // 降序
 }
 
 var sortTwoCate = function(a, b) {

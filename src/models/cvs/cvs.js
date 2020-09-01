@@ -1,7 +1,6 @@
 import { fetchCvsList, createCvs } from './service';
 import util from '../../../util/util';
 import { routerRedux } from 'dva';
-import { message } from 'antd';
 
 export default {
     namespace: 'cvs',
@@ -51,11 +50,11 @@ export default {
             const groupId = payload.groupId;
             const cvsType = payload.cvsType;
             const newCvsId = yield call(createCvs, groupId, cvsType);
-            const cvslist = yield call(fetchCvsList);
+            const newCvsList = yield call(fetchCvsList);
             let current_cvs = {};
-            for (let i of cvslist) {
-                if (newCvsId === i.id) {
-                    current_cvs = i;
+            for (let i = 0; i < newCvsList.length; i++) {
+                if (newCvsId === newCvsList[i].id) {
+                    current_cvs = newCvsList[i];
                 }
             }
             yield put({

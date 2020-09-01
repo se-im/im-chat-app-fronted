@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'umi';
-import { Avatar, Button } from 'antd';
+import { Avatar, Button, message } from 'antd';
 import styles from './GroupInfo.css';
 
 const GroupInfo = props => {
