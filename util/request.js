@@ -149,4 +149,6 @@ const parseRequestParam = param => {
 
     return res;
 };
+
+export { get, post, post_json, refreshAxiosConfig };
 export default { get, post, post_json, refreshAxiosConfig };

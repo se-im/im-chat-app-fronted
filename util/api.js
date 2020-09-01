@@ -6,12 +6,13 @@ const servers = {
     cui: 'http://172.29.12.13',
 };
 
+// let server = servers.aliyun2;
+// let server = servers.cui;
 let server = servers.aliyun2;
-// let server = servers.cui;
-// let server = servers.cui;
 
 const user_api = {
     getUserByToken: '/user/detail/token',
+    getUserById: '/user/detail/id/',
     login: '/user/login',
     friend: '/user/friend/queryFriend',
     newFriend: '/user/friend/queryFriendRequestReceived',
@@ -33,6 +34,7 @@ const user_api = {
 const chat_api = {
     getCvsList: '/chat/cvs/list',
     getAllInbox: '/chat/inbox/query/all',
+    sendMessage: '/chat/message/send',
 };
 
 const file_api = {};
