@@ -11,9 +11,9 @@ export const fetchCvsList = async () => {
             throw error;
         });
 };
-export const createCvs = async friendId => {
+export const createCvs = async (entityId, cvsType) => {
     return request
-        .post(api.chat_api.createCvs, { cvsType: 'U', entityId: friendId })
+        .post(api.chat_api.createCvs, { cvsType: cvsType, entityId: entityId })
         .then(res => {
             return res;
         })

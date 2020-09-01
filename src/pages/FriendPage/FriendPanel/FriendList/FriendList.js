@@ -77,9 +77,7 @@ const FriendList = props => {
                                 />
                             }
                             title={
-                                <a href="" className={styles.userName}>
-                                    {item.note}
-                                </a>
+                                <p className={styles.userName}>{item.note}</p>
                             }
                         />
                     </List.Item>

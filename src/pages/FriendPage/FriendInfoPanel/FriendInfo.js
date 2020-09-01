@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'umi';
-import { Avatar } from 'antd';
+import { Avatar, Button, message } from 'antd';
 import styles from './style.css';
 
 const FriendInfo = props => {
@@ -96,14 +96,46 @@ const FriendInfo = props => {
                         </div>
                     </div>
                 </div>
+                <div className={styles.body_content_button}>
+                    <Button
+                        type="primary"
+                        block
+                        onClick={proposeCvs.bind(
+                            this,
+                            friendInfo.cur_friendInfo.id,
+                        )}
+                    >
+                        发起会话
+                    </Button>
+                </div>
             </div>
         </div>
     );
+
+    function proposeCvs(friendId) {
+        const cvsList = props.cvs.data;
+
+        let isExist = false;
+        for (let i of cvsList) {
+            if (friendId === i.relationEntityId && i.cvsType === 'U') {
+                isExist = true;
+            }
+        }
+        if (!isExist) {
+            props.dispatch({
+                type: 'cvs/proposeCvs',
+                payload: { groupId: friendId, cvsType: 'U' },
+            });
+        } else {
+            message.success('会话已存在');
+        }
+    }
 };
 
-const mapStateToProps = ({ friendInfo }) => {
+const mapStateToProps = ({ friendInfo, cvs }) => {
     return {
         friendInfo,
+        cvs,
     };
 };
 

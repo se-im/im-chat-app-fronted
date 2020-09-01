@@ -77,3 +77,7 @@
 .body_content_item_desc_content {
     margin: 5px 20px;
 }
+.body_content_button{
+    width: 120px;
+    margin: 0 auto;
+}
