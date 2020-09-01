@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Input, Popover } from 'antd';
+import { Input, Popover, Upload, Button, Popconfirm, Progress } from 'antd';
 import { Picker } from 'emoji-mart';
+import axios from 'axios';
 import {
     PaperClipOutlined,
     SmileOutlined,
@@ -17,12 +18,13 @@ import { connect } from 'umi';
 class MessageFooter extends Component {
     state = {
         inputValue: '',
+        img: '',
+        percent: 0,
     };
     emoji = (
         <Picker
             showPreview={false}
             showSkinTones={false}
-            emojiSize={30}
             onClick={emoji => {
                 this.setState({
                     inputValue: this.state.inputValue + emoji.native,
@@ -30,6 +32,7 @@ class MessageFooter extends Component {
             }}
         />
     );
+    inputfile = React.createRef();
     render() {
         return (
             <div className={styles.msg_footer}>
@@ -74,12 +77,74 @@ class MessageFooter extends Component {
                             this.iconBlur(this.changeStyleIconScissor)
                         }
                     >
-                        <PictureOutlined
-                            className={styles.footer_icons}
-                            ref={icon => {
-                                this.changeStyleIconScissor = icon;
+                        <Popover
+                            content={
+                                <Progress
+                                    percent={this.state.percent}
+                                    style={{ width: '150px' }}
+                                />
+                            }
+                            trigger={'click'}
+                        >
+                            <PictureOutlined
+                                className={styles.footer_icons}
+                                ref={icon => {
+                                    this.changeStyleIconScissor = icon;
+                                }}
+                                onClick={() => {
+                                    this.inputfile.current.click();
+                                }}
+                            />
+                        </Popover>
+                        <Upload
+                            showUploadList={false}
+                            accept={
+                                '.webp,.svg,.png,.gif,.jpg,.jpeg,.jfif,.bmp,.dpg,.ico'
+                            }
+                            beforeUpload={file => {
+                                this.setState({
+                                    img: file,
+                                    inputValue:
+                                        this.state.inputValue + '#' + file.name,
+                                });
+                                const data = new FormData();
+                                data.append('file', file);
+                                axios({
+                                    method: 'post',
+                                    url:
+                                        'http://1.zmz121.cn:8010/file/upload/headpic',
+                                    data: data,
+                                    onUploadProgress: progressEvent => {
+                                        let complete =
+                                            ((progressEvent.loaded /
+                                                progressEvent.total) *
+                                                100) |
+                                            0;
+                                        this.setState({
+                                            percent: complete,
+                                        });
+                                        console.log(complete);
+                                    },
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data',
+                                    },
+                                })
+                                    .then(res => {
+                                        console.log(res);
+                                        if (res.status === 200) {
+                                            return 'success';
+                                        } else {
+                                            return 'error';
+                                        }
+                                    })
+                                    .catch(error => {
+                                        return 'error';
+                                    });
+                                return false;
                             }}
-                        />
+                        >
+                            <Button hidden={true} ref={this.inputfile} />
+                        </Upload>
                     </div>
                     <div
                         onMouseEnter={() =>
