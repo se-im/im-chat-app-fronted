@@ -25,6 +25,7 @@
     "@umijs/test": "^3.2.16",
     "axios": "^0.19.2",
     "chat-react": "^0.1.2",
+    "emoji-mart": "^3.0.0",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "react": "^16.12.0",

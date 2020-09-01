@@ -16,23 +16,43 @@ const FriendList = props => {
             payload: item,
         });
         props.dispatch({
+            type: 'newFriend/setNewFriendNotChosen',
+        });
+        props.dispatch({
             type: 'friendInfo/getFriendInfo',
             payload: item.friendId,
         });
     }
-    function chosenStyle(item) {
+    function friendChosenStyle(item) {
         if (
-            props.cur_friend.friendId === item.friendId &&
-            props.haveNewFriendChosen
+            props.haveFriendChosen &&
+            props.cur_friend.friendId === item.friendId
         ) {
             return styles.itemClick;
         } else {
             return ' ';
         }
     }
+
+    function clickNewFriend() {
+        props.dispatch({
+            type: 'newFriend/setNewFriendChosen',
+        });
+        props.dispatch({
+            type: 'friend/setFriendNotChosen',
+        });
+    }
+    function newFriendChosenStyle() {
+        console.log(props.haveNewFriendChosen);
+        if (props.haveNewFriendChosen) return styles.itemClick;
+        else return ' ';
+    }
     return (
         <div className={styles.body}>
-            <div className={styles.newFriend}>
+            <div
+                className={styles.newFriend + ' ' + newFriendChosenStyle()}
+                onClick={clickNewFriend}
+            >
                 <div className={styles.iconFriend}>
                     <UserAddOutlined />
                 </div>
@@ -46,7 +66,7 @@ const FriendList = props => {
                 split={false}
                 renderItem={(item, index) => (
                     <List.Item
-                        className={styles.item + ' ' + chosenStyle(item)}
+                        className={styles.item + ' ' + friendChosenStyle(item)}
                         id={index}
                         onClick={clickFriend.bind(this, item, index)}
                     >
@@ -74,7 +94,8 @@ const mapStateToProps = state => {
         friend: state.friend.friendList,
         newFriendListLength: state.newFriend.newFriendListLength,
         cur_friend: state.friend.cur_friend,
-        haveNewFriendChosen: state.friend.haveNewFriendChosen,
+        haveNewFriendChosen: state.newFriend.haveNewFriendChosen,
+        haveFriendChosen: state.friend.haveFriendChosen,
     };
 };
 export default connect(mapStateToProps)(FriendList);
