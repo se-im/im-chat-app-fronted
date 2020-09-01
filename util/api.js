@@ -12,6 +12,7 @@ let server = servers.cui;
 
 const user_api = {
     getUserByToken: '/user/detail/token',
+    getUserById: '/user/detail/id/',
     login: '/user/login',
     friend: '/user/friend/queryFriend',
     newFriend: '/user/friend/queryFriendRequestReceived',

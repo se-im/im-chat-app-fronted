@@ -10,6 +10,26 @@ const FriendList = props => {
             return <div className={styles.unKnownUser}>{length}</div>;
         }
     }
+    function clickFriend(item, index) {
+        props.dispatch({
+            type: 'friend/setCurFriend',
+            payload: item,
+        });
+        props.dispatch({
+            type: 'friendInfo/getFriendInfo',
+            payload: item.friendId,
+        });
+    }
+    function chosenStyle(item) {
+        if (
+            props.cur_friend.friendId === item.friendId &&
+            props.haveNewFriendChosen
+        ) {
+            return styles.itemClick;
+        } else {
+            return ' ';
+        }
+    }
     return (
         <div className={styles.body}>
             <div className={styles.newFriend}>
@@ -24,8 +44,12 @@ const FriendList = props => {
                 itemLayout="horizontal"
                 dataSource={props.friend}
                 split={false}
-                renderItem={item => (
-                    <List.Item className={styles.item}>
+                renderItem={(item, index) => (
+                    <List.Item
+                        className={styles.item + ' ' + chosenStyle(item)}
+                        id={index}
+                        onClick={clickFriend.bind(this, item, index)}
+                    >
                         <List.Item.Meta
                             avatar={
                                 <Avatar
@@ -49,6 +73,8 @@ const mapStateToProps = state => {
     return {
         friend: state.friend.friendList,
         newFriendListLength: state.newFriend.newFriendListLength,
+        cur_friend: state.friend.cur_friend,
+        haveNewFriendChosen: state.friend.haveNewFriendChosen,
     };
 };
 export default connect(mapStateToProps)(FriendList);
