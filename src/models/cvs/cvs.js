@@ -38,12 +38,6 @@ export default {
             state.cur_cvs = action.payload;
             state.haveCvsChosen = true;
         },
-
-        setCurCvsId(state, { payload }) {
-            let newState = JSON.parse(JSON.stringify(state));
-            newState.cur_cvs.id = payload;
-            return newState;
-        },
     },
     effects: {
         *getCvslist(action, { put, call, select }) {
@@ -56,10 +50,17 @@ export default {
         *proposeCvs({ payload }, { call, put }) {
             const groupId = payload.groupId;
             const cvsType = payload.cvsType;
-            const res = yield call(createCvs, groupId, cvsType);
+            const newCvsId = yield call(createCvs, groupId, cvsType);
+            const cvslist = yield call(fetchCvsList);
+            let current_cvs = {};
+            for (let i of cvslist) {
+                if (newCvsId === i.id) {
+                    current_cvs = i;
+                }
+            }
             yield put({
-                type: 'setCurCvsId',
-                payload: res,
+                type: 'setCurCvs',
+                payload: current_cvs,
             });
             yield put(routerRedux.push('/'));
         },
