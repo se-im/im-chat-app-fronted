@@ -37,9 +37,9 @@ const index = props => {
                                 />
                             }
                             title={
-                                <a href="" className={styles.userName}>
+                                <p className={styles.userName}>
                                     {item.groupName}
-                                </a>
+                                </p>
                             }
                         />
                     </List.Item>
