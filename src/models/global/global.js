@@ -36,10 +36,10 @@ export default {
             state.cur_user = action.payload;
         },
 
-        setCurrentPanel(state, action) {
-            state.current_panel = action.payload;
-            return state;
-        },
+        // setCurrentPanel(state, action) {
+        //     state.current_panel = action.payload;
+        //     return state;
+        // },
     },
     effects: {
         *login({ payload }, { call, put }) {
@@ -59,6 +59,11 @@ export default {
                 type: 'setUser',
                 payload: payload,
             });
+            message.success('用户修改成功');
+        },
+        *updateUserPassword({ payload }, { call }) {
+            yield call(service.fetchUpdateUserPasswordRemote, payload);
+            message.success('密码修改成功');
         },
     },
 };

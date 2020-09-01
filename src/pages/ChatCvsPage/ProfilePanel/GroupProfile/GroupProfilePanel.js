@@ -163,7 +163,9 @@ const GroupProfilePanel = props => {
                                 bordered={false}
                                 disabled={true}
                                 placeholder={'群聊ID'}
-                                suffix={<FormOutlined />}
+                                suffix={
+                                    <span className={'iconfont'}>&#xe781;</span>
+                                }
                             />
                         </Form.Item>
                     </div>
@@ -177,7 +179,9 @@ const GroupProfilePanel = props => {
                                 name={'name'}
                                 bordered={false}
                                 placeholder={'群聊名称'}
-                                suffix={<FormOutlined />}
+                                suffix={
+                                    <span className={'iconfont'}>&#xe62a;</span>
+                                }
                             />
                         </Form.Item>
                     </div>
