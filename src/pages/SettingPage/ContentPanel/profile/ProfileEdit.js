@@ -121,11 +121,9 @@ class ProfileEdit extends Component {
                                         className={
                                             styles.body_profile_edit_item_2_input
                                         }
-                                        name="gender"
                                         style={{ width: '100%' }}
                                         bordered={false}
                                         placeholder={'在此选择性别'}
-                                        // defaultValue={user.gender}
                                         suffixIcon={<FormOutlined />}
                                     >
                                         <Select.Option value="male">
@@ -139,14 +137,13 @@ class ProfileEdit extends Component {
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>电话</div>
-                                <Input.Group compact={true}>
-                                    <Form.Item name="phone" className={''}>
+                                <Form.Item name="phone" className={''}>
+                                    <Input.Group compact={true}>
                                         <Input
                                             style={{ width: '15%' }}
                                             bordered={false}
                                             defaultValue="+86"
                                         />
-
                                         <Input
                                             name="phone"
                                             // defaultValue={user.phone}
@@ -155,8 +152,8 @@ class ProfileEdit extends Component {
                                             placeholder={'在此填写电话号码'}
                                             suffix={<FormOutlined />}
                                         />
-                                    </Form.Item>
-                                </Input.Group>
+                                    </Input.Group>
+                                </Form.Item>
                             </div>
 
                             <div className={styles.body_profile_edit_item_2}>
@@ -172,7 +169,7 @@ class ProfileEdit extends Component {
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>生日</div>
-                                <Form.Item name="birthday">
+                                <Form.Item>
                                     <DatePicker
                                         style={{ width: '100%' }}
                                         bordered={false}
