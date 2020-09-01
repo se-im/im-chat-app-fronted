@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'umi';
 import { Avatar } from 'antd';
-import styles from './style.css';
+import styles from './GroupInfo.css';
 
-const FriendInfo = props => {
-    const { friendInfo } = props;
+const GroupInfo = props => {
     // 格式化日期
     function formatDate(date) {
         let new_date = null;
@@ -24,75 +23,68 @@ const FriendInfo = props => {
         }
         return year + '-' + month + '-' + day;
     }
+
+    const { groupInfo } = props;
     return (
-        <div className={styles.friendInfo_panel}>
-            <div className={styles.friendInfo_header}>
+        <div className={styles.groupInfo_panel}>
+            <div className={styles.groupInfo_header}>
                 <div className={styles.header_content}>
                     <Avatar
                         className={styles.header_avatar}
                         shape={'circle'}
-                        src={friendInfo.cur_friendInfo.avatarUrl}
+                        src={groupInfo.cur_groupInfo.avatarUrl}
                     />
-                    {/*<UserAddOutlined />*/}
-                    <p>{friendInfo.cur_friendInfo.username}</p>
+                    <p>{groupInfo.cur_groupInfo.name}</p>
                 </div>
             </div>
-            <div className={styles.friendInfo_body}>
+            <div className={styles.groupInfo_body}>
                 <div className={styles.body_content}>
                     <div className={styles.body_content_item}>
                         <div className={styles.body_content_item_title}>
-                            <strong>用户名</strong>
+                            <strong>群聊名称</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo.username}
+                            {groupInfo.cur_groupInfo.name}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
                         <div className={styles.body_content_item_title}>
-                            <strong>用户ID</strong>
+                            <strong>群聊ID</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo.id}
+                            {groupInfo.cur_groupInfo.id}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
                         <div className={styles.body_content_item_title}>
-                            <strong>性别</strong>
+                            <strong>群主ID</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo.gender}
+                            {groupInfo.cur_groupInfo.createUserId}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
                         <div className={styles.body_content_item_title}>
-                            <strong>生日</strong>
+                            <strong>建群日期</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {formatDate(friendInfo.cur_friendInfo.birthday)}
+                            {formatDate(groupInfo.cur_groupInfo.createTime)}
                         </div>
                     </div>
                     <div className={styles.body_content_item}>
                         <div className={styles.body_content_item_title}>
-                            <strong>电话</strong>
+                            <strong>群聊人数</strong>
                         </div>
                         <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo.phone}
-                        </div>
-                    </div>
-                    <div className={styles.body_content_item}>
-                        <div className={styles.body_content_item_title}>
-                            <strong>邮箱</strong>
-                        </div>
-                        <div className={styles.body_content_item_content}>
-                            {friendInfo.cur_friendInfo.email}
+                            {groupInfo.cur_groupInfo.memberNum}
                         </div>
                     </div>
                     <div className={styles.body_content_item_last}>
                         <div className={styles.body_content_item_desc}>
-                            <strong>简介</strong>
+                            <strong>群聊简介</strong>
                         </div>
                         <div className={styles.body_content_item_desc_content}>
-                            {friendInfo.cur_friendInfo.description}
+                            {groupInfo.cur_groupInfo.description}
                         </div>
                     </div>
                 </div>
@@ -101,10 +93,10 @@ const FriendInfo = props => {
     );
 };
 
-const mapStateToProps = ({ friendInfo }) => {
+const mapStateToProps = ({ groupInfo }) => {
     return {
-        friendInfo,
+        groupInfo,
     };
 };
 
-export default connect(mapStateToProps)(FriendInfo);
+export default connect(mapStateToProps)(GroupInfo);
