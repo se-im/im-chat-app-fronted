@@ -71,7 +71,7 @@ const ChatModel = {
             return state;
         },
         setUserIdForAddGroupMember(state, action) {
-            state.profileForGroup.userID = action.payload;
+            state.profileForGroup.userID = action.payload.userID;
             return state;
         },
     },
@@ -81,7 +81,7 @@ const ChatModel = {
             if (!cur_cvs || !cur_cvs.id) {
                 return;
             }
-            console.log(cur_cvs);
+            // console.log(cur_cvs);
             let cvsType = cur_cvs.cvsType;
             yield effects.put({
                 type: 'chengeCurrentCvsType',
@@ -143,7 +143,11 @@ const ChatModel = {
         },
         *addNewMemberToGroup(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
-            yield effects.call(addGroupMembers, cur_cvs.relationEntityId);
+            yield effects.call(
+                addGroupMembers,
+                cur_cvs.relationEntityId,
+                action.payload.userID,
+            );
         },
 
         //effects -> {put, call}

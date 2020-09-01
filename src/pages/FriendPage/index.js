@@ -2,21 +2,17 @@ import React, { Fragment } from 'react';
 import FriendPanel from './FriendPanel/index';
 import FriendRequest from './FriendRequestPanel/friendRequest';
 import { connect } from 'react-redux';
+import FriendInfo from './FriendInfoPanel/FriendInfo';
 
-const index = ({ haveNewFriendChosen, haveFriendChosen }) => {
+const index = () => {
     return (
         <Fragment>
             <FriendPanel />
+            {/*<FriendRequest />*/}
+            <FriendInfo />
             {haveNewFriendChosen && <FriendRequest />}
             {/*{haveFriendChosen}*/}
         </Fragment>
     );
 };
-const mapStateToProps = state => {
-    return {
-        haveNewFriendChosen: state.newFriend.haveNewFriendChosen,
-        haveFriendChosen: state.friend.haveFriendChosen,
-    };
-};
-
-export default connect(mapStateToProps)(index);
+export default index;
