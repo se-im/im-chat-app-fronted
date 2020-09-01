@@ -172,18 +172,20 @@ class ProfileEdit extends Component {
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>生日</div>
-                                <DatePicker
-                                    style={{ width: '100%' }}
-                                    bordered={false}
-                                    defaultValue={moment(
-                                        user.birthday
-                                            ? this.formatDate(user.birthday)
-                                            : '2050-08-20',
-                                        'YYYY-MM-DD',
-                                    )}
-                                    allowClear={false}
-                                    name="birthday"
-                                />
+                                <Form.Item name="birthday">
+                                    <DatePicker
+                                        style={{ width: '100%' }}
+                                        bordered={false}
+                                        defaultValue={moment(
+                                            user.birthday
+                                                ? this.formatDate(user.birthday)
+                                                : '2050-08-20',
+                                            'YYYY-MM-DD',
+                                        )}
+                                        allowClear={false}
+                                        name="birthday"
+                                    />
+                                </Form.Item>
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>个人简介</div>
