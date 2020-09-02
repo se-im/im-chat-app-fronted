@@ -33,6 +33,7 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
+    float: right;
 }
 
 .userStatusOnline{
@@ -84,6 +85,7 @@
     text-align: center;
     line-height: 15px;
     margin-left: 10px;
+    float: right;
 
 }
 

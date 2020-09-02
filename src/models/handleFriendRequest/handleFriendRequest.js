@@ -1,5 +1,6 @@
 import friendService from './service';
 import { message } from 'antd';
+import { routerRedux } from 'dva';
 
 const handleFriendRequest = {
     namespace: 'handleFriendRequest',
@@ -32,6 +33,7 @@ const handleFriendRequest = {
                 payload: result,
             });
             message.success(result);
+            yield effects.put(routerRedux.push('/friend'));
         },
         *refuseFriendRequest(action, effects) {
             const data = action.payload;
