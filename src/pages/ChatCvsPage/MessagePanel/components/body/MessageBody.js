@@ -22,9 +22,9 @@ class index extends Component {
                             : styles.hide_spin
                     }
                 />
-                {this.props.cur_inbox.map((v, i, array) => (
+                {this.props.cur_inbox.map((v, i) => (
                     <MessageItem
-                        message={array[this.props.cur_inbox.length - i - 1]}
+                        message={v}
                         cvsType={this.props.cur_cvs.cvsType}
                         key={i}
                     />
@@ -46,12 +46,8 @@ class index extends Component {
                 this.props.dispatch({
                     type: 'Message/getNewInbox',
                     payload: {
-                        cvsId: this.props.cur_inbox[
-                            this.props.cur_inbox.length - 1
-                        ].cvsId,
-                        syncId: this.props.cur_inbox[
-                            this.props.cur_inbox.length - 1
-                        ].syncId,
+                        cvsId: this.props.cur_inbox[0].cvsId,
+                        syncId: this.props.cur_inbox[0].syncId,
                     },
                 });
             }

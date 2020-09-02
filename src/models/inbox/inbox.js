@@ -36,7 +36,7 @@ const InboxModel = {
             let inboxList = yield call(service.fetchInbox, cvsId);
             yield put({
                 type: 'setCvsInbox',
-                payload: inboxList,
+                payload: inboxList.reverse(),
             });
         },
     },

@@ -40,7 +40,7 @@ const MsgModel = {
             let old_inbox = yield effect.select(state => state.inbox.cur_inbox);
             let cur_inbox = JSON.parse(JSON.stringify(old_inbox));
             for (var i in newInbox) {
-                cur_inbox.push(newInbox[i]);
+                cur_inbox.unshift(newInbox[i]);
             }
             yield effect.put({
                 type: 'inbox/setCvsInbox',
