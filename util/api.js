@@ -22,6 +22,7 @@ const user_api = {
     updateUserPassword: '/user/reset_password',
     getFriendInfoById: '/user/friend/queryFriendDetail',
     updateFriendNote: '/user/friend/updateFriendNote',
+    getUserByIdOrName: '/user/friend/detail/id_or_username',
 
     getGroupInfo: '/user/group/queryGroupInfo',
     updateGroupInfo: '/user/group/updateGroupInfo',
