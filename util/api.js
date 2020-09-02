@@ -19,6 +19,7 @@ const user_api = {
     processFriendRequest: '/user/friend/processFriendRequest',
     addNewFriend: '/user/friend/add_friend',
     updateUserInfo: '/user/update',
+    updateUserPassword: '/user/reset_password',
     getFriendInfoById: '/user/friend/queryFriendDetail',
     updateFriendNote: '/user/friend/updateFriendNote',
 

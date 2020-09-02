@@ -40,7 +40,7 @@ const index = ({ LoginModel, dispatch }) => {
                     </div>
 
                     <form className="login100-form validate-form">
-                        <span className="login100-form-title">登陆</span>
+                        <span className="login100-form-title">登录</span>
 
                         <div className="wrap-input100 validate-input">
                             <input
@@ -83,7 +83,7 @@ const index = ({ LoginModel, dispatch }) => {
                                 className="login100-form-btn"
                                 onClick={login}
                             >
-                                登陆
+                                登录
                             </button>
                         </div>
 

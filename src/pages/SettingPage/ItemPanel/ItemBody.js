@@ -7,7 +7,7 @@ class ItemBody extends Component {
             <div className={styles.item_body}>
                 <div className={styles.body_item_container}>
                     <div className={styles.body_item}>
-                        <span className={'iconfont '}>&#xe635;</span>
+                        <span className={'iconfont '}>&#xe63e;</span>
                         <strong
                             onClick={() => {
                                 this.props.item1('profile');

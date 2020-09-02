@@ -1,51 +1,97 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'umi';
-import { Upload, message, Input, Select, DatePicker, Avatar, Form } from 'antd';
+import {
+    Upload,
+    message,
+    Input,
+    Select,
+    DatePicker,
+    Avatar,
+    Form,
+    Switch,
+} from 'antd';
 import { FormOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import styles from './style.css';
-
-function getBase64(img, callback) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-        message.error('You can only upload JPG/PNG file!');
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-        message.error('Image must smaller than 2MB!');
-    }
-    return isJpgOrPng && isLt2M;
-}
 
 class ProfileEdit extends Component {
     state = {
         loading: false,
         value: 1,
         username: this.props.user.username,
+        birthday: this.props.user.birthday,
+        shown: this.props.user.shown,
     };
 
-    onFinish(values) {
-        //TODO
-        // values.avatarUrl = this.props.imageUrl;
+    //上传用户头像
+    getBase64 = (img, callback) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    };
+    beforeUpload = file => {
+        const isJpgOrPng =
+            file.type === 'image/jpeg' || file.type === 'image/png';
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+        return isJpgOrPng && isLt2M;
+    };
+    // 更换头像
+    handleChange = info => {
+        if (info.file.status === 'uploading') {
+            this.setState({ loading: true });
+            return;
+        }
+        if (info.file.status === 'done') {
+            this.getBase64(info.file.originFileObj, imageUrl =>
+                this.setState({
+                    imageUrl,
+                    loading: false,
+                }),
+            );
+        }
+    };
+
+    // 格式化日期
+    formatDate = date => {
+        let new_date = null;
+        if (date) {
+            new_date = new Date(date);
+        } else {
+            new_date = new Date();
+        }
+        let year = new_date.getFullYear();
+        let month = new_date.getMonth() + 1;
+        let day = new_date.getDate();
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (day < 10) {
+            day = '0' + day;
+        }
+        return year + '-' + month + '-' + day;
+    };
+    //修改用户信息
+    onFinish = values => {
+        values.birthday = new Date(this.state.birthday).getTime();
+        values.shown = this.state.shown;
         this.props.dispatch({
             type: 'global/updateUserInfo',
             payload: values,
         });
-        console.log(values);
-    }
-
-    handleUserChange(e) {
-        this.setState({
-            username: e.target.value,
-        });
-    }
-
+    };
+    //修改用户生日
+    handleGetBirthdayChange = (date, dateString) => {
+        this.state.birthday = dateString;
+    };
+    handleIsShownChange = (checked, e) => {
+        this.state.shown = checked;
+    };
     render() {
         const { imageUrl } = this.state;
         const { user } = this.props;
@@ -58,44 +104,38 @@ class ProfileEdit extends Component {
                 >
                     <div className={styles.body_profile_edit}>
                         <strong>个人信息</strong>
-
                         <div className={styles.body_profile_edit_container}>
                             <div className={styles.body_profile_edit_item_1}>
-                                <Upload
-                                    name="avatarUrl"
-                                    action=""
-                                    beforeUpload={beforeUpload}
-                                    onChange={this.handleChange}
-                                    showUploadList={false}
-                                >
-                                    <div
-                                        className={
-                                            styles.body_user_avatar_container
-                                        }
+                                <Form.Item name="avatarUrl">
+                                    <Upload
+                                        name="avatarUrl"
+                                        // action="/user/update"
+                                        fileList={''}
+                                        beforeUpload={this.beforeUpload}
+                                        onChange={this.handleChange}
+                                        showUploadList={false}
                                     >
-                                        {imageUrl ? (
+                                        <div
+                                            className={
+                                                styles.body_user_avatar_container
+                                            }
+                                        >
                                             <img
                                                 name="avatarUrl"
                                                 className={
                                                     styles.body_user_avatar
                                                 }
-                                                src={imageUrl}
-                                                alt="avatar"
-                                                style={{ width: '100%' }}
-                                            />
-                                        ) : (
-                                            <img
-                                                className={
-                                                    styles.body_user_avatar
+                                                src={
+                                                    imageUrl
+                                                        ? imageUrl
+                                                        : user.avatarUrl
                                                 }
-                                                src={user.avatarUrl}
                                                 alt="avatar"
                                                 style={{ width: '100%' }}
                                             />
-                                        )}
-                                    </div>
-                                </Upload>
-
+                                        </div>
+                                    </Upload>
+                                </Form.Item>
                                 <div
                                     className={
                                         styles.body_profile_edit_item_name
@@ -105,14 +145,26 @@ class ProfileEdit extends Component {
                                         <input
                                             name="username"
                                             placeholder={'昵称'}
-                                            value={this.state.username}
                                             disabled={false}
-                                            onChange={this.handleUserChange.bind(
-                                                this,
-                                            )}
                                         />
                                     </Form.Item>
                                 </div>
+                            </div>
+                            <div className={styles.body_profile_edit_item_2}>
+                                <div>用户ID</div>
+                                <Form.Item name="id">
+                                    <Input
+                                        name="id"
+                                        bordered={false}
+                                        disabled={true}
+                                        placeholder={'在此填写ID'}
+                                        suffix={
+                                            <span className={'iconfont '}>
+                                                &#xe781;
+                                            </span>
+                                        }
+                                    />
+                                </Form.Item>
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>性别</div>
@@ -124,7 +176,11 @@ class ProfileEdit extends Component {
                                         style={{ width: '100%' }}
                                         bordered={false}
                                         placeholder={'在此选择性别'}
-                                        suffixIcon={<FormOutlined />}
+                                        suffix={
+                                            <span className={'iconfont '}>
+                                                &#xe61f;
+                                            </span>
+                                        }
                                     >
                                         <Select.Option value="male">
                                             男
@@ -138,24 +194,20 @@ class ProfileEdit extends Component {
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>电话</div>
                                 <Form.Item name="phone" className={''}>
-                                    <Input.Group compact={true}>
-                                        <Input
-                                            style={{ width: '15%' }}
-                                            bordered={false}
-                                            defaultValue="+86"
-                                        />
-                                        <Input
-                                            name="phone"
-                                            // defaultValue={user.phone}
-                                            style={{ width: '85%' }}
-                                            bordered={false}
-                                            placeholder={'在此填写电话号码'}
-                                            suffix={<FormOutlined />}
-                                        />
-                                    </Input.Group>
+                                    <Input
+                                        name="phone"
+                                        style={{ width: '100%' }}
+                                        bordered={false}
+                                        placeholder={'在此填写电话号码'}
+                                        prefix={<span>+86 &nbsp;&nbsp;</span>}
+                                        suffix={
+                                            <span className={'iconfont '}>
+                                                &#xe653;
+                                            </span>
+                                        }
+                                    />
                                 </Form.Item>
                             </div>
-
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>邮箱</div>
                                 <Form.Item name="email" className={''}>
@@ -163,7 +215,11 @@ class ProfileEdit extends Component {
                                         name="email"
                                         bordered={false}
                                         placeholder={'在此填写邮箱'}
-                                        suffix={<FormOutlined />}
+                                        suffix={
+                                            <span className={'iconfont '}>
+                                                &#xe617;
+                                            </span>
+                                        }
                                     />
                                 </Form.Item>
                             </div>
@@ -174,15 +230,30 @@ class ProfileEdit extends Component {
                                         style={{ width: '100%' }}
                                         bordered={false}
                                         defaultValue={moment(
-                                            user.birthday
-                                                ? this.formatDate(user.birthday)
-                                                : '2050-08-20',
+                                            this.formatDate(user.birthday),
                                             'YYYY-MM-DD',
                                         )}
-                                        allowClear={false}
                                         name="birthday"
+                                        onChange={this.handleGetBirthdayChange}
+                                        suffix={
+                                            <span className={'iconfont '}>
+                                                &#xe72a;
+                                            </span>
+                                        }
                                     />
                                 </Form.Item>
+                            </div>
+                            <div className={styles.body_profile_edit_item_3}>
+                                <div className={styles.body_item_show}>
+                                    对陌生人是否可见
+                                </div>
+                                <div className={styles.body_item_change_show}>
+                                    <Switch
+                                        name="shown"
+                                        defaultChecked={user.shown}
+                                        onChange={this.handleIsShownChange}
+                                    />
+                                </div>
                             </div>
                             <div className={styles.body_profile_edit_item_2}>
                                 <div>个人简介</div>
@@ -204,41 +275,6 @@ class ProfileEdit extends Component {
             </Fragment>
         );
     }
-
-    // 更换头像
-    handleChange = info => {
-        if (info.file.status === 'uploading') {
-            this.setState({ loading: true });
-            return;
-        }
-        if (info.file.status === 'done') {
-            getBase64(info.file.originFileObj, imageUrl =>
-                this.setState({
-                    imageUrl,
-                    loading: false,
-                }),
-            );
-        }
-    };
-    // 格式化日期
-    formatDate = date => {
-        let new_date = null;
-        if (date) {
-            new_date = new Date(date);
-        } else {
-            new_date = new Date();
-        }
-        let year = new_date.getFullYear();
-        let month = new_date.getMonth() + 1;
-        let day = new_date.getDate();
-        if (month < 10) {
-            month = '0' + month;
-        }
-        if (day < 10) {
-            day = '0' + day;
-        }
-        return year + '-' + month + '-' + day;
-    };
 }
 
 const mapStateToProps = state => {
