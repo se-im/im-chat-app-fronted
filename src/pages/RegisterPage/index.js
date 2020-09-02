@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import img1 from '../../../assert/login/img-01.png';
 import '../../../assert/iconfont/iconfont.css';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, Image, message } from 'antd';
 import styles from './index.css';
+import { connect } from 'umi';
+import RegisterModel from './model';
 const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 },
@@ -12,7 +14,20 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
 
-export default () => {
+const index = props => {
+    const onFinish = values => {
+        if (values.password_confirm !== values.password) {
+            message.error('密码不一致');
+            return;
+        }
+        props.dispatch({
+            type: 'RegisterModel/register',
+            payload: values,
+        });
+    };
+
+    let imageUrl =
+        'https://www.chemicalbook.com/CAS/GIF/' + props.cas.cas + '.gif';
     return (
         <div className="limiter">
             <div className="container-login100">
@@ -25,6 +40,7 @@ export default () => {
                         {...layout}
                         name="basic"
                         initialValues={{ remember: true }}
+                        onFinish={onFinish}
                     >
                         <span className="login100-form-title">注册</span>
 
@@ -32,6 +48,9 @@ export default () => {
                             label="用户名"
                             name="username"
                             style={{ fontSize: 25 }}
+                            rules={[
+                                { required: true, message: '请输入用户名' },
+                            ]}
                         >
                             <Input id={1} className="form-item" />
                         </Form.Item>
@@ -40,6 +59,7 @@ export default () => {
                             label="密码"
                             name="password"
                             style={{ fontSize: 25 }}
+                            rules={[{ required: true, message: '请输入密码' }]}
                         >
                             <Input
                                 id={2}
@@ -52,6 +72,7 @@ export default () => {
                             label="确认密码"
                             name="password_confirm"
                             style={{ fontSize: 25 }}
+                            rules={[{ required: true, message: '请确认密码' }]}
                         >
                             <Input
                                 type={'password'}
@@ -74,6 +95,32 @@ export default () => {
                             style={{ fontSize: 25 }}
                         >
                             <Input className="form-item" id={5} />
+                        </Form.Item>
+
+                        <Image
+                            width={200}
+                            src={imageUrl}
+                            style={{ marginLeft: 90 }}
+                            preview={false}
+                            onClick={() => {
+                                props.dispatch({
+                                    type: 'RegisterModel/getVcodeImage',
+                                });
+                            }}
+                        />
+                        <Form.Item
+                            label="验证码"
+                            name="vcode"
+                            style={{ fontSize: 25 }}
+                            rules={[
+                                { required: true, message: '请确认验证码' },
+                            ]}
+                        >
+                            <Input
+                                className="form-item"
+                                id={6}
+                                placeholder="请输入以上分子的化学式"
+                            />
                         </Form.Item>
 
                         <div className="container-login100-form-btn">
@@ -132,3 +179,8 @@ export default () => {
         </div>
     );
 };
+const mapStateToProps = props => {
+    return { cas: props.RegisterModel.cas };
+};
+
+export default connect(mapStateToProps)(index);
