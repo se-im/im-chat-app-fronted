@@ -77,6 +77,9 @@ const ChatModel = {
     },
     effects: {
         *changeProfilePannelStatus(action, effects) {
+            yield effects.put({
+                type: 'revertProfilePanel',
+            });
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
             if (!cur_cvs || !cur_cvs.id) {
                 return;
@@ -115,9 +118,6 @@ const ChatModel = {
                     payload: cur_group,
                 });
             }
-            yield effects.put({
-                type: 'revertProfilePanel',
-            });
         },
         *updateUserNote(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
@@ -126,6 +126,21 @@ const ChatModel = {
                 cur_cvs.relationEntityId,
                 action.payload.note,
             );
+        },
+        *getGroupMembers(action, effects) {
+            const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
+            const cur_group = yield effects.call(
+                getGroupInfoById,
+                cur_cvs.relationEntityId,
+            );
+            cur_group.members = yield effects.call(
+                getGroupMembersByGroupId,
+                cur_cvs.relationEntityId,
+            );
+            yield effects.put({
+                type: 'setGroupProfile',
+                payload: cur_group,
+            });
         },
         *updateGroupInfo(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);

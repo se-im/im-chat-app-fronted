@@ -84,6 +84,7 @@ const addGroupMembers = async (id, userID) => {
             groupId: id,
         })
         .then(res => {
+            message.success('添加群成员成功！');
             return res;
         })
         .catch(error => {
