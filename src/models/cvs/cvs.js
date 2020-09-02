@@ -65,7 +65,6 @@ export default {
         },
         *setUnReadMsgNum({ payload }, { call, put }) {
             const res = yield call(clearUnReaded, payload.id);
-
             yield put(routerRedux.push('/'));
         },
     },
