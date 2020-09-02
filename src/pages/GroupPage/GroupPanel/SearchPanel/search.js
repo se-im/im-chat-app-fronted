@@ -14,7 +14,7 @@ const index = props => {
                 <p>创建群聊</p>
             </Menu.Item>
             <Menu.Item key={'2'}>
-                <p>添加群成员</p>
+                <p>加入群聊</p>
             </Menu.Item>
         </Menu>
     );
@@ -39,16 +39,6 @@ const index = props => {
                 onOk={handleOK.bind(this)}
                 onCancel={handleCancel.bind(this)}
             >
-                {/*<div className={styles.modal}>*/}
-                {/*    <TextArea*/}
-                {/*        size="large"*/}
-                {/*        className={styles.inputId}*/}
-                {/*        bordered={true}*/}
-                {/*        autoSize={{ minRows: 4, maxRows: 6 }}*/}
-                {/*        placeholder="请输入要加入群聊的用户id"*/}
-                {/*        onChange={handleIdChange.bind(this)}*/}
-                {/*    />*/}
-                {/*</div>*/}
                 <CheckboxGroup
                     options={friendList}
                     onChange={checkedList.bind(this)}
@@ -59,7 +49,6 @@ const index = props => {
     function checkedList(e) {
         const checkedList = [];
         checkedList.push(e);
-        // let checkedArr = checkedList.toString();
         props.dispatch({
             type: 'group/setCheckedList',
             payload: checkedList,
