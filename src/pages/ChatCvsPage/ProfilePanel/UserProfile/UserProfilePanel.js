@@ -67,47 +67,47 @@ const ProfileHeader = props => {
             <div className={styles.profile_body}>
                 <div className={styles.body_item}>
                     <div className={styles.body_item_title}>
-                        <strong>Nickname</strong>
+                        <strong>昵称</strong>
                     </div>
                     <div className={styles.body_item_content}>
                         {chatPanel.profileForUser.username}
-                        <span className={'iconfont'}>&#xeb9d;</span>
+                        <span className={'iconfont'}>&#xe63e;</span>
                     </div>
                 </div>
                 <div className={styles.body_item}>
                     <div className={styles.body_item_title}>
-                        <strong>Mobile</strong>
+                        <strong>电话</strong>
                     </div>
                     <div className={styles.body_item_content}>
                         +86&nbsp;{chatPanel.profileForUser.phone}
-                        <span className={'iconfont'}>&#xeb9d;</span>
+                        <span className={'iconfont'}>&#xe653;</span>
                     </div>
                 </div>
                 <div className={styles.body_item}>
                     <div className={styles.body_item_title}>
-                        <strong>Email</strong>
+                        <strong>邮箱</strong>
                     </div>
                     <div className={styles.body_item_content}>
                         {chatPanel.profileForUser.email}
-                        <span className={'iconfont'}>&#xeb9d;</span>
+                        <span className={'iconfont'}>&#xe617;</span>
                     </div>
                 </div>
                 <div className={styles.body_item}>
                     <div className={styles.body_item_title}>
-                        <strong>Birthday</strong>
+                        <strong>生日</strong>
                     </div>
                     <div className={styles.body_item_content}>
                         {formatDate(chatPanel.profileForUser.birthday)}
-                        <span className={'iconfont'}>&#xeb9d;</span>
+                        <span className={'iconfont'}>&#xe72a;</span>
                     </div>
                 </div>
                 <div className={styles.body_item}>
                     <div className={styles.body_item_title}>
-                        <strong>Gender</strong>
+                        <strong>性别</strong>
                     </div>
                     <div className={styles.body_item_content}>
                         {chatPanel.profileForUser.gender}
-                        <span className={'iconfont'}>&#xeb9d;</span>
+                        <span className={'iconfont'}>&#xe61f;</span>
                     </div>
                 </div>
             </div>

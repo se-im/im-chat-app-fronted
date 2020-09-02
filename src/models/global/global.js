@@ -8,7 +8,8 @@ export default {
     namespace: 'global',
     state: {
         token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA0NjM2OTQsImlhdCI6MTU5ODkyNzY5NH0.QDQtr6CnMW5_xWdMrrFqW4GjRTSD-HFVGkyFXJCbOzc',
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA1NDE3MjAsImlh' +
+            'dCI6MTU5OTAwNTcyMH0.0jgrm1jCzo22rVdznOToTTfX5W5SwEftBsH4RaGFK-M',
         cur_user: {
             id: 19,
             username: 'tom',
@@ -40,10 +41,10 @@ export default {
             state.tokenSeted = !state.tokenSeted;
         },
 
-        setCurrentPanel(state, action) {
-            state.current_panel = action.payload;
-            return state;
-        },
+        // setCurrentPanel(state, action) {
+        //     state.current_panel = action.payload;
+        //     return state;
+        // },
     },
     effects: {
         *login({ payload }, { call, put }) {
@@ -66,6 +67,11 @@ export default {
                 type: 'setUser',
                 payload: payload,
             });
+            message.success('用户修改成功');
+        },
+        *updateUserPassword({ payload }, { call }) {
+            yield call(service.fetchUpdateUserPasswordRemote, payload);
+            message.success('密码修改成功');
         },
     },
 };

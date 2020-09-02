@@ -19,6 +19,7 @@ const user_api = {
     processFriendRequest: '/user/friend/processFriendRequest',
     addNewFriend: '/user/friend/add_friend',
     updateUserInfo: '/user/update',
+    updateUserPassword: '/user/reset_password',
     getFriendInfoById: '/user/friend/queryFriendDetail',
     updateFriendNote: '/user/friend/updateFriendNote',
 
@@ -36,6 +37,7 @@ const chat_api = {
     getAllInbox: '/chat/inbox/query/all',
     sendMessage: '/chat/message/send',
     createCvs: '/chat/cvs/create',
+    clearUnReaded: '/chat/cvs/clearUnReaded',
 };
 
 const file_api = {};

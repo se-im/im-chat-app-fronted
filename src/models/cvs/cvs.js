@@ -1,4 +1,4 @@
-import { fetchCvsList, createCvs } from './service';
+import { fetchCvsList, createCvs, clearUnReaded } from './service';
 import util from '../../../util/util';
 import { routerRedux } from 'dva';
 
@@ -61,6 +61,11 @@ export default {
                 type: 'setCurCvs',
                 payload: current_cvs,
             });
+            yield put(routerRedux.push('/'));
+        },
+        *setUnReadMsgNum({ payload }, { call, put }) {
+            const res = yield call(clearUnReaded, payload.id);
+
             yield put(routerRedux.push('/'));
         },
     },

@@ -37,7 +37,7 @@
 }
 .body_item_title {
     padding: 10px 10px 0 10px;
-    font-size: 16px;
+    font-size: 14px;
     color: #000000;
 }
 .body_item_content {
@@ -48,13 +48,13 @@
     color: #999999;
 }
 .body_item_content span {
+
     margin-left: auto;
 }
 
 .body_footer {
     width: var(--profilepanel-width);
     height: 300px;
-    /*text-align: center;*/
 }
 .footer_item_title {
     margin: 10px auto;

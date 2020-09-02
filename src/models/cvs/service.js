@@ -21,3 +21,13 @@ export const createCvs = async (entityId, cvsType) => {
             throw error;
         });
 };
+export const clearUnReaded = async cvsId => {
+    return request
+        .post(api.chat_api.clearUnReaded, { cvsId: cvsId })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};

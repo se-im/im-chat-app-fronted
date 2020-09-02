@@ -83,7 +83,7 @@ const index = ({ LoginModel, dispatch }) => {
                                 className="login100-form-btn"
                                 onClick={login}
                             >
-                                登陆
+                                登录
                             </button>
                         </div>
 

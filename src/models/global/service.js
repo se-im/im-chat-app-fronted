@@ -23,4 +23,19 @@ const fetchUpdateUserInfoRemote = async params => {
         });
 };
 
-export default { getToken, fetchUpdateUserInfoRemote };
+const fetchUpdateUserPasswordRemote = async params => {
+    return request
+        .post(api.user_api.updateUserPassword, params)
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+
+export default {
+    getToken,
+    fetchUpdateUserInfoRemote,
+    fetchUpdateUserPasswordRemote,
+};
