@@ -12,4 +12,33 @@ const getVcode = async token => {
         });
 };
 
-export default { getVcode };
+const register = async value => {
+    return request
+        .post(api.user_api.register, {
+            VCodeId: value.VCodeId,
+            VCodeInput: value.VCodeInput,
+            email: value.email,
+            password: value.password,
+            phone: value.phone,
+            username: value.username,
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+
+const getToken = async param => {
+    return request
+        .post(api.user_api.login, param)
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+
+export default { getVcode, register, getToken };

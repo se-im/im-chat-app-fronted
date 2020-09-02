@@ -6,28 +6,25 @@ import MessageItem from './MessageItem/index';
 
 class index extends Component {
     msgdiv = React.createRef();
-    state = {
-        showspin: false,
-    };
     render() {
         return (
             <div
                 className={styles.msg_body}
                 ref={this.msgdiv}
-                onScrollCapture={() => {
+                onScroll={() => {
                     this.handleOnScroll();
                 }}
             >
                 <Spin
                     className={
-                        this.state.showspin
+                        this.props.showspin
                             ? styles.show_spin
                             : styles.hide_spin
                     }
                 />
-                {this.props.cur_inbox.map((v, i) => (
+                {this.props.cur_inbox.map((v, i, array) => (
                     <MessageItem
-                        message={v}
+                        message={array[this.props.cur_inbox.length - i - 1]}
                         cvsType={this.props.cur_cvs.cvsType}
                         key={i}
                     />
@@ -42,8 +39,20 @@ class index extends Component {
             // const height = this.msgdiv.current.clientHeight; //网页可见高度  200px
             if (this.msgdiv.current.scrollTop === 0) {
                 console.log('加载...');
-                this.setState({
-                    showspin: true,
+                this.props.dispatch({
+                    type: 'Message/changeSpin',
+                });
+                console.log(this.props.cur_inbox);
+                this.props.dispatch({
+                    type: 'Message/getNewInbox',
+                    payload: {
+                        cvsId: this.props.cur_inbox[
+                            this.props.cur_inbox.length - 1
+                        ].cvsId,
+                        syncId: this.props.cur_inbox[
+                            this.props.cur_inbox.length - 1
+                        ].syncId,
+                    },
                 });
             }
         }
@@ -61,7 +70,7 @@ class index extends Component {
     }
     // 组件更新后
     componentDidUpdate(prevProps) {
-        if (prevProps.cur_inbox !== this.props.cur_inbox) {
+        if (prevProps.cur_inbox[0].cvsId !== this.props.cur_inbox[0].cvsId) {
             if (this.msgdiv.current) {
                 const scrollHeight = this.msgdiv.current.scrollHeight; //里面div的实际高度  2000px
                 const height = this.msgdiv.current.clientHeight; //网页可见高度  200px
@@ -70,6 +79,9 @@ class index extends Component {
                     maxScrollTop > 0 ? maxScrollTop : 0;
                 //如果实际高度大于可见高度，说明是有滚动条的，则直接把网页被卷去的高度设置为两个div的高度差，实际效果就是滚动到底部了。
             }
+        } else {
+            console.log(this.msgdiv.current.scrollTop);
+            // this.msgdiv.current.scrollTop = prevProps.msgdiv.scrollTop;
         }
     }
 }
@@ -117,6 +129,7 @@ const mapStateToProps = state => {
     return {
         cur_inbox: state.inbox.cur_inbox,
         cur_cvs: state.cvs.cur_cvs,
+        showspin: state.Message.showspin,
     };
 };
 

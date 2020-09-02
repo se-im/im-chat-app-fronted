@@ -4,13 +4,11 @@ const servers = {
     aliyun2: 'http://1.zmz121.cn',
     zmz: 'http://192.168.2.206',
     cui: 'http://172.29.12.13',
-    xcy: 'http://172.29.12.12',
 };
 
 // let server = servers.aliyun2;
-// let server = servers.cui;
+let server = servers.cui;
 // let server = servers.zmz;
-let server = servers.xcy;
 
 const user_api = {
     getUserByToken: '/user/detail/token',
@@ -24,7 +22,6 @@ const user_api = {
     updateUserPassword: '/user/reset_password',
     getFriendInfoById: '/user/friend/queryFriendDetail',
     updateFriendNote: '/user/friend/updateFriendNote',
-    getUserByIdOrName: '/user/friend/detail/id_or_username',
 
     getGroupInfo: '/user/group/queryGroupInfo',
     updateGroupInfo: '/user/group/updateGroupInfo',
@@ -42,6 +39,8 @@ const chat_api = {
     sendMessage: '/chat/message/send',
     createCvs: '/chat/cvs/create',
     clearUnReaded: '/chat/cvs/clearUnReaded',
+    getLastInbox: '/chat/inbox/query/syncid/lastten',
+    getSyncIdInbox: '/chat/inbox/query/syncid',
 };
 
 const file_api = {};

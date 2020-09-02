@@ -1,5 +1,7 @@
 import { Link } from 'umi';
 import service from './service';
+import { routerRedux } from 'dva';
+import { message } from 'antd';
 const RegisterModel = {
     namespace: 'RegisterModel',
     state: {
@@ -24,9 +26,30 @@ const RegisterModel = {
                 payload: data,
             });
         },
-
         *register({ payload }, effects) {
             console.log(payload);
+            const vcodeid = yield effects.select(
+                state => state.RegisterModel.cas.id,
+            );
+            console.log(vcodeid);
+            const value = {
+                VCodeId: vcodeid,
+                VCodeInput: payload.vcode,
+                email: payload.email,
+                password: payload.password,
+                phone: payload.tel,
+                username: payload.username,
+            };
+            const res = yield effects.call(service.register, value);
+            console.log(res);
+            if (res === null) {
+                const token = yield effects.call(service.getToken, {
+                    username: value.username,
+                    password: value.password,
+                });
+                window.localStorage.setItem('token', token);
+                yield effects.put(routerRedux.push('/'));
+            }
         },
     },
     subscriptions: {
