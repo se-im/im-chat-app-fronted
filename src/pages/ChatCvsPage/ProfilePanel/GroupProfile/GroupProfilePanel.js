@@ -15,7 +15,7 @@ import styles from './style.css';
 
 const GroupProfilePanel = props => {
     const { chatPanel, imageUrl } = props;
-    let visible = false;
+    let userID;
     // 更换头像
     const getBase64 = (img, callback) => {
         const reader = new FileReader();
@@ -60,39 +60,33 @@ const GroupProfilePanel = props => {
         message.success('修改群信息成功！');
     };
 
-    //添加群成员
+    //控制模态框的显示与隐藏
     const showModal = () => {
         props.dispatch({
             type: 'chatPanel/setVisibleToShowModel',
-            // payload: {
-            //     isVisible: true
-            // }
+            payload: {
+                userID: userID,
+            },
         });
     };
     const handleCancel = () => {
         props.dispatch({
             type: 'chatPanel/setVisibleToCancelModel',
         });
-        console.log('cancel');
+        userID = null;
     };
-    const handleOK = () => {
-        console.log('add');
+    //添加群成员
+    const handleAddNewMembers = () => {
         props.dispatch({
             type: 'chatPanel/addNewMemberToGroup',
-        });
-    };
-    const handleUserIdInput = e => {
-        let userID = e.target.value;
-        props.dispatch({
-            type: 'chatPanel/setUserIdForAddGroupMember',
             payload: {
                 userID: userID,
             },
         });
-        console.log(userID);
     };
-    const addMembers = userID => {
-        message.success('添加群成员成功！');
+
+    const handleUserIdInput = e => {
+        userID = e.target.value;
     };
     return (
         <Fragment>
@@ -116,7 +110,7 @@ const GroupProfilePanel = props => {
                         <Modal
                             title="添加群成员"
                             visible={chatPanel.profileForGroup.visible}
-                            onOk={handleOK}
+                            onOk={handleAddNewMembers}
                             onCancel={handleCancel}
                         >
                             <Input
@@ -167,8 +161,8 @@ const GroupProfilePanel = props => {
                                 className={styles.group_body_item_input}
                                 name={'id'}
                                 bordered={false}
-                                // disabled={true}
-                                placeholder={'群聊名称'}
+                                disabled={true}
+                                placeholder={'群聊ID'}
                                 suffix={<FormOutlined />}
                             />
                         </Form.Item>
@@ -246,31 +240,6 @@ const GroupProfilePanel = props => {
                                 placeholder={'群聊简介'}
                                 suffix={<FormOutlined />}
                             />
-                        </Form.Item>
-                    </div>
-                    <div className={styles.group_body_item}>
-                        <div className={styles.group_body_title}>
-                            <strong>我在本群昵称</strong>
-                        </div>
-                        <Form.Item name="username">
-                            <Input
-                                className={styles.group_body_item_input}
-                                name={'username'}
-                                bordered={false}
-                                placeholder={'我在本群昵称'}
-                                suffix={<FormOutlined />}
-                            />
-                        </Form.Item>
-                    </div>
-                    <div className={styles.group_body_item_3}>
-                        <div className={styles.group_body_title}>
-                            <strong>保存到通讯录</strong>
-                        </div>
-                        <Form.Item
-                            name="add"
-                            className={styles.group_body_item_switch}
-                        >
-                            <Switch name="add" size={'small'} checked={false} />
                         </Form.Item>
                     </div>
                     <Button

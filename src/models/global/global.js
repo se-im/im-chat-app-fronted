@@ -8,7 +8,7 @@ export default {
     namespace: 'global',
     state: {
         token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA0ODQwNjQsImlhdCI6MTU5ODk0ODA2NH0.BpTiRe56HfgFpzb8MOBmO3N3c15DApq8YAm7Co7Gu8w',
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA0NjM2OTQsImlhdCI6MTU5ODkyNzY5NH0.QDQtr6CnMW5_xWdMrrFqW4GjRTSD-HFVGkyFXJCbOzc',
         cur_user: {
             id: 19,
             username: 'tom',
@@ -23,17 +23,21 @@ export default {
             gender: 'mail',
         },
         current_panel: 1,
+        tokenSeted: false,
     },
     reducers: {
         setToken(state, action) {
-            console.log(action.payload);
             state.token = action.payload;
+            state.tokenSeted = true;
             request.refreshAxiosConfig(action.payload);
             return state;
         },
 
         setUser(state, action) {
             state.cur_user = action.payload;
+        },
+        setTokenSeted(state, action) {
+            state.tokenSeted = !state.tokenSeted;
         },
 
         setCurrentPanel(state, action) {
@@ -47,6 +51,9 @@ export default {
             yield put({
                 type: 'setToken',
                 payload: token,
+            });
+            yield put({
+                type: 'setTokenSeted',
             });
             message.success('登录成功，正在跳转');
             window.localStorage.setItem('token', token);

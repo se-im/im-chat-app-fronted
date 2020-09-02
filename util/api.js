@@ -12,6 +12,7 @@ let server = servers.zmz;
 
 const user_api = {
     getUserByToken: '/user/detail/token',
+    getUserById: '/user/detail/id/',
     login: '/user/login',
     friend: '/user/friend/queryFriend',
     newFriend: '/user/friend/queryFriendRequestReceived',
@@ -34,6 +35,7 @@ const chat_api = {
     getCvsList: '/chat/cvs/list',
     getAllInbox: '/chat/inbox/query/all',
     sendMessage: '/chat/message/send',
+    createCvs: '/chat/cvs/create',
 };
 
 const file_api = {};

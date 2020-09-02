@@ -5,7 +5,7 @@ const sortCvs = cvsList => {
 function compare(obj1, obj2, property) {
     var value1 = obj1[property];
     var value2 = obj2[property];
-    return value1 - value2; // 升序
+    return value2 - value1; // 降序
 }
 
 var sortTwoCate = function(a, b) {
@@ -39,4 +39,25 @@ const genLoginPacket = token => {
     return JSON.stringify(packet);
 };
 
-export default { sortCvs, genLoginPacket };
+const genInbox = (cvsId, msg, senderAvatarUrl) => {
+    return {
+        createTime: 1598873766000,
+        cvsId: cvsId,
+        id: 51,
+        messageId: 22,
+        msg: msg,
+        readed: false,
+        selfSend: true,
+        senderAvatarUrl: senderAvatarUrl,
+        senderId: 8,
+        senderName: 'tom',
+        syncId: 1,
+    };
+};
+
+const formatDateOfHourAndMinute = timestap => {
+    let date = new Date(timestap);
+    return date.getHours() + ':' + date.getMinutes();
+};
+
+export default { sortCvs, genLoginPacket, formatDateOfHourAndMinute, genInbox };

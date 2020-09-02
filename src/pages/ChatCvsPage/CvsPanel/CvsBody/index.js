@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.css';
 import { connect } from 'react-redux';
-import { List, Avatar } from 'antd';
+import { List, Avatar, message } from 'antd';
 const index = ({ cvs: cvs, dispatch }) => {
     function clickCvs(item, index) {
         dispatch({
@@ -15,7 +15,7 @@ const index = ({ cvs: cvs, dispatch }) => {
     }
 
     function genStyle(item) {
-        if (cvs.cur_cvs === item) {
+        if (cvs.cur_cvs.id === item.id) {
             return styles.cur_cvs;
         } else {
             return '';
