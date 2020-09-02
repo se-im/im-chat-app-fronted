@@ -4,11 +4,13 @@ const servers = {
     aliyun2: 'http://1.zmz121.cn',
     zmz: 'http://192.168.2.206',
     cui: 'http://172.29.12.13',
+    xcy: 'http://172.29.12.12',
 };
 
 // let server = servers.aliyun2;
 // let server = servers.cui;
-let server = servers.zmz;
+// let server = servers.zmz;
+let server = servers.xcy;
 
 const user_api = {
     getUserByToken: '/user/detail/token',

@@ -52,7 +52,7 @@ const ChatModel = {
         },
 
         revertProfilePanel(state, action) {
-            state.showProfilePanel = false;
+            state.showProfilePanel = !state.showProfilePanel;
         },
         setUserProfile(state, action) {
             state.profileForUser = action.payload;
@@ -77,6 +77,9 @@ const ChatModel = {
     },
     effects: {
         *changeProfilePannelStatus(action, effects) {
+            yield effects.put({
+                type: 'revertProfilePanel',
+            });
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
             if (!cur_cvs || !cur_cvs.id) {
                 return;
@@ -115,9 +118,6 @@ const ChatModel = {
                     payload: cur_group,
                 });
             }
-            yield effects.put({
-                type: 'revertProfilePanel',
-            });
         },
         *updateUserNote(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
