@@ -52,7 +52,7 @@ const ChatModel = {
         },
 
         revertProfilePanel(state, action) {
-            state.showProfilePanel = !state.showProfilePanel;
+            state.showProfilePanel = false;
         },
         setUserProfile(state, action) {
             state.profileForUser = action.payload;
@@ -126,6 +126,21 @@ const ChatModel = {
                 cur_cvs.relationEntityId,
                 action.payload.note,
             );
+        },
+        *getGroupMembers(action, effects) {
+            const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
+            const cur_group = yield effects.call(
+                getGroupInfoById,
+                cur_cvs.relationEntityId,
+            );
+            cur_group.members = yield effects.call(
+                getGroupMembersByGroupId,
+                cur_cvs.relationEntityId,
+            );
+            yield effects.put({
+                type: 'setGroupProfile',
+                payload: cur_group,
+            });
         },
         *updateGroupInfo(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);

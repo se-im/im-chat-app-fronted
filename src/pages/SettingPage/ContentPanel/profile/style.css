@@ -35,7 +35,7 @@
     width: 200px;
     height: 90px;
     margin-left: auto;
-    padding-top: 30px;
+    padding-top: 20px;
     font-size: 15px;
     text-align: center;
     color: #969896;
@@ -43,8 +43,8 @@
 .body_profile_edit_item_name input {
     width: 190px;
     text-align: center;
-    color: #000000;
-    font-size: 20px;
+    /*color: #000000;*/
+    font-size: 30px;
     font-weight: bold;
     background-color: #ffffff;
 }

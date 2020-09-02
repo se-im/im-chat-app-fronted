@@ -6,9 +6,9 @@ const servers = {
     cui: 'http://172.29.12.13',
 };
 
-let server = servers.aliyun2;
+// let server = servers.aliyun2;
 // let server = servers.cui;
-// let server = servers.local1;
+let server = servers.local1;
 
 const user_api = {
     getUserByToken: '/user/detail/token',

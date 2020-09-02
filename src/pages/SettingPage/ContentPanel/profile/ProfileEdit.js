@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'umi';
+
+import axios from 'axios';
 import {
     Upload,
     message,
@@ -16,19 +18,14 @@ import styles from './style.css';
 
 class ProfileEdit extends Component {
     state = {
-        loading: false,
         value: 1,
         username: this.props.user.username,
         birthday: this.props.user.birthday,
         shown: this.props.user.shown,
+        imageUrl: this.props.user.avatarUrl,
     };
 
     //上传用户头像
-    getBase64 = (img, callback) => {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => callback(reader.result));
-        reader.readAsDataURL(img);
-    };
     beforeUpload = file => {
         const isJpgOrPng =
             file.type === 'image/jpeg' || file.type === 'image/png';
@@ -41,19 +38,34 @@ class ProfileEdit extends Component {
         }
         return isJpgOrPng && isLt2M;
     };
-    // 更换头像
-    handleChange = info => {
+    handleChangeAvatar = info => {
         if (info.file.status === 'uploading') {
             this.setState({ loading: true });
             return;
         }
         if (info.file.status === 'done') {
-            this.getBase64(info.file.originFileObj, imageUrl =>
-                this.setState({
-                    imageUrl,
-                    loading: false,
-                }),
-            );
+            const formData = new FormData();
+            formData.append('file', info.file.originFileObj);
+            this.setState({
+                uploading: true,
+            });
+            const url = 'http://1.zmz121.cn:8010/file/upload/headpic';
+            axios
+                .post(url, formData, {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                .then(res => {
+                    this.setState({
+                        imageUrl: res,
+                    });
+                    message.info(res);
+                })
+                .catch(error => {
+                    message.error(error.data);
+                });
         }
     };
 
@@ -80,10 +92,12 @@ class ProfileEdit extends Component {
     onFinish = values => {
         values.birthday = new Date(this.state.birthday).getTime();
         values.shown = this.state.shown;
+        values.avatarUrl = this.state.imageUrl;
         this.props.dispatch({
             type: 'global/updateUserInfo',
             payload: values,
         });
+        console.log(values);
     };
     //修改用户生日
     handleGetBirthdayChange = (date, dateString) => {
@@ -106,13 +120,11 @@ class ProfileEdit extends Component {
                         <strong>个人信息</strong>
                         <div className={styles.body_profile_edit_container}>
                             <div className={styles.body_profile_edit_item_1}>
-                                <Form.Item name="avatarUrl">
+                                <Form.Item>
                                     <Upload
-                                        name="avatarUrl"
-                                        // action="/user/update"
-                                        fileList={''}
+                                        accept=".jpg, .jpeg, .png"
                                         beforeUpload={this.beforeUpload}
-                                        onChange={this.handleChange}
+                                        onChange={this.handleChangeAvatar}
                                         showUploadList={false}
                                     >
                                         <div
@@ -125,11 +137,7 @@ class ProfileEdit extends Component {
                                                 className={
                                                     styles.body_user_avatar
                                                 }
-                                                src={
-                                                    imageUrl
-                                                        ? imageUrl
-                                                        : user.avatarUrl
-                                                }
+                                                src={imageUrl}
                                                 alt="avatar"
                                                 style={{ width: '100%' }}
                                             />
@@ -170,9 +178,6 @@ class ProfileEdit extends Component {
                                 <div>性别</div>
                                 <Form.Item name="gender">
                                     <Select
-                                        className={
-                                            styles.body_profile_edit_item_2_input
-                                        }
                                         style={{ width: '100%' }}
                                         bordered={false}
                                         placeholder={'在此选择性别'}
@@ -201,7 +206,10 @@ class ProfileEdit extends Component {
                                         placeholder={'在此填写电话号码'}
                                         prefix={<span>+86 &nbsp;&nbsp;</span>}
                                         suffix={
-                                            <span className={'iconfont '}>
+                                            <span
+                                                className={'iconfont '}
+                                                style={{ color: '#a9a9a9' }}
+                                            >
                                                 &#xe653;
                                             </span>
                                         }
@@ -216,7 +224,10 @@ class ProfileEdit extends Component {
                                         bordered={false}
                                         placeholder={'在此填写邮箱'}
                                         suffix={
-                                            <span className={'iconfont '}>
+                                            <span
+                                                className={'iconfont '}
+                                                style={{ color: '#a9a9a9' }}
+                                            >
                                                 &#xe617;
                                             </span>
                                         }
