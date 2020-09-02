@@ -43,3 +43,10 @@
 .body_receiver_message_item {
     float: right;
 }
+.show_spin{
+
+}
+
+.hide_spin{
+    display: none;
+}

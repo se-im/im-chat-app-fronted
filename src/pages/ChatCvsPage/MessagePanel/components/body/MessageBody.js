@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Avatar } from 'antd';
+import { Avatar, Spin } from 'antd';
 import styles from './style.css';
 import MessageItem from './MessageItem/index';
 
 class index extends Component {
     msgdiv = React.createRef();
+    state = {
+        showspin: false,
+    };
     render() {
         return (
-            <div className={styles.msg_body} ref={this.msgdiv}>
+            <div
+                className={styles.msg_body}
+                ref={this.msgdiv}
+                onScrollCapture={() => {
+                    this.handleOnScroll();
+                }}
+            >
+                <Spin
+                    className={
+                        this.state.showspin
+                            ? styles.show_spin
+                            : styles.hide_spin
+                    }
+                />
                 {this.props.cur_inbox.map((v, i) => (
                     <MessageItem
                         message={v}
@@ -18,6 +34,19 @@ class index extends Component {
                 ))}
             </div>
         );
+    }
+
+    handleOnScroll() {
+        if (this.msgdiv.current) {
+            // const scrollHeight = this.msgdiv.current.scrollHeight; //里面div的实际高度  2000px
+            // const height = this.msgdiv.current.clientHeight; //网页可见高度  200px
+            if (this.msgdiv.current.scrollTop === 0) {
+                console.log('加载...');
+                this.setState({
+                    showspin: true,
+                });
+            }
+        }
     }
 
     // 组件初始化后
@@ -31,13 +60,16 @@ class index extends Component {
         }
     }
     // 组件更新后
-    componentDidUpdate() {
-        if (this.msgdiv.current) {
-            const scrollHeight = this.msgdiv.current.scrollHeight; //里面div的实际高度  2000px
-            const height = this.msgdiv.current.clientHeight; //网页可见高度  200px
-            const maxScrollTop = scrollHeight - height;
-            this.msgdiv.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
-            //如果实际高度大于可见高度，说明是有滚动条的，则直接把网页被卷去的高度设置为两个div的高度差，实际效果就是滚动到底部了。
+    componentDidUpdate(prevProps) {
+        if (prevProps.cur_inbox !== this.props.cur_inbox) {
+            if (this.msgdiv.current) {
+                const scrollHeight = this.msgdiv.current.scrollHeight; //里面div的实际高度  2000px
+                const height = this.msgdiv.current.clientHeight; //网页可见高度  200px
+                const maxScrollTop = scrollHeight - height;
+                this.msgdiv.current.scrollTop =
+                    maxScrollTop > 0 ? maxScrollTop : 0;
+                //如果实际高度大于可见高度，说明是有滚动条的，则直接把网页被卷去的高度设置为两个div的高度差，实际效果就是滚动到底部了。
+            }
         }
     }
 }

@@ -8,11 +8,11 @@ export default {
     namespace: 'global',
     state: {
         token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA1NDE3MjAs' +
-            'ImlhdCI6MTU5OTAwNTcyMH0.0jgrm1jCzo22rVdznOToTTfX5W5SwEftBsH4RaGFK-M',
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA1NDE3MjAsImlh' +
+            'dCI6MTU5OTAwNTcyMH0.0jgrm1jCzo22rVdznOToTTfX5W5SwEftBsH4RaGFK-M',
         cur_user: {
             id: 19,
-            username: 'yxz',
+            username: 'tom',
             description: 'ddd',
             email: '',
             phone: '',
