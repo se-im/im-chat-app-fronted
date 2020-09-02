@@ -37,6 +37,19 @@ export default {
             state.cur_cvs = action.payload;
             state.haveCvsChosen = true;
         },
+
+        setCurCvsUnReadMsgNum(state, { payload }) {
+            const cvsId = payload;
+            let newState = JSON.parse(JSON.stringify(state));
+
+            let data = newState.data;
+            for (let i of data) {
+                if (cvsId === i.id) {
+                    i.unreadMessageNum = 0;
+                }
+            }
+            return newState;
+        },
     },
     effects: {
         *getCvslist(action, { put, call, select }) {
@@ -61,11 +74,19 @@ export default {
                 type: 'setCurCvs',
                 payload: current_cvs,
             });
+            yield put({
+                type: 'setCvsList',
+                payload: { data: newCvsList },
+            });
             yield put(routerRedux.push('/'));
         },
         *setUnReadMsgNum({ payload }, { call, put }) {
             const res = yield call(clearUnReaded, payload.id);
-            yield put(routerRedux.push('/'));
+
+            yield put({
+                type: 'setCurCvsUnReadMsgNum',
+                payload: payload.id,
+            });
         },
     },
 
