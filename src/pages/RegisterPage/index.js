@@ -5,8 +5,8 @@ import '../../../assert/iconfont/iconfont.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import styles from './index.css';
 const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+    labelCol: { span: 6 },
+    wrapperCol: { span: 18 },
 };
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
@@ -18,7 +18,7 @@ export default () => {
             <div className="container-login100">
                 <div className="wrap-login1001">
                     <div className="login100-pic js-tilt">
-                        <img src={img1} alt="IMG" />
+                        <img src={img1} alt="IMG" className="login-img" />
                     </div>
 
                     <Form
@@ -31,19 +31,63 @@ export default () => {
                         <Form.Item
                             label="用户名"
                             name="username"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your username!',
-                                },
-                            ]}
                             style={{ fontSize: 25 }}
                         >
-                            <Input className="form-item" />
+                            <Input id={1} className="form-item" />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="密码"
+                            name="password"
+                            style={{ fontSize: 25 }}
+                        >
+                            <Input
+                                id={2}
+                                type={'password'}
+                                className="form-item"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="确认密码"
+                            name="password_confirm"
+                            style={{ fontSize: 25 }}
+                        >
+                            <Input
+                                type={'password'}
+                                id={3}
+                                className="form-item"
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="邮箱"
+                            name="email"
+                            style={{ fontSize: 25 }}
+                        >
+                            <Input className="form-item" id={4} />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="电话"
+                            name="tel"
+                            style={{ fontSize: 25 }}
+                        >
+                            <Input className="form-item" id={5} />
                         </Form.Item>
 
                         <div className="container-login100-form-btn">
-                            <button className="login100-form-btn">登陆</button>
+                            <button className="login100-form-btn">注册</button>
+                        </div>
+
+                        <div className="text-center p-t-136">
+                            <a className="txt2" href="#">
+                                已有账号？登陆
+                                <i
+                                    className="fa fa-long-arrow-right m-l-5"
+                                    aria-hidden="true"
+                                />
+                            </a>
                         </div>
                     </Form>
 
