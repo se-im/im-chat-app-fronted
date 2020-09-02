@@ -6,8 +6,8 @@ const servers = {
     cui: 'http://172.29.12.13',
 };
 
-let server = servers.aliyun2;
-// let server = servers.cui;
+// let server = servers.aliyun2;
+let server = servers.cui;
 // let server = servers.local1;
 
 const user_api = {
@@ -36,6 +36,7 @@ const chat_api = {
     getAllInbox: '/chat/inbox/query/all',
     sendMessage: '/chat/message/send',
     createCvs: '/chat/cvs/create',
+    clearUnReaded: '/chat/cvs/clearUnReaded',
 };
 
 const file_api = {};
