@@ -8,9 +8,9 @@ const servers = {
 };
 
 // let server = servers.aliyun2;
-// let server = servers.cui;
+let server = servers.cui;
 // let server = servers.zmz;
-let server = servers.xcy;
+// let server = servers.xcy;
 
 const user_api = {
     getUserByToken: '/user/detail/token',

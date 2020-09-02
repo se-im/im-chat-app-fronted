@@ -16,6 +16,9 @@ const index = ({ cvs: cvs, dispatch }) => {
             type: 'inbox/getInboxList',
             payload: item,
         });
+        dispatch({
+            type: 'chatPanel/setShowProfileToNot',
+        });
     }
 
     function genStyle(item) {

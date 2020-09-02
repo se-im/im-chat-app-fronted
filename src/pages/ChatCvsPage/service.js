@@ -52,6 +52,7 @@ const updateGroupInfoById = async (id, avatar, name, desc) => {
             description: desc,
         })
         .then(res => {
+            message.success('修改群信息成功！');
             return res;
         })
         .catch(error => {
@@ -72,6 +73,7 @@ const exitGroupByGroupId = async id => {
     return request
         .post(api.user_api.exitGroupById, { groupId: id })
         .then(res => {
+            message.success('成功退出群聊！');
             return res;
         })
         .catch(error => {

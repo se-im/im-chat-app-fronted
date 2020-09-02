@@ -1,5 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { Avatar, Input, Form, Button, Upload, message, Modal } from 'antd';
+import {
+    Avatar,
+    Input,
+    Form,
+    Button,
+    Upload,
+    message,
+    Modal,
+    List,
+} from 'antd';
 import { FormOutlined, PlusOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -9,6 +18,7 @@ class GroupProfilePanel extends Component {
     state = {
         userID: null,
         avatarUrl: this.props.chatPanel.profileForGroup.avatarUrl,
+        flag: false,
     };
     //上传群聊头像
     beforeUpload = file => {
@@ -53,16 +63,14 @@ class GroupProfilePanel extends Component {
             type: 'chatPanel/updateGroupInfo',
             payload: values,
         });
-        message.success('修改群信息成功！');
     };
-
     //控制模态框的显示与隐藏
     showModal = () => {
         this.props.dispatch({
             type: 'chatPanel/setVisibleToShowModel',
-            payload: {
-                userID: this.state.userID,
-            },
+            // payload: {
+            //     userID: this.state.userID,
+            // },
         });
     };
     handleCancel = () => {
@@ -71,10 +79,15 @@ class GroupProfilePanel extends Component {
         });
         this.setState({
             userID: null,
+            flag: false,
         });
     };
     //添加群成员
     handleAddNewMembers = () => {
+        this.setState({
+            userID: null,
+            flag: false,
+        });
         this.props.dispatch({
             type: 'chatPanel/addNewMemberToGroup',
             payload: {
@@ -85,15 +98,65 @@ class GroupProfilePanel extends Component {
             type: 'chatPanel/getGroupMembers',
         });
     };
-
+    handleShowNewMemberInfo = flag => {
+        if (flag) {
+            return (
+                <List
+                    className={styles.header_new_member_view}
+                    itemLayout="horizontal"
+                    dataSource={this.props.friendInfo}
+                    bordered={true}
+                    renderItem={item => (
+                        <List.Item>
+                            <List.Item.Meta
+                                avatar={
+                                    <Avatar
+                                        src={item.avatarUrl}
+                                        className={
+                                            styles.header_new_member_view_avatar
+                                        }
+                                    />
+                                }
+                                title={<p>用户ID：{item.id}</p>}
+                                description={<p>用户名：{item.username}</p>}
+                            />
+                        </List.Item>
+                    )}
+                />
+            );
+        }
+    };
     handleUserIdInput = e => {
         this.setState({
             userID: e.target.value,
         });
+        if (e.target.value !== null) {
+            this.setState({
+                flag: true,
+            });
+        }
+        this.props.dispatch({
+            type: 'addFriend/handleInputMsgChange',
+            payload: {
+                inputMsg: e.target.value,
+            },
+        });
+        this.props.dispatch({
+            type: 'addFriend/getUserByIdOrName',
+        });
+    };
+    //退出群聊
+    handleExitGroup = () => {
+        this.props.dispatch({
+            type: 'chatPanel/exitGroup',
+        });
+        this.props.dispatch({
+            type: 'chatPanel/setShowProfileToNot',
+        });
     };
     render() {
-        const { chatPanel } = this.props;
-        const { avatarUrl } = this.state;
+        const { chatPanel, friendInfo } = this.props;
+        const { avatarUrl, flag } = this.state;
         const {
             beforeUpload,
             handleChangeGroupAvatar,
@@ -102,6 +165,8 @@ class GroupProfilePanel extends Component {
             handleAddNewMembers,
             handleUserIdInput,
             handleCancel,
+            handleShowNewMemberInfo,
+            handleExitGroup,
         } = this;
         return (
             <Fragment>
@@ -140,6 +205,7 @@ class GroupProfilePanel extends Component {
                                     addonBefore="UserID："
                                     onChange={handleUserIdInput}
                                 />
+                                {handleShowNewMemberInfo(flag)}
                             </Modal>
                             {chatPanel.profileForGroup.members.map(
                                 (item, index) => {
@@ -272,11 +338,7 @@ class GroupProfilePanel extends Component {
                 <div className={styles.group_footer}>
                     <div
                         className={styles.group_footer_btn}
-                        onClick={() => {
-                            this.props.dispatch({
-                                type: 'chatPanel/exitGroup',
-                            });
-                        }}
+                        onClick={handleExitGroup}
                     >
                         删除并退出
                     </div>
@@ -286,8 +348,9 @@ class GroupProfilePanel extends Component {
     }
 }
 
-const mapStateToProps = ({ chatPanel }) => ({
-    chatPanel,
+const mapStateToProps = state => ({
+    chatPanel: state.chatPanel,
+    friendInfo: state.addFriend.friendInfo,
 });
 
 export default connect(mapStateToProps)(GroupProfilePanel);

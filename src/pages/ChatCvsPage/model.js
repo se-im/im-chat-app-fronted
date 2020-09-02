@@ -46,13 +46,17 @@ const ChatModel = {
         setUserR(state, action) {
             return action.payLoad;
         },
-
         chengeCurrentCvsType(state, action) {
             state.currentCvsType = action.payload;
         },
 
+        setShowProfileToNot(state, action) {
+            state.showProfilePanel = false;
+            return state;
+        },
         revertProfilePanel(state, action) {
-            state.showProfilePanel = !state.showProfilePanel;
+            state.showProfilePanel = true;
+            return state;
         },
         setUserProfile(state, action) {
             state.profileForUser = action.payload;
@@ -77,9 +81,6 @@ const ChatModel = {
     },
     effects: {
         *changeProfilePannelStatus(action, effects) {
-            yield effects.put({
-                type: 'revertProfilePanel',
-            });
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
             if (!cur_cvs || !cur_cvs.id) {
                 return;
@@ -90,13 +91,13 @@ const ChatModel = {
                 type: 'chengeCurrentCvsType',
                 payload: cur_cvs.cvsType,
             });
-
             if (cvsType === 'U') {
                 //获取用户信息
                 const cur_user = yield effects.call(
                     getFriendInfoById,
                     cur_cvs.relationEntityId,
                 );
+                // console.log(cur_user);
                 //put到当前state
                 yield effects.put({
                     type: 'setUserProfile',
@@ -118,6 +119,9 @@ const ChatModel = {
                     payload: cur_group,
                 });
             }
+            yield effects.put({
+                type: 'revertProfilePanel',
+            });
         },
         *updateUserNote(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
@@ -138,7 +142,7 @@ const ChatModel = {
                 cur_cvs.relationEntityId,
             );
             yield effects.put({
-                type: 'setGroupProfile',
+                type: 'setGroupInfo',
                 payload: cur_group,
             });
         },
@@ -164,7 +168,6 @@ const ChatModel = {
                 action.payload.userID,
             );
         },
-
         //effects -> {put, call}
         *getUser(action, effects) {
             const setted = yield effects.select(

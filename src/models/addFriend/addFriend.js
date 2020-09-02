@@ -74,7 +74,6 @@ const addFriend = {
         },
         *getUserByIdOrName(action, { put, call, select }) {
             const inputMsg = yield select(state => state.addFriend.inputMsg);
-            console.log(inputMsg);
             const res = yield call(friendService.fetchNewFriendInfo, inputMsg);
             if (res.length !== 0) {
                 yield put({
