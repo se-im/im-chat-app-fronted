@@ -38,6 +38,7 @@ export default {
             let cur_cvs = effect.select(state => state.cvs.cur_cvs);
             let newCvsList = JSON.parse(JSON.stringify(cvsList));
             //TODO 会话识图本地不存在
+            let finded = false;
             for (let i = 0; i < newCvsList.length; i++) {
                 if (newInbox.cvsId === newCvsList[i].id) {
                     if (cur_cvs.id !== newInbox.cvsId) {
@@ -52,13 +53,22 @@ export default {
                         newInbox.createTime,
                     );
                     newCvsList[i].senderName = newInbox.senderName;
+                    finded = true;
+                    break;
                 }
             }
 
-            yield effect.put({
-                type: 'cvs/setCvsList',
-                payload: { data: newCvsList },
-            });
+            //会话试图本地不存在，添加
+            if (!finded) {
+                yield effect.put({
+                    type: 'cvs/getCvslist',
+                });
+            } else {
+                yield effect.put({
+                    type: 'cvs/setCvsList',
+                    payload: { data: newCvsList },
+                });
+            }
         },
 
         *handleNewMessageOfInbox({ payload }, effect) {

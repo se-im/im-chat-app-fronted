@@ -31,6 +31,7 @@ const user_api = {
     addGroupMembersByUserId: '/user/group/addGroupUser',
     groupJoined: '/user/group/joined',
     createGroup: '/user/group/create',
+    getVcode: '/user/vcode/get',
 };
 
 const chat_api = {
