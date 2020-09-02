@@ -115,10 +115,14 @@ const GroupInfo = props => {
         if (!isExist) {
             props.dispatch({
                 type: 'cvs/proposeCvs',
-                payload: { groupId: groupId, cvsType: 'G' },
+                payload: { entityId: groupId, cvsType: 'G' },
             });
         } else {
             message.success('群聊已存在');
+            props.dispatch({
+                type: 'cvs/routerToCvs',
+                payload: { entityId: groupId, cvsType: 'U' },
+            });
         }
     }
 };

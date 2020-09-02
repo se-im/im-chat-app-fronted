@@ -41,10 +41,10 @@ export default {
             state.tokenSeted = !state.tokenSeted;
         },
 
-        // setCurrentPanel(state, action) {
-        //     state.current_panel = action.payload;
-        //     return state;
-        // },
+        setCurrentPanel(state, action) {
+            state.current_panel = action.payload;
+            return state;
+        },
     },
     effects: {
         *login({ payload }, { call, put }) {

@@ -60,9 +60,9 @@ export default {
             });
         },
         *proposeCvs({ payload }, { call, put }) {
-            const groupId = payload.groupId;
+            const entityId = payload.entityId;
             const cvsType = payload.cvsType;
-            const newCvsId = yield call(createCvs, groupId, cvsType);
+            const newCvsId = yield call(createCvs, entityId, cvsType);
             const newCvsList = yield call(fetchCvsList);
             let current_cvs = {};
             for (let i = 0; i < newCvsList.length; i++) {
@@ -87,6 +87,21 @@ export default {
                 type: 'setCurCvsUnReadMsgNum',
                 payload: payload.id,
             });
+        },
+        *routerToCvs({ payload }, { call, put }) {
+            const entityId = payload.entityId;
+            const cvsList = yield call(fetchCvsList);
+            let current_cvs = {};
+            for (let i = 0; i < cvsList.length; i++) {
+                if (entityId === cvsList[i].relationEntityId) {
+                    current_cvs = cvsList[i];
+                }
+            }
+            yield put({
+                type: 'setCurCvs',
+                payload: current_cvs,
+            });
+            yield put(routerRedux.push('/'));
         },
     },
 
