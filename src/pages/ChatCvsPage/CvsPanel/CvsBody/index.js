@@ -9,6 +9,10 @@ const index = ({ cvs: cvs, dispatch }) => {
             payload: item,
         });
         dispatch({
+            type: 'cvs/setUnReadMsgNum',
+            payload: item,
+        });
+        dispatch({
             type: 'inbox/getInboxList',
             payload: item,
         });
@@ -25,6 +29,8 @@ const index = ({ cvs: cvs, dispatch }) => {
     function genUnreadMessageNumDiv(unreadMessageNum) {
         if (unreadMessageNum > 0) {
             return <p className={styles.unreadMsgNum}>{unreadMessageNum}</p>;
+        } else {
+            return <p className={styles.emptyBlock} />;
         }
     }
 

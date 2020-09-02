@@ -105,7 +105,6 @@ const GroupInfo = props => {
     );
     function proposeCvs(groupId) {
         const cvsList = props.cvs.data;
-
         let isExist = false;
         for (let i of cvsList) {
             if (groupId === i.relationEntityId && i.cvsType === 'G') {
@@ -115,10 +114,14 @@ const GroupInfo = props => {
         if (!isExist) {
             props.dispatch({
                 type: 'cvs/proposeCvs',
-                payload: { groupId: groupId, cvsType: 'G' },
+                payload: { entityId: groupId, cvsType: 'G' },
             });
         } else {
             message.success('群聊已存在');
+            props.dispatch({
+                type: 'cvs/routerToCvs',
+                payload: { entityId: groupId, cvsType: 'U' },
+            });
         }
     }
 };

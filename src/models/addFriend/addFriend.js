@@ -6,8 +6,10 @@ const addFriend = {
 
     state: {
         visible: false,
+        inputMsg: '',
         id: '',
         note: '',
+        friendInfo: [],
     },
 
     reducers: {
@@ -19,17 +21,23 @@ const addFriend = {
         handleOK(state, action) {
             let newState = JSON.parse(JSON.stringify(state));
             newState.visible = false;
+            newState.inputMsg = '';
+            newState.note = '';
+            newState.friendInfo = [];
             return newState;
         },
         handleCancel(state, action) {
             let newState = JSON.parse(JSON.stringify(state));
             newState.visible = false;
+            newState.inputMsg = '';
+            newState.note = '';
+            newState.friendInfo = [];
             return newState;
         },
-        handleIdChange(state, { payload }) {
+        handleInputMsgChange(state, { payload }) {
             const data = payload;
             let newState = JSON.parse(JSON.stringify(state));
-            newState.id = data.id;
+            newState.inputMsg = data.inputMsg;
             return newState;
         },
         handleNoteChange(state, { payload }) {
@@ -38,16 +46,24 @@ const addFriend = {
             newState.note = data.note;
             return newState;
         },
+        setFriendInfo(state, { payload }) {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.friendInfo = payload;
+            return newState;
+        },
+        setNewFriendId(state, { payload }) {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.id = payload.data[0]['id'];
+            return newState;
+        },
     },
 
     effects: {
         *addNewFriend(action, { put, call, select }) {
             const id = yield select(state => state.addFriend.id);
             const note = yield select(state => state.addFriend.note);
-            const token = yield select(state => state.global.token);
             const responseMsg = yield call(
                 friendService.addNewFriend,
-                token,
                 id,
                 note,
             );
@@ -55,6 +71,21 @@ const addFriend = {
                 type: 'handleOK',
             });
             message.success(responseMsg);
+        },
+        *getUserByIdOrName(action, { put, call, select }) {
+            const inputMsg = yield select(state => state.addFriend.inputMsg);
+            console.log(inputMsg);
+            const res = yield call(friendService.fetchNewFriendInfo, inputMsg);
+            if (res.length !== 0) {
+                yield put({
+                    type: 'setFriendInfo',
+                    payload: res,
+                });
+                yield put({
+                    type: 'setNewFriendId',
+                    payload: { data: res },
+                });
+            }
         },
     },
 };

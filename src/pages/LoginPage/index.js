@@ -6,7 +6,7 @@ import { connect } from 'umi';
 
 const index = ({ LoginModel, dispatch }) => {
     const [userModel, setUserModel] = useState({
-        username: 'zmz',
+        username: 'tom',
         password: '1',
     });
     function login(event) {

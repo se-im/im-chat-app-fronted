@@ -1,13 +1,9 @@
 import request from '../../../util/request';
 import api from '../../../util/api';
 
-//添加好友
-const addNewFriend = async (id, note) => {
+const getToken = async param => {
     return request
-        .post(api.user_api.addNewFriend, {
-            friendUserIdTobeAdded: id,
-            note: note,
-        })
+        .post(api.user_api.login, param)
         .then(res => {
             return res;
         })
@@ -16,9 +12,9 @@ const addNewFriend = async (id, note) => {
         });
 };
 
-const fetchNewFriendInfo = async inputMsg => {
+const fetchUpdateUserInfoRemote = async params => {
     return request
-        .post(api.user_api.getUserByIdOrName, { query: inputMsg })
+        .post(api.user_api.updateUserInfo, params)
         .then(res => {
             return res;
         })
@@ -26,4 +22,5 @@ const fetchNewFriendInfo = async inputMsg => {
             throw error;
         });
 };
-export default { addNewFriend, fetchNewFriendInfo };
+
+export default { getToken, fetchUpdateUserInfoRemote };

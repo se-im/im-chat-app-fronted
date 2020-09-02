@@ -34,10 +34,6 @@ const NewFriend = {
             const haveFetched = yield select(
                 state => state.newFriend.haveFetched,
             );
-            // console.log(haveFetched);
-            // if (haveFetched) {
-            //     return;
-            // }
             const token = yield select(state => state.global.token);
             const newFriendList = yield call(
                 friendService.fetchNewFriendList,
