@@ -5,6 +5,7 @@ import { connect } from '../../../../.umi/plugin-dva/exports';
 
 const index = props => {
     function groupClick(item) {
+        console.log(item);
         props.dispatch({
             type: 'groupInfo/getGroupInfo',
             payload: item.groupId,
@@ -33,7 +34,7 @@ const index = props => {
                             avatar={
                                 <Avatar
                                     className={styles.avatar}
-                                    src={item.avatarUrl}
+                                    src={item.groupAvatarUrl}
                                 />
                             }
                             title={

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './search.css';
-import { Input, Modal } from 'antd';
+import { Input, Modal, Avatar, List } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import '../../../../../assert/iconfont/iconfont.css';
 import { connect } from 'react-redux';
@@ -29,9 +29,10 @@ const index = props => {
                         size="large"
                         className={styles.inputId}
                         bordered={true}
-                        placeholder="请输入要添加好友的id"
-                        addonBefore="id:"
-                        onChange={handleIdChange.bind(this)}
+                        placeholder="请输入陌生人的名字或id"
+                        addonBefore="名字/id:"
+                        value={props.inputMsg}
+                        onChange={handleInputChange.bind(this)}
                     />
                     <br />
                     <Input
@@ -40,12 +41,42 @@ const index = props => {
                         bordered={true}
                         placeholder="请输入备注信息"
                         addonBefore="note:"
+                        value={props.note}
                         onChange={handleNoteChange.bind(this)}
                     />
+                    {showFriendInfoList(props.friendInfo.length)}
                 </div>
             </Modal>
         </div>
     );
+    function showFriendInfoList(friendInfoListLength) {
+        if (friendInfoListLength !== 0) {
+            return (
+                <List
+                    className={styles.friendInfoList}
+                    itemLayout="horizontal"
+                    dataSource={props.friendInfo}
+                    bordered={true}
+                    renderItem={item => (
+                        <List.Item>
+                            <List.Item.Meta
+                                avatar={
+                                    <Avatar
+                                        src={item.avatarUrl}
+                                        className={styles.avatar}
+                                    />
+                                }
+                                title={<p>用户ID：{item.id}</p>}
+                                description={<p>用户名：{item.username}</p>}
+                            />
+                        </List.Item>
+                    )}
+                />
+            );
+        } else {
+            return '';
+        }
+    }
     function showModal() {
         props.dispatch({
             type: 'addFriend/showModal',
@@ -61,13 +92,16 @@ const index = props => {
             type: 'addFriend/handleCancel',
         });
     }
-    function handleIdChange(e) {
-        let id = e.target.value;
+    function handleInputChange(e) {
+        let value = e.target.value;
         props.dispatch({
-            type: 'addFriend/handleIdChange',
+            type: 'addFriend/handleInputMsgChange',
             payload: {
-                id: id,
+                inputMsg: value,
             },
+        });
+        props.dispatch({
+            type: 'addFriend/getUserByIdOrName',
         });
     }
     function handleNoteChange(e) {
@@ -83,6 +117,9 @@ const index = props => {
 const mapStateToProps = state => {
     return {
         visible: state.addFriend.visible,
+        friendInfo: state.addFriend.friendInfo,
+        inputMsg: state.addFriend.inputMsg,
+        note: state.addFriend.note,
     };
 };
 export default connect(mapStateToProps)(index);
