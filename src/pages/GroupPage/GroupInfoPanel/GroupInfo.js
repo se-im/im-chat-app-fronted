@@ -105,7 +105,6 @@ const GroupInfo = props => {
     );
     function proposeCvs(groupId) {
         const cvsList = props.cvs.data;
-
         let isExist = false;
         for (let i of cvsList) {
             if (groupId === i.relationEntityId && i.cvsType === 'G') {
