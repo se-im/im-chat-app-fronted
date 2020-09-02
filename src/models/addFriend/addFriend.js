@@ -85,8 +85,6 @@ const addFriend = {
                     type: 'setNewFriendId',
                     payload: { data: res },
                 });
-            } else {
-                message.success('未查询到该用户');
             }
         },
     },
