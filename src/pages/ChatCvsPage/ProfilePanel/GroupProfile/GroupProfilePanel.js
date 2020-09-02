@@ -77,6 +77,9 @@ class GroupProfilePanel extends Component {
         this.props.dispatch({
             type: 'chatPanel/setVisibleToCancelModel',
         });
+        this.props.dispatch({
+            type: 'chatPanel/changeProfilePannelStatus',
+        });
         this.setState({
             userID: null,
             flag: false,
