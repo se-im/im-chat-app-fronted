@@ -5,7 +5,6 @@ import { connect } from '../../../../.umi/plugin-dva/exports';
 
 const index = props => {
     function groupClick(item) {
-        console.log(item);
         props.dispatch({
             type: 'groupInfo/getGroupInfo',
             payload: item.groupId,
