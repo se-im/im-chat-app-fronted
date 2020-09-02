@@ -14,6 +14,7 @@ import {
 import styles from './style.css';
 import 'emoji-mart/css/emoji-mart.css';
 import { connect } from 'umi';
+import util from '../../../../../../util/util';
 
 class MessageFooter extends Component {
     state = {
@@ -221,6 +222,18 @@ class MessageFooter extends Component {
         });
         this.setState({
             inputValue: '',
+        });
+
+        let cvsId = this.props.cvs.cur_cvs.id;
+        let cur_user = this.props.global.cur_user;
+        let inbox = util.genInbox(
+            cvsId,
+            this.state.inputValue,
+            cur_user.avatarUrl,
+        );
+        this.props.dispatch({
+            type: 'Message/addNewInbox',
+            payload: inbox,
         });
     }
 

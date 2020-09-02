@@ -27,6 +27,17 @@ const LoginModel = {
             });
         },
     },
+    subscriptions: {
+        setup({ dispatch, history }, done) {
+            history.listen((location, action) => {
+                if (location.pathname === '/login/index') {
+                    dispatch({
+                        type: 'websocket/stopWebSocket',
+                    });
+                }
+            });
+        },
+    },
 };
 
 export default LoginModel;

@@ -2,13 +2,13 @@ const servers = {
     local: 'http://localhost',
     aliyun1: 'http://zmz121.cn',
     aliyun2: 'http://1.zmz121.cn',
-    local1: 'http://192.168.2.206',
+    zmz: 'http://192.168.2.206',
     cui: 'http://172.29.12.13',
 };
 
 // let server = servers.aliyun2;
-let server = servers.cui;
-// let server = servers.local1;
+// let server = servers.cui;
+let server = servers.zmz;
 
 const user_api = {
     getUserByToken: '/user/detail/token',
