@@ -88,7 +88,14 @@
     float: right;
 
 }
-
+.emptyBlock{
+    height: 15px;
+    width: 18px;
+    text-align: center;
+    line-height: 15px;
+    margin-left: 10px;
+    float: right;
+}
 /*设置滚动条*/
 .cvs_body::-webkit-scrollbar {
     width: 10px;
