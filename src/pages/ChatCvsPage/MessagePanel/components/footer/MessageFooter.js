@@ -105,6 +105,8 @@ class MessageFooter extends Component {
                             beforeUpload={file => {
                                 this.setState({
                                     img: file,
+                                    inputValue:
+                                        this.state.inputValue + '#' + file.name,
                                 });
                                 const data = new FormData();
                                 data.append('file', file);
@@ -122,14 +124,14 @@ class MessageFooter extends Component {
                                         this.setState({
                                             percent: complete,
                                         });
+                                        console.log(complete);
                                     },
                                     headers: {
                                         'Content-Type': 'multipart/form-data',
                                     },
                                 })
                                     .then(res => {
-                                        this.sendComplexMessage(res, 'image');
-
+                                        console.log(res);
                                         if (res.status === 200) {
                                             return 'success';
                                         } else {
@@ -213,35 +215,13 @@ class MessageFooter extends Component {
         );
     }
 
-    sendComplexMessage(msg, msgContentType) {
-        this.props.dispatch({
-            type: 'Message/sendMessageToRemote',
-            payload: {
-                msg: msg,
-                msgType: msgContentType,
-            },
-        });
-
-        let cvsId = this.props.cvs.cur_cvs.id;
-        let cur_user = this.props.global.cur_user;
-        let inbox = util.genInbox(cvsId, msg, cur_user.avatarUrl, 'image');
-        console.log(inbox);
-        this.props.dispatch({
-            type: 'Message/addNewInbox',
-            payload: inbox,
-        });
-        this.setState({
-            inputValue: '',
-        });
-    }
-
     sendMessage() {
         this.props.dispatch({
             type: 'Message/sendMessageToRemote',
-            payload: {
-                msg: this.state.inputValue,
-                msgType: 'text',
-            },
+            payload: this.state.inputValue,
+        });
+        this.setState({
+            inputValue: '',
         });
 
         let cvsId = this.props.cvs.cur_cvs.id;
@@ -251,13 +231,9 @@ class MessageFooter extends Component {
             this.state.inputValue,
             cur_user.avatarUrl,
         );
-        console.log(inbox);
         this.props.dispatch({
             type: 'Message/addNewInbox',
             payload: inbox,
-        });
-        this.setState({
-            inputValue: '',
         });
     }
 

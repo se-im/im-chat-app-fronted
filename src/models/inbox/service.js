@@ -3,7 +3,7 @@ import api from '../../../util/api';
 
 const fetchInbox = async cvsId => {
     return request
-        .post(api.chat_api.getAllInbox, { cvsId: cvsId })
+        .post(api.chat_api.getLastInbox, { cvsId: cvsId })
         .then(res => {
             return res;
         })

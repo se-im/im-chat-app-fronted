@@ -49,17 +49,13 @@ const ChatModel = {
         chengeCurrentCvsType(state, action) {
             state.currentCvsType = action.payload;
         },
-        updateGroupProfileMemberNum(state, action) {
-            state.profileForGroup.memberNum += 1;
-            return state;
-        },
 
         setShowProfileToNot(state, action) {
             state.showProfilePanel = false;
             return state;
         },
         revertProfilePanel(state, action) {
-            state.showProfilePanel = !state.showProfilePanel;
+            state.showProfilePanel = true;
             return state;
         },
         setUserProfile(state, action) {
@@ -129,10 +125,6 @@ const ChatModel = {
         },
         *updateUserNote(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
-            yield effects.put({
-                type: 'chengeCurrentCvsType',
-                payload: cur_cvs.cvsType,
-            });
             yield effects.call(
                 updateFriendNote,
                 cur_cvs.relationEntityId,
