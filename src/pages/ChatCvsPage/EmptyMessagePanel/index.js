@@ -4,9 +4,7 @@ import styles from './index.css';
 export default () => {
     return (
         <div>
-            <h1 className={styles.empty_panel}>
-                Page ChatCvsPage\EmptyMessagePanel\index
-            </h1>
+            <h1 className={styles.empty_panel}></h1>
         </div>
     );
 };
