@@ -42,14 +42,15 @@ class index extends Component {
                 this.props.dispatch({
                     type: 'Message/changeSpin',
                 });
-                console.log(this.props.cur_inbox);
-                this.props.dispatch({
-                    type: 'Message/getNewInbox',
-                    payload: {
-                        cvsId: this.props.cur_inbox[0].cvsId,
-                        syncId: this.props.cur_inbox[0].syncId,
-                    },
-                });
+                if (this.props.cur_inbox !== null) {
+                    this.props.dispatch({
+                        type: 'Message/getNewInbox',
+                        payload: {
+                            cvsId: this.props.cur_inbox[0].cvsId,
+                            syncId: this.props.cur_inbox[0].syncId,
+                        },
+                    });
+                }
             }
         }
     }
@@ -66,18 +67,25 @@ class index extends Component {
     }
     // 组件更新后
     componentDidUpdate(prevProps) {
-        if (prevProps.cur_inbox[0].cvsId !== this.props.cur_inbox[0].cvsId) {
-            if (this.msgdiv.current) {
-                const scrollHeight = this.msgdiv.current.scrollHeight; //里面div的实际高度  2000px
-                const height = this.msgdiv.current.clientHeight; //网页可见高度  200px
-                const maxScrollTop = scrollHeight - height;
-                this.msgdiv.current.scrollTop =
-                    maxScrollTop > 0 ? maxScrollTop : 0;
-                //如果实际高度大于可见高度，说明是有滚动条的，则直接把网页被卷去的高度设置为两个div的高度差，实际效果就是滚动到底部了。
+        if (
+            prevProps.cur_inbox.length !== 0 &&
+            this.props.cur_inbox.length !== 0
+        ) {
+            if (
+                prevProps.cur_inbox[0].cvsId !== this.props.cur_inbox[0].cvsId
+            ) {
+                if (this.msgdiv.current) {
+                    const scrollHeight = this.msgdiv.current.scrollHeight; //里面div的实际高度  2000px
+                    const height = this.msgdiv.current.clientHeight; //网页可见高度  200px
+                    const maxScrollTop = scrollHeight - height;
+                    this.msgdiv.current.scrollTop =
+                        maxScrollTop > 0 ? maxScrollTop : 0;
+                    //如果实际高度大于可见高度，说明是有滚动条的，则直接把网页被卷去的高度设置为两个div的高度差，实际效果就是滚动到底部了。
+                }
+            } else {
+                // console.log(this.msgdiv.current.scrollTop);
+                // this.msgdiv.current.scrollTop = prevProps.msgdiv.scrollTop;
             }
-        } else {
-            console.log(this.msgdiv.current.scrollTop);
-            // this.msgdiv.current.scrollTop = prevProps.msgdiv.scrollTop;
         }
     }
 }

@@ -25,7 +25,6 @@ const MsgModel = {
         },
 
         *getNewInbox({ payload }, { put, call, select }) {
-            console.log(payload);
             const data = yield call(service.getNewInbox, payload);
             if (data !== null) {
                 yield put({
