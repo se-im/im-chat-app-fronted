@@ -9,6 +9,7 @@ import {
     addGroupMembers,
 } from './service';
 import { Link } from 'umi';
+import { routerRedux } from 'dva';
 
 const ChatModel = {
     namespace: 'chatPanel',
@@ -178,8 +179,15 @@ const ChatModel = {
                     payload: token1,
                 });
             }
+
             const data = yield effects.call(getUserByToken, token1);
-            // console.log(data);
+            console.log(data);
+            if (data === undefined || data === null) {
+                yield effects.put(routerRedux.push('/register/index'));
+                return;
+                console.log(data);
+            }
+
             yield effects.put({
                 type: 'global/setUser',
                 payload: data,

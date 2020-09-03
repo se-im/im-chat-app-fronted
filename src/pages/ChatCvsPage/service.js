@@ -7,6 +7,7 @@ const getUserByToken = async token => {
     return request
         .get(api.user_api.getUserByToken, { token: token })
         .then(res => {
+            console.log(res);
             return res;
         })
         .catch(error => {
