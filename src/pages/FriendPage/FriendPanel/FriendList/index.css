@@ -4,9 +4,9 @@
 }
 .friendList{
 }
-.friendList a{
+.friendList p{
   font-size: 16px;
-  color: #753fae;
+  color: #000000;
 }
 /*设置item宽度*/
 .item{
@@ -16,11 +16,11 @@
 }
 /*item的鼠标点击样式*/
 .itemClick{
-    background-color: papayawhip;
+    background-color: #d5d5d9;
 }
 /*item的鼠标覆盖样式*/
 .friendList ul li:hover{
-  background-color: papayawhip;
+  background-color: #d5d5d9;
 }
 /*头 像*/
 .avatar{

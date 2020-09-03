@@ -97,16 +97,15 @@ const FriendInfo = props => {
                     </div>
                 </div>
                 <div className={styles.body_content_button}>
-                    <Button
+                    <button
                         type="primary"
-                        block
                         onClick={proposeCvs.bind(
                             this,
                             friendInfo.cur_friendInfo.id,
                         )}
                     >
                         发起会话
-                    </Button>
+                    </button>
                 </div>
             </div>
         </div>

@@ -18,11 +18,13 @@
     padding: 0 10px;
 }
 .name_title{
-    font-size: 12pt;
+    font-size: 15px;
+    font-weight: bold;
 }
 .message_content{
     background-color: #EEEEEE;
-    font-size: 14pt;
+    font-size: 12px;
+    color: black;
     padding: 8px 10px;
     border-radius: 2px;
     /*margin-right: 10px;*/
