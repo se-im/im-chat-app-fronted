@@ -69,9 +69,12 @@ class index extends Component {
     componentDidUpdate(prevProps) {
         if (
             prevProps.cur_inbox.length !== 0 &&
-            this.props.cur_inbox.length !== 0
+            this.props.cur_inbox.length !== 0 &&
+            prevProps.cur_inbox.length !== this.props.cur_inbox.length
         ) {
             if (
+                prevProps.cur_inbox[0].syncId ===
+                    this.props.cur_inbox[0].syncId ||
                 prevProps.cur_inbox[0].cvsId !== this.props.cur_inbox[0].cvsId
             ) {
                 if (this.msgdiv.current) {
