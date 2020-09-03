@@ -35,7 +35,7 @@ export default {
             console.log('处理更新会话试图');
             let newInbox = payload;
             let cvsList = yield effect.select(state => state.cvs.data);
-            let cur_cvs = effect.select(state => state.cvs.cur_cvs);
+            let cur_cvs = yield effect.select(state => state.cvs.cur_cvs);
             let newCvsList = JSON.parse(JSON.stringify(cvsList));
             //TODO 会话识图本地不存在
             let finded = false;
@@ -62,6 +62,7 @@ export default {
             if (!finded) {
                 yield effect.put({
                     type: 'cvs/getCvslist',
+                    payload: newInbox.cvsId,
                 });
             } else {
                 yield effect.put({

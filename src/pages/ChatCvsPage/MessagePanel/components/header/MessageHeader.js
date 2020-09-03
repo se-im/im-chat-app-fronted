@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 
 const MessageHeader = props => {
     const { cur_cvs } = props.cvs;
-    console.log(cur_cvs);
 
     function userStateCircle() {
         if (cur_cvs.online === true && cur_cvs.cvsType === 'U') {

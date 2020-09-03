@@ -23,10 +23,32 @@ export default {
             ext: '',
             online: false,
         },
+        search_not_match: [],
         cur_cvs_index: -1,
         haveCvsChosen: false,
     },
     reducers: {
+        handleSearch(state, action) {
+            let notMatch = JSON.parse(JSON.stringify(state.search_not_match));
+            let newData = JSON.parse(JSON.stringify(state.data));
+            for (let i = 0; i < notMatch.length; i++) {
+                newData.push(notMatch[i]);
+            }
+            notMatch = [];
+
+            let value = action.payload;
+            state.data = util.sortCvs(
+                newData.filter(item => {
+                    let b = item.cvsName.indexOf(value) !== -1;
+                    if (!b) {
+                        notMatch.push(item);
+                    }
+                    return b;
+                }),
+            );
+            state.search_not_match = notMatch;
+        },
+
         setCvsList(state, action) {
             let newState = JSON.parse(JSON.stringify(state));
             newState.data = util.sortCvs(action.payload.data);
@@ -54,6 +76,14 @@ export default {
     effects: {
         *getCvslist(action, { put, call, select }) {
             const data = yield call(fetchCvsList);
+            if (action.payload !== undefined && action.payload !== null) {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].id === action.payload) {
+                        data[i].unreadMessageNum = data[i].unreadMessageNum + 1;
+                    }
+                }
+            }
+
             yield put({
                 type: 'setCvsList',
                 payload: { data },

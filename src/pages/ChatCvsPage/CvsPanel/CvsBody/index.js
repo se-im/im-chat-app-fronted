@@ -19,6 +19,11 @@ const index = ({ cvs: cvs, dispatch }) => {
         dispatch({
             type: 'chatPanel/setShowProfileToNot',
         });
+
+        dispatch({
+            type: 'cvs/handleSearch',
+            payload: '',
+        });
     }
 
     function genStyle(item) {

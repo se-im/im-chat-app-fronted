@@ -13,6 +13,7 @@ const index = props => {
                 className={styles.search}
                 placeholder="Search Conversations"
                 prefix={<SearchOutlined />}
+                onChange={searchCvs.bind(this)}
             />
             <span
                 className={'iconfont im-icon-test' + ' ' + styles.add_icon}
@@ -76,6 +77,15 @@ const index = props => {
         } else {
             return '';
         }
+    }
+
+    function searchCvs(e) {
+        let value = e.target.value;
+        console.log(value);
+        props.dispatch({
+            type: 'cvs/handleSearch',
+            payload: value,
+        });
     }
     function showModal() {
         props.dispatch({

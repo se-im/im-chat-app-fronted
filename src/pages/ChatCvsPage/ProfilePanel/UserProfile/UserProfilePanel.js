@@ -31,6 +31,7 @@ const ProfileHeader = props => {
             payload: values,
         });
     };
+    console.log(chatPanel.profileForUser);
     return (
         <Fragment>
             <div className={styles.profile_header}>

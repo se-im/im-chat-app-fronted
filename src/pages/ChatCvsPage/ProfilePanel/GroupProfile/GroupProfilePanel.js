@@ -99,6 +99,7 @@ class GroupProfilePanel extends Component {
                 userID: this.props.friendInfo[0].id,
             },
         });
+        this.handleCancel();
     };
     handleShowNewMemberInfo = flag => {
         if (flag) {

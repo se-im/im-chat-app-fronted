@@ -90,19 +90,19 @@ const index = ({ LoginModel, dispatch }) => {
                         <div className="text-center p-t-12">
                             <span className="txt1">忘记</span>
 
-                            <a className="txt2" href="#">
+                            <Link to={'/login/index'} className="txt2" href="#">
                                 用户名 / 密码?
-                            </a>
+                            </Link>
                         </div>
                         <div className="text-center p-t-136">
                             <Link to={'/register/index'}>
-                                <a className="txt2" href="#">
+                                <Link to={'/register/index'} className="txt2">
                                     注册新账号
                                     <i
                                         className="fa fa-long-arrow-right m-l-5"
                                         aria-hidden="true"
                                     />
-                                </a>
+                                </Link>
                             </Link>
                         </div>
                     </form>

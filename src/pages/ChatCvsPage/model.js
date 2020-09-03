@@ -102,8 +102,10 @@ const ChatModel = {
                     getFriendInfoById,
                     cur_cvs.relationEntityId,
                 );
-                // console.log(cur_user);
                 //put到当前state
+                if (cur_user === undefined || cur_user === null) {
+                    return;
+                }
                 yield effects.put({
                     type: 'setUserProfile',
                     payload: cur_user,

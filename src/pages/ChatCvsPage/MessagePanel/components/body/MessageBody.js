@@ -16,7 +16,6 @@ const index = ({ cur_inbox, cur_cvs, dispatch }) => {
     }
 
     useEffect(() => {
-        console.log('-------------');
         scrollToBottom();
     });
 
