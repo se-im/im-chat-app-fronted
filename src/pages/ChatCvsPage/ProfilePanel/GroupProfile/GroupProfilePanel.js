@@ -68,9 +68,6 @@ class GroupProfilePanel extends Component {
     showModal = () => {
         this.props.dispatch({
             type: 'chatPanel/setVisibleToShowModel',
-            // payload: {
-            //     userID: this.state.userID,
-            // },
         });
     };
     handleCancel = () => {
@@ -102,12 +99,8 @@ class GroupProfilePanel extends Component {
                 userID: this.state.userID,
             },
         });
-        this.props.dispatch({
-            type: 'chatPanel/getGroupMembers',
-        });
     };
     handleShowNewMemberInfo = flag => {
-        console.log(this.props.friendInfo);
         if (flag) {
             return (
                 <List
