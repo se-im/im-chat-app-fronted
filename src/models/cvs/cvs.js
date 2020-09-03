@@ -75,6 +75,10 @@ export default {
                 payload: current_cvs,
             });
             yield put({
+                type: 'inbox/getInboxList',
+                payload: current_cvs,
+            });
+            yield put({
                 type: 'setCvsList',
                 payload: { data: newCvsList },
             });

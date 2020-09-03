@@ -3,6 +3,7 @@ import './index.css';
 import img1 from '../../../assert/login/img-01.png';
 import '../../../assert/iconfont/iconfont.css';
 import { connect } from 'umi';
+import { Link } from 'dva/router';
 
 const index = ({ LoginModel, dispatch }) => {
     const [userModel, setUserModel] = useState({
@@ -95,13 +96,13 @@ const index = ({ LoginModel, dispatch }) => {
                         </div>
 
                         <div className="text-center p-t-136">
-                            <a className="txt2" href="#">
+                            <Link to={'/register/index'}>
                                 注册新账号
                                 <i
                                     className="fa fa-long-arrow-right m-l-5"
                                     aria-hidden="true"
                                 />
-                            </a>
+                            </Link>
                         </div>
                     </form>
                 </div>

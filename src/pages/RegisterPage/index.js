@@ -5,6 +5,7 @@ import '../../../assert/iconfont/iconfont.css';
 import { Form, Input, Button, Checkbox, Image, message } from 'antd';
 import styles from './index.css';
 import { connect } from 'umi';
+import { Link } from 'dva/router';
 import RegisterModel from './model';
 const layout = {
     labelCol: { span: 6 },
@@ -128,13 +129,13 @@ const index = props => {
                         </div>
 
                         <div className="text-center p-t-136">
-                            <a className="txt2" href="#">
+                            <Link to={'/login/index'} className="txt2">
                                 已有账号？登陆
                                 <i
                                     className="fa fa-long-arrow-right m-l-5"
                                     aria-hidden="true"
                                 />
-                            </a>
+                            </Link>
                         </div>
                     </Form>
 
