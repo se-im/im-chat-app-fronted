@@ -99,9 +99,6 @@ class GroupProfilePanel extends Component {
                 userID: this.state.userID,
             },
         });
-        this.props.dispatch({
-            type: 'chatPanel/getGroupMembers',
-        });
     };
     handleShowNewMemberInfo = flag => {
         if (flag) {
