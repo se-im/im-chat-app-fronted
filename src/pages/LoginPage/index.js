@@ -7,8 +7,8 @@ import { Link } from 'umi';
 
 const index = ({ LoginModel, dispatch }) => {
     const [userModel, setUserModel] = useState({
-        username: 'tom',
-        password: '1',
+        username: '',
+        password: '',
     });
     function login(event) {
         event.preventDefault();

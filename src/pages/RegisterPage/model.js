@@ -43,12 +43,13 @@ const RegisterModel = {
             const res = yield effects.call(service.register, value);
             console.log(res);
             if (res === null) {
-                const token = yield effects.call(service.getToken, {
-                    username: value.username,
-                    password: value.password,
-                });
-                window.localStorage.setItem('token', token);
-                yield effects.put(routerRedux.push('/'));
+                // const token = yield effects.call(service.getToken, {
+                //     username: value.username,
+                //     password: value.password,
+                // });
+                // window.localStorage.setItem('token', token);
+                message.success('注册成功！');
+                yield effects.put(routerRedux.push('/login/index'));
             }
         },
     },

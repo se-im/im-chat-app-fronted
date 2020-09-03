@@ -20,7 +20,10 @@ class ProfileEdit extends Component {
     state = {
         value: 1,
         username: this.props.user.username,
-        birthday: this.props.user.birthday,
+        birthday:
+            this.props.user.birthday > 0
+                ? this.props.user.birthday
+                : '2020-09-01',
         shown: this.props.user.shown,
         imageUrl: this.props.user.avatarUrl,
     };
