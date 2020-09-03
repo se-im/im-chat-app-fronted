@@ -18,14 +18,13 @@ const MsgModel = {
     },
     effects: {
         *sendMessageToRemote({ payload }, { put, call, select }) {
-            let msg = payload;
             const cur_cvs = yield select(state => state.cvs.cur_cvs);
-            yield call(service.sendMessageRemote, cur_cvs.id, payload);
+            let { msg, msgType } = payload;
+            yield call(service.sendMessageRemote, cur_cvs.id, msg, msgType);
             message.success('消息发送成功');
         },
 
         *getNewInbox({ payload }, { put, call, select }) {
-            console.log(payload);
             const data = yield call(service.getNewInbox, payload);
             if (data !== null) {
                 yield put({

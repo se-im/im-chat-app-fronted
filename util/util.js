@@ -39,10 +39,10 @@ const genLoginPacket = token => {
     return JSON.stringify(packet);
 };
 
-const genInbox = (cvsId, msg, senderAvatarUrl) => {
+const genInbox = (cvsId, msg, senderAvatarUrl, msgContentType = 'text') => {
     return {
-        createTime: 1598873766000,
-        msgContentType: 'text',
+        createTime: new Date().getTime(),
+        msgContentType: msgContentType,
         cvsId: cvsId,
         id: 51,
         messageId: 22,

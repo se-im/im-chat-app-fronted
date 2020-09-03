@@ -28,12 +28,12 @@ const getNewInbox = async value => {
         });
 };
 
-const sendMessageRemote = (cvsId, msg) => {
+const sendMessageRemote = (cvsId, msg, msgType = 'text') => {
     request
         .post(api.chat_api.sendMessage, {
             cvsId: cvsId,
             msg: msg,
-            msgType: 'text',
+            msgType: msgType,
         })
         .then(res => {
             return res;
