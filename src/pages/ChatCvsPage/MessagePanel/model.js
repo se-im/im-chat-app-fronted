@@ -26,7 +26,7 @@ const MsgModel = {
 
         *getNewInbox({ payload }, { put, call, select }) {
             const data = yield call(service.getNewInbox, payload);
-            if (data !== null) {
+            if (data.length !== 0) {
                 yield put({
                     type: 'addNewInbox',
                     payload: data,
@@ -38,8 +38,13 @@ const MsgModel = {
             let newInbox = payload;
             let old_inbox = yield effect.select(state => state.inbox.cur_inbox);
             let cur_inbox = JSON.parse(JSON.stringify(old_inbox));
-            for (var i in newInbox) {
-                cur_inbox.unshift(newInbox[i]);
+
+            if (payload[0] === undefined) {
+                cur_inbox.push(newInbox);
+            } else {
+                for (var i in newInbox) {
+                    cur_inbox.unshift(newInbox[i]);
+                }
             }
             yield effect.put({
                 type: 'inbox/setCvsInbox',
