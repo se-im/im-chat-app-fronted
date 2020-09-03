@@ -20,15 +20,16 @@
     float: left;
     width: 50px;
     height: 50px;
-    margin: 20px 20px ;
+    margin: 20px 10px ;
 }
 .header_content p{
     float: left;
-    width: 200px;
+    width: 400px;
     height: 50px;
     margin-top: 26px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
+    color: #000000;
 }
 .friendInfo_body {
     width: var(--messagepanel-width);

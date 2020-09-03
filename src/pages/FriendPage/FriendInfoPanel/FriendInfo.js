@@ -33,7 +33,6 @@ const FriendInfo = props => {
                         shape={'circle'}
                         src={friendInfo.cur_friendInfo.avatarUrl}
                     />
-                    {/*<UserAddOutlined />*/}
                     <p>{friendInfo.cur_friendInfo.username}</p>
                 </div>
             </div>

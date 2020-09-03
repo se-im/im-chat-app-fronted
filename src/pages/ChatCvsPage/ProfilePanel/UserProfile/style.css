@@ -16,9 +16,9 @@
     width: 200px;
     margin-top: 5px;
     color: #000000;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 .header_note_edit {
     margin: 2px auto;
@@ -65,7 +65,7 @@
 .footer_item_content {
     margin: 10px auto;
     width: 180px;
-    height: 180px;
+    height: 160px;
     border: 1px solid #DBDBDB;
     border-radius: 8px;
 }

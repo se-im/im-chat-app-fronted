@@ -4,8 +4,9 @@ import img1 from '../../../assert/login/img-01.png';
 import '../../../assert/iconfont/iconfont.css';
 import { Form, Input, Button, Checkbox, Image, message } from 'antd';
 import styles from './index.css';
-import { connect } from 'umi';
+import { connect, Link } from 'umi';
 import RegisterModel from './model';
+
 const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 },
@@ -128,13 +129,15 @@ const index = props => {
                         </div>
 
                         <div className="text-center p-t-136">
-                            <a className="txt2" href="#">
-                                已有账号？登陆
-                                <i
-                                    className="fa fa-long-arrow-right m-l-5"
-                                    aria-hidden="true"
-                                />
-                            </a>
+                            <Link to={'/login/index'}>
+                                <a className="txt2" href="#">
+                                    已有账号？登录
+                                    <i
+                                        className="fa fa-long-arrow-right m-l-5"
+                                        aria-hidden="true"
+                                    />
+                                </a>
+                            </Link>
                         </div>
                     </Form>
 

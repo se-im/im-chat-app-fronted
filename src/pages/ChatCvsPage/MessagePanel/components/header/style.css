@@ -9,7 +9,7 @@
 }
 .header_left {
     display: flex;
-    width: 200px;
+    width: 400px;
     margin-left: 10px;
 }
 .header_left img {
@@ -20,15 +20,15 @@
 }
 .header_userinfo {
     margin-left: 12px;
+    margin-top: 8px;
 }
 .header_userinfo div {
-    padding-top: 3px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: #000000;
 }
 .header_userinfo p {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
     color: #969896;
 }

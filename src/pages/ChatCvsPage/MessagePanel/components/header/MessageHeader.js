@@ -10,15 +10,17 @@ import { connect } from 'react-redux';
 
 const MessageHeader = props => {
     const { cur_cvs } = props.cvs;
+    console.log(cur_cvs);
+
     function userStateCircle() {
-        if (cur_cvs.online === true) {
+        if (cur_cvs.online === true && cur_cvs.cvsType === 'U') {
             return (
                 <p>
                     在线 &nbsp; &nbsp;
                     <span className={styles.header_userinfo_state_on} />
                 </p>
             );
-        } else {
+        } else if (cur_cvs.cvsType === 'U') {
             return (
                 <p>
                     离线 &nbsp; &nbsp;
