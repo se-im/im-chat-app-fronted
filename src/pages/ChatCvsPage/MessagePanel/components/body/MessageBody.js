@@ -42,7 +42,7 @@ class index extends Component {
                 this.props.dispatch({
                     type: 'Message/changeSpin',
                 });
-                if (this.props.cur_inbox !== null) {
+                if (this.props.cur_inbox.length !== 0) {
                     this.props.dispatch({
                         type: 'Message/getNewInbox',
                         payload: {
