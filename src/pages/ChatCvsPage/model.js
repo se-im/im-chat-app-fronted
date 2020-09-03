@@ -49,6 +49,10 @@ const ChatModel = {
         chengeCurrentCvsType(state, action) {
             state.currentCvsType = action.payload;
         },
+        updateGroupProfileMemberNum(state, action) {
+            state.profileForGroup.memberNum += 1;
+            return state;
+        },
 
         setShowProfileToNot(state, action) {
             state.showProfilePanel = false;
@@ -125,26 +129,15 @@ const ChatModel = {
         },
         *updateUserNote(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
+            yield effects.put({
+                type: 'chengeCurrentCvsType',
+                payload: cur_cvs.cvsType,
+            });
             yield effects.call(
                 updateFriendNote,
                 cur_cvs.relationEntityId,
                 action.payload.note,
             );
-        },
-        *getGroupMembers(action, effects) {
-            const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);
-            const cur_group = yield effects.call(
-                getGroupInfoById,
-                cur_cvs.relationEntityId,
-            );
-            cur_group.members = yield effects.call(
-                getGroupMembersByGroupId,
-                cur_cvs.relationEntityId,
-            );
-            yield effects.put({
-                type: 'setGroupInfo',
-                payload: cur_group,
-            });
         },
         *updateGroupInfo(action, effects) {
             const cur_cvs = yield effects.select(state => state.cvs.cur_cvs);

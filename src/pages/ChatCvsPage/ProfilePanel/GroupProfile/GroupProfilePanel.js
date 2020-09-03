@@ -68,9 +68,6 @@ class GroupProfilePanel extends Component {
     showModal = () => {
         this.props.dispatch({
             type: 'chatPanel/setVisibleToShowModel',
-            // payload: {
-            //     userID: this.state.userID,
-            // },
         });
     };
     handleCancel = () => {
@@ -84,6 +81,14 @@ class GroupProfilePanel extends Component {
     };
     //添加群成员
     handleAddNewMembers = () => {
+        let newMember = {
+            username: this.props.friendInfo[0].username,
+            userAvatarUrl: this.props.friendInfo[0].avatarUrl,
+        };
+        this.props.chatPanel.profileForGroup.members.push(newMember);
+        this.props.dispatch({
+            type: 'chatPanel/updateGroupProfileMemberNum',
+        });
         this.setState({
             userID: null,
             flag: false,
@@ -91,11 +96,8 @@ class GroupProfilePanel extends Component {
         this.props.dispatch({
             type: 'chatPanel/addNewMemberToGroup',
             payload: {
-                userID: this.state.userID,
+                userID: this.props.friendInfo[0].id,
             },
-        });
-        this.props.dispatch({
-            type: 'chatPanel/getGroupMembers',
         });
     };
     handleShowNewMemberInfo = flag => {
