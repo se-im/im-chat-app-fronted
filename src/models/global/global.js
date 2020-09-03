@@ -70,9 +70,10 @@ export default {
             });
             message.success('用户修改成功');
         },
-        *updateUserPassword({ payload }, { call }) {
-            yield call(service.fetchUpdateUserPasswordRemote, payload);
+        *updateUserPassword({ payload }, effects) {
+            yield effects.call(service.fetchUpdateUserPasswordRemote, payload);
             message.success('密码修改成功');
+            yield effects.put(routerRedux.push('/login/index'));
         },
     },
 };
