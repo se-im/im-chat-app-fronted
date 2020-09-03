@@ -7,7 +7,7 @@ const servers = {
 };
 
 // let server = servers.aliyun2;
-let server = servers.zmz;
+let server = servers.cui;
 // let server = servers.zmz;
 
 const user_api = {
@@ -23,7 +23,7 @@ const user_api = {
     getFriendInfoById: '/user/friend/queryFriendDetail',
     updateFriendNote: '/user/friend/updateFriendNote',
     getUserByIdOrName: '/user/friend/detail/id_or_username',
-
+    register: '/user/register',
     getGroupInfo: '/user/group/queryGroupInfo',
     updateGroupInfo: '/user/group/updateGroupInfo',
     getAllGroupMembers: '/user/group/selectGroupUser',
