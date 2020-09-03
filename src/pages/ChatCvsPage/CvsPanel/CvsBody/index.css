@@ -17,12 +17,12 @@
 }
 
 .cur_cvs{
-    background-color: papayawhip; /*滚动条的背景颜色*/
+    background-color: #d5d5d9;
 }
 
 /*item的鼠标覆盖样式*/
 .cvs_body ul li:hover {
-    background-color: papayawhip;
+    background-color: #d5d5d9;
 }
 
 /*用户状态*/
@@ -55,12 +55,12 @@
 
 .userName {
     font-size: 16px;
-    color: #753fae;
+    color: #000000;
 }
 
 .description {
     font-size: 13px;
-    color: #78678f;
+    color: #000000;
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -70,7 +70,7 @@
 .lastMsgTime {
     font-family: Arial, serif;
     font-size: 11px;
-    color: #78678f;
+    color: #000000;
     font-style: normal;
     margin-bottom: 5px;
 }

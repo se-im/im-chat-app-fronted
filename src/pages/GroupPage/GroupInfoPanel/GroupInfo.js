@@ -89,16 +89,15 @@ const GroupInfo = props => {
                     </div>
                 </div>
                 <div className={styles.body_content_button}>
-                    <Button
+                    <button
                         type="primary"
-                        block
                         onClick={proposeCvs.bind(
                             this,
                             groupInfo.cur_groupInfo.id,
                         )}
                     >
                         发起群聊
-                    </Button>
+                    </button>
                 </div>
             </div>
         </div>
