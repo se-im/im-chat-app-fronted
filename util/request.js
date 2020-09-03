@@ -44,14 +44,14 @@ axios.interceptors.response.use(
         try {
             let response = config.data;
             if (response !== undefined) {
-                if (response.status === response_status.success) {
+                if (
+                    response.status === response_status.success ||
+                    response.status === response_status.unlogin
+                ) {
                     return response.data;
                 } else {
                     message.error(response.msg);
                     console.log(response);
-                    if (response.status === response_status.unlogin) {
-                        routerRedux.push('/login/index');
-                    }
                 }
                 return Promise.reject(response.msg);
             }

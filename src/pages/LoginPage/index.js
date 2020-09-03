@@ -3,7 +3,7 @@ import './index.css';
 import img1 from '../../../assert/login/img-01.png';
 import '../../../assert/iconfont/iconfont.css';
 import { connect } from 'umi';
-import { Link } from 'dva/router';
+import { Link } from 'umi';
 
 const index = ({ LoginModel, dispatch }) => {
     const [userModel, setUserModel] = useState({
@@ -87,21 +87,22 @@ const index = ({ LoginModel, dispatch }) => {
                                 登录
                             </button>
                         </div>
-
                         <div className="text-center p-t-12">
                             <span className="txt1">忘记</span>
+
                             <a className="txt2" href="#">
                                 用户名 / 密码?
                             </a>
                         </div>
-
                         <div className="text-center p-t-136">
                             <Link to={'/register/index'}>
-                                注册新账号
-                                <i
-                                    className="fa fa-long-arrow-right m-l-5"
-                                    aria-hidden="true"
-                                />
+                                <a className="txt2" href="#">
+                                    注册新账号
+                                    <i
+                                        className="fa fa-long-arrow-right m-l-5"
+                                        aria-hidden="true"
+                                    />
+                                </a>
                             </Link>
                         </div>
                     </form>
