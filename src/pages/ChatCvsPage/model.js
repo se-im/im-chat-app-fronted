@@ -55,7 +55,7 @@ const ChatModel = {
             return state;
         },
         revertProfilePanel(state, action) {
-            state.showProfilePanel = true;
+            state.showProfilePanel = !state.showProfilePanel;
             return state;
         },
         setUserProfile(state, action) {
