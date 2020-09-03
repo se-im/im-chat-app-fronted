@@ -49,6 +49,7 @@ export default {
     effects: {
         *login({ payload }, { call, put }) {
             const token = yield call(service.getToken, payload);
+            console.log(token);
             yield put({
                 type: 'setToken',
                 payload: token,

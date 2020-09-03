@@ -14,6 +14,20 @@ const getMessagePanelInfoList = () => {
         });
 };
 
+const getNewInbox = async value => {
+    return request
+        .post(api.chat_api.getSyncIdInbox, {
+            cvsId: value.cvsId,
+            syncId: value.syncId,
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw error;
+        });
+};
+
 const sendMessageRemote = (cvsId, msg) => {
     request
         .post(api.chat_api.sendMessage, {
@@ -30,4 +44,4 @@ const sendMessageRemote = (cvsId, msg) => {
         });
 };
 
-export default { sendMessageRemote };
+export default { sendMessageRemote, getNewInbox };

@@ -88,7 +88,7 @@ export default {
                 payload: payload.id,
             });
         },
-        *routerToCvs({ payload }, { select, call, put }) {
+        *routerToCvs({ payload }, { call, put }) {
             const entityId = payload.entityId;
             const cvsList = yield call(fetchCvsList);
             let current_cvs = {};
@@ -99,10 +99,6 @@ export default {
             }
             yield put({
                 type: 'setCurCvs',
-                payload: current_cvs,
-            });
-            yield put({
-                type: 'inbox/getInboxList',
                 payload: current_cvs,
             });
             yield put(routerRedux.push('/'));
