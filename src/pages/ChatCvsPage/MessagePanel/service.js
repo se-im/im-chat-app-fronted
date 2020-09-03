@@ -16,7 +16,7 @@ const getMessagePanelInfoList = () => {
 
 const getNewInbox = async value => {
     return request
-        .post(api.chat_api.getSyncIdInbox, {
+        .post(api.chat_api.getAllInbox, {
             cvsId: value.cvsId,
             syncId: value.syncId,
         })

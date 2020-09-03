@@ -117,7 +117,7 @@ class ProfileEdit extends Component {
                     onFinish={this.onFinish.bind(this)}
                 >
                     <div className={styles.body_profile_edit}>
-                        <strong>个人信息</strong>
+                        <div>个人信息</div>
                         <div className={styles.body_profile_edit_container}>
                             <div className={styles.body_profile_edit_item_1}>
                                 <Form.Item>

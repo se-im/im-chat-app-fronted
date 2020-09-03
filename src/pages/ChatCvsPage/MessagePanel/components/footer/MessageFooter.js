@@ -97,7 +97,6 @@ class MessageFooter extends Component {
                                 }}
                             />
                         </Popover>
-
                         <Upload
                             showUploadList={false}
                             accept={
@@ -237,6 +236,7 @@ class MessageFooter extends Component {
     }
 
     sendMessage() {
+        console.log(this.state.inputValue);
         this.props.dispatch({
             type: 'Message/sendMessageToRemote',
             payload: {

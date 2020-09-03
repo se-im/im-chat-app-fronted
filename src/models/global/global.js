@@ -8,11 +8,11 @@ export default {
     namespace: 'global',
     state: {
         token:
-            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA1NDE3MjAsImlh' +
-            'dCI6MTU5OTAwNTcyMH0.0jgrm1jCzo22rVdznOToTTfX5W5SwEftBsH4RaGFK-M',
+            'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJleHAiOjE2MzA2Mjg1OTksIml' +
+            'hdCI6MTU5OTA5MjU5OX0.sJROXZPpVCBi84w96-jbPrMCVU66ZeRP09A-lahVFSI',
         cur_user: {
             id: 19,
-            username: 'tom',
+            username: 'yxz',
             description: 'ddd',
             email: '',
             phone: '',
@@ -29,7 +29,6 @@ export default {
     reducers: {
         setToken(state, action) {
             state.token = action.payload;
-            console.log(action.payload);
             state.tokenSeted = true;
             request.refreshAxiosConfig(action.payload);
             return state;
