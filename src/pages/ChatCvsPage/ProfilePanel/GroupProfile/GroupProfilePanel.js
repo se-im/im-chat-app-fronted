@@ -84,6 +84,14 @@ class GroupProfilePanel extends Component {
     };
     //添加群成员
     handleAddNewMembers = () => {
+        let newMember = {
+            username: this.props.friendInfo[0].username,
+            userAvatarUrl: this.props.friendInfo[0].avatarUrl,
+        };
+        this.props.chatPanel.profileForGroup.members.push(newMember);
+        this.props.dispatch({
+            type: 'chatPanel/updateGroupProfileMemberNum',
+        });
         this.setState({
             userID: null,
             flag: false,
@@ -99,6 +107,7 @@ class GroupProfilePanel extends Component {
         });
     };
     handleShowNewMemberInfo = flag => {
+        console.log(this.props.friendInfo);
         if (flag) {
             return (
                 <List
