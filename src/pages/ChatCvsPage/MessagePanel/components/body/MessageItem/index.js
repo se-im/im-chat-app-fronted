@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.css';
 import { connect } from 'umi';
 import { Avatar, Image } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, FileTextOutlined } from '@ant-design/icons';
 let message = {
     id: 605,
     messageId: 216,
@@ -33,6 +33,8 @@ const index = ({ message, cvsType }) => {
             return <div className={styles.message_content}>{message.msg}</div>;
         } else if (message.msgContentType === 'image') {
             return <Image width={300} src={message.msg} />;
+        } else if (message.msgContentType === 'file') {
+            return <FileTextOutlined />;
         }
     }
 

@@ -94,8 +94,8 @@ const index = ({ cur_inbox, cur_cvs, dispatch }) => {
     const messagesEnd = React.createRef();
 
     function scrollToBottom() {
-        const scrollHeight = messagesEnd.scrollHeight; //里面div的实际高度  2000px
-        const height = messagesEnd.clientHeight; //网页可见高度  200px
+        const scrollHeight = messagesEnd.current.scrollHeight; //里面div的实际高度  2000px
+        const height = messagesEnd.current.clientHeight; //网页可见高度  200px
         const maxScrollTop = scrollHeight - height;
         messagesEnd.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
         messagesEnd.current.scrollIntoView({ behavior: 'smooth' });
@@ -103,7 +103,7 @@ const index = ({ cur_inbox, cur_cvs, dispatch }) => {
 
     useEffect(() => {
         console.log('-------------');
-        //scrollToBottom();
+        scrollToBottom();
     });
 
     const [userModel, setUserModel] = useState({

@@ -97,6 +97,7 @@ class MessageFooter extends Component {
                                 }}
                             />
                         </Popover>
+
                         <Upload
                             showUploadList={false}
                             accept={
