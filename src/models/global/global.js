@@ -29,6 +29,7 @@ export default {
     reducers: {
         setToken(state, action) {
             state.token = action.payload;
+            console.log(action.payload);
             state.tokenSeted = true;
             request.refreshAxiosConfig(action.payload);
             return state;

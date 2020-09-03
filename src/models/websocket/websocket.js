@@ -61,7 +61,8 @@ export default {
             //会话试图本地不存在，添加
             if (!finded) {
                 yield effect.put({
-                    type: 'cvs/getCvslist',
+                    type: 'cvs/getCvslistForNewInbox',
+                    payload: { cvsId: newInbox.cvsId },
                 });
             } else {
                 yield effect.put({

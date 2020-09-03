@@ -220,9 +220,6 @@ class MessageFooter extends Component {
             type: 'Message/sendMessageToRemote',
             payload: this.state.inputValue,
         });
-        this.setState({
-            inputValue: '',
-        });
 
         let cvsId = this.props.cvs.cur_cvs.id;
         let cur_user = this.props.global.cur_user;
@@ -231,9 +228,13 @@ class MessageFooter extends Component {
             this.state.inputValue,
             cur_user.avatarUrl,
         );
+        console.log(inbox);
         this.props.dispatch({
             type: 'Message/addNewInbox',
             payload: inbox,
+        });
+        this.setState({
+            inputValue: '',
         });
     }
 

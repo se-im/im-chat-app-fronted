@@ -7,7 +7,7 @@ const servers = {
 };
 
 // let server = servers.aliyun2;
-let server = servers.cui;
+let server = servers.local;
 // let server = servers.zmz;
 
 const user_api = {

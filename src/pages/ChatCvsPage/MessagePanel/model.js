@@ -39,9 +39,9 @@ const MsgModel = {
             let newInbox = payload;
             let old_inbox = yield effect.select(state => state.inbox.cur_inbox);
             let cur_inbox = JSON.parse(JSON.stringify(old_inbox));
-            for (var i in newInbox) {
-                cur_inbox.unshift(newInbox[i]);
-            }
+
+            cur_inbox.push(newInbox);
+
             yield effect.put({
                 type: 'inbox/setCvsInbox',
                 payload: cur_inbox,

@@ -52,8 +52,21 @@ export default {
         },
     },
     effects: {
-        *getCvslist(action, { put, call, select }) {
+        *getCvslist({ payload }, { put, call, select }) {
             const data = yield call(fetchCvsList);
+            yield put({
+                type: 'setCvsList',
+                payload: { data },
+            });
+        },
+
+        *getCvslistForNewInbox({ payload }, { put, call, select }) {
+            const data = yield call(fetchCvsList);
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].id === payload.cvsId) {
+                    data[i].unreadMessageNum = data[i].unreadMessageNum + 1;
+                }
+            }
             yield put({
                 type: 'setCvsList',
                 payload: { data },

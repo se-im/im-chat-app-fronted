@@ -42,6 +42,7 @@ const genLoginPacket = token => {
 const genInbox = (cvsId, msg, senderAvatarUrl) => {
     return {
         createTime: 1598873766000,
+        msgContentType: 'text',
         cvsId: cvsId,
         id: 51,
         messageId: 22,
