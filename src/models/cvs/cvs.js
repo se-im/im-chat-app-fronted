@@ -101,6 +101,10 @@ export default {
                 type: 'setCurCvs',
                 payload: current_cvs,
             });
+            yield put({
+                type: 'inbox/getInboxList',
+                payload: current_cvs,
+            });
             yield put(routerRedux.push('/'));
         },
     },
