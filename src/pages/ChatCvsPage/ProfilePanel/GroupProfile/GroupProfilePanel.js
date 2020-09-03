@@ -96,7 +96,7 @@ class GroupProfilePanel extends Component {
         this.props.dispatch({
             type: 'chatPanel/addNewMemberToGroup',
             payload: {
-                userID: this.state.userID,
+                userID: this.props.friendInfo[0].id,
             },
         });
     };
