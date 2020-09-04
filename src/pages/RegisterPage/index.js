@@ -120,7 +120,7 @@ const index = props => {
                             <Input
                                 className="form-item"
                                 id={6}
-                                placeholder="请输入以上分子的化学式"
+                                placeholder="上图化学式,例(C4H6O2)"
                             />
                         </Form.Item>
 
