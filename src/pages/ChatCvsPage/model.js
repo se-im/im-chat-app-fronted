@@ -185,7 +185,7 @@ const ChatModel = {
             const data = yield effects.call(getUserByToken, token1);
             console.log(data);
             if (data === undefined || data === null) {
-                yield effects.put(routerRedux.push('/register/index'));
+                yield effects.put(routerRedux.push('/login/index'));
                 return;
                 console.log(data);
             }
