@@ -37,7 +37,7 @@ class GroupProfilePanel extends Component {
         if (info.file.status === 'done') {
             const formData = new FormData();
             formData.append('file', info.file.originFileObj);
-            const url = 'http://1.zmz121.cn:8010/file/upload/headpic';
+            const url = 'http://chat.idofast.com:8010/file/upload/headpic';
             axios
                 .post(url, formData, {
                     method: 'post',
