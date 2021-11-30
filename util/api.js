@@ -1,7 +1,7 @@
 const servers = {
     local: 'http://localhost',
-    aliyun1: 'http://zmz121.cn',
-    aliyun2: 'http://1.zmz121.cn',
+    aliyun1: 'http://chat.idofast.com',
+    aliyun2: 'http://chat.idofast.com',
     zmz: 'http://192.168.2.206',
     cui: 'http://172.29.12.13',
 };
