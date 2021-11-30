@@ -46,6 +46,7 @@ class ProfileEdit extends Component {
             this.setState({ loading: true });
             return;
         }
+        console.log('----开始上传');
         if (info.file.status === 'done') {
             const formData = new FormData();
             formData.append('file', info.file.originFileObj);
@@ -53,6 +54,7 @@ class ProfileEdit extends Component {
                 uploading: true,
             });
             const url = 'http://chat.idofast.com:8010/file/upload/headpic';
+            console.log('上传url' + url);
             axios
                 .post(url, formData, {
                     method: 'post',
