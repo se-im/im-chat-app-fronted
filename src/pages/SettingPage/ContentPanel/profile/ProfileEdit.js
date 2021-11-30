@@ -52,7 +52,7 @@ class ProfileEdit extends Component {
             this.setState({
                 uploading: true,
             });
-            const url = 'http://1.zmz121.cn:8010/file/upload/headpic';
+            const url = 'http://chat.idofast.com:8010/file/upload/headpic';
             axios
                 .post(url, formData, {
                     method: 'post',

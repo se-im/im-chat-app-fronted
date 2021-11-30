@@ -18,8 +18,7 @@ const ChatModel = {
         showProfilePanel: false,
         profileForUser: {
             id: 12,
-            avatarUrl:
-                'http://1.zmz121.cn:8010/res/file/pic/17201800000320200121080107498725.png',
+            avatarUrl: '',
             birthday: 1598645123000,
             description: '',
             email: 'jim@nwsuaf.edu.cn',
@@ -31,8 +30,7 @@ const ChatModel = {
         profileForGroup: {
             id: 7,
             name: 'a3tom的群聊',
-            avatarUrl:
-                'http://1.zmz121.cn:8010/res/file/pic/17201800000320200321080339502649.png',
+            avatarUrl: '',
             memberNum: 6,
             createUserId: 8,
             description: 'To help student ',

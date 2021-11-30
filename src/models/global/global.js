@@ -17,8 +17,7 @@ export default {
             email: '',
             phone: '',
             birthday: 1598043966000,
-            avatarUrl:
-                'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
+            avatarUrl: '',
             createTime: 1597331350000,
             shown: true,
             gender: 'mail',

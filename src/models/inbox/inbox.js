@@ -14,8 +14,7 @@ const InboxModel = {
                 msg: 'sfsfs',
                 readed: false,
                 selfSend: true,
-                senderAvatarUrl:
-                    'http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png',
+                senderAvatarUrl: '',
                 senderId: 8,
                 senderName: 'tom',
                 syncId: 1,

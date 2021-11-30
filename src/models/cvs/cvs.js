@@ -11,8 +11,7 @@ export default {
             cvsName: 'a3tom的群聊',
             cvsType: 'G',
             relationEntityId: 7,
-            avatarUrl:
-                'http://1.zmz121.cn:8010/res/file/pic/17201800000320200321080339502649.png',
+            avatarUrl: '',
             lastMessage: '啊啊啊',
             senderName: '小明',
             unreadMessageNum: 1,

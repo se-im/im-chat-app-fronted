@@ -25,7 +25,7 @@ export default {
     msg: "ADASD"
     msgContentType: "text"
     selfSend: false
-    senderAvatarUrl: "http://1.zmz121.cn:8010/res/file/pic/17201800000320200521080528088661.png"
+    senderAvatarUrl: ""
     senderId: 19
     senderName: "yxz"
     syncId: 34

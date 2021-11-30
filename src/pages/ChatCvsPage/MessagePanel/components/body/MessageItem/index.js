@@ -11,8 +11,7 @@ let message = {
     cvsId: 174,
     senderId: 8,
     senderName: 'tom12',
-    senderAvatarUrl:
-        'http://1.zmz121.cn:8010/res/file/pic/17201800000320200121080107498725.png',
+    senderAvatarUrl: '',
     readed: true,
     syncId: 1,
     createTime: 1599035353000,

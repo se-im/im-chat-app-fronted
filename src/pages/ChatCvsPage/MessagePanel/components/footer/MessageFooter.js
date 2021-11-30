@@ -111,7 +111,7 @@ class MessageFooter extends Component {
                                 axios({
                                     method: 'post',
                                     url:
-                                        'http://1.zmz121.cn:8010/file/upload/headpic',
+                                        'http://chat.idofast.com:8010/file/upload/headpic',
                                     data: data,
                                     onUploadProgress: progressEvent => {
                                         let complete =
