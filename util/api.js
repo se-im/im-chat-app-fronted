@@ -1,13 +1,13 @@
 const servers = {
     local: 'http://localhost',
-    aliyun1: 'http://chat.idofast.com',
-    aliyun2: 'http://chat.idofast.com',
+    tencentCloud: 'http://zmz121.cn',
     zmz: 'http://192.168.2.206',
     cui: 'http://172.29.12.13',
 };
 
 // let server = servers.aliyun2;
-let server = servers.aliyun2;
+let server = servers.local;
+let fileServer = servers.tencentCloud;
 // let server = servers.zmz;
 
 const user_api = {
@@ -44,7 +44,9 @@ const chat_api = {
     getSyncIdInbox: '/chat/inbox/query/syncid',
 };
 
-const file_api = {};
+const file_api = {
+    uploadHeadPic: '/file/upload/headpic',
+};
 
 const user_apis = {
     port: '8001',
@@ -74,6 +76,6 @@ for (let url in file_apis.api) {
     apiPortMap.set(file_apis.api[url], file_apis.port);
 }
 
-export { user_api, chat_api, file_api, apiPortMap, server };
+export { user_api, chat_api, file_api, apiPortMap, server, fileServer };
 
-export default { user_api, chat_api, file_api, apiPortMap, server };
+export default { user_api, chat_api, file_api, apiPortMap, server, fileServer };

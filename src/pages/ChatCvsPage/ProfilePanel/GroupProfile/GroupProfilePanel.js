@@ -13,6 +13,8 @@ import { FormOutlined, PlusOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import styles from './style.css';
+import request from '../../../../../util/request';
+import api from '../../../../../util/api';
 
 class GroupProfilePanel extends Component {
     state = {
@@ -37,7 +39,7 @@ class GroupProfilePanel extends Component {
         if (info.file.status === 'done') {
             const formData = new FormData();
             formData.append('file', info.file.originFileObj);
-            const url = 'http://chat.idofast.com:8010/file/upload/headpic';
+            const url = request.getFullUrlPath(api.file_api.uploadHeadPic);
             axios
                 .post(url, formData, {
                     method: 'post',

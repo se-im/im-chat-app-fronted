@@ -15,6 +15,8 @@ import {
 import { FormOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import styles from './style.css';
+import request from '../../../../../util/request';
+import api from '../../../../../util/api';
 
 class ProfileEdit extends Component {
     state = {
@@ -53,7 +55,7 @@ class ProfileEdit extends Component {
             this.setState({
                 uploading: true,
             });
-            const url = 'http://chat.idofast.com:8010/file/upload/headpic';
+            const url = request.getFullUrlPath(api.file_api.uploadHeadPic);
             console.log('上传url' + url);
             axios
                 .post(url, formData, {

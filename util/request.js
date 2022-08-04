@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { server, apiPortMap } from './api';
+import api, { server, apiPortMap, fileServer } from './api';
 import { message } from 'antd';
 import global from '../src/models/global/global';
 import querystring from 'querystring';
 
 import { routerRedux } from 'dva';
+import util from './util';
 
 const response_status = {
     success: 200,
@@ -153,5 +154,11 @@ const parseRequestParam = param => {
     return res;
 };
 
-export { get, post, post_json, refreshAxiosConfig };
-export default { get, post, post_json, refreshAxiosConfig };
+const getFullUrlPath = path => {
+    return fileServer + ':' + apiPortMap.get(path + '') + path;
+};
+
+console.log(getFullUrlPath(api.file_api.uploadHeadPic));
+
+export { get, post, post_json, refreshAxiosConfig, getFullUrlPath };
+export default { get, post, post_json, refreshAxiosConfig, getFullUrlPath };

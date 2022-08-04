@@ -110,8 +110,9 @@ class MessageFooter extends Component {
                                 data.append('file', file);
                                 axios({
                                     method: 'post',
-                                    url:
-                                        'http://chat.idofast.com:8010/file/upload/headpic',
+                                    url: request.getFullUrlPath(
+                                        api.file_api.uploadHeadPic,
+                                    ),
                                     data: data,
                                     onUploadProgress: progressEvent => {
                                         let complete =
