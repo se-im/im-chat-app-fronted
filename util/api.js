@@ -6,7 +6,7 @@ const servers = {
 };
 
 // let server = servers.aliyun2;
-let server = servers.local;
+let server = servers.tencentCloud;
 let fileServer = servers.tencentCloud;
 // let server = servers.zmz;
 
