@@ -15,6 +15,8 @@ import styles from './style.css';
 import 'emoji-mart/css/emoji-mart.css';
 import { connect } from 'umi';
 import util from '../../../../../../util/util';
+import request from "../../../../../../util/request";
+import api from "../../../../../../util/api";
 
 class MessageFooter extends Component {
     state = {
